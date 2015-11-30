@@ -2,3 +2,5 @@ User Stories
 
 1: A Human Resources staff member creates a personal details document for a newly hired employee.
 2: A Human Resources staff member gives a manager permission to read a Termination record.
+3: A Director of a department confirms salary increase request for one of his employees based on a Annual Review
+4: A reviewed tries to change he's Annual Review feedback and gets access denied.
