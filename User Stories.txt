@@ -1,2 +1,4 @@
 User Stories
 
+1: A Human Resources staff member creates a personal details document for a newly hired employee.
+2: A Human Resources staff member gives a manager permission to read a Termination record.
