@@ -1,0 +1,42 @@
+-- Reviewing:
+
+Reviewing documents will be an important part of the development process. The purpose of
+reviewing documents is to give feedback on work, develop improvements to solutions and
+give constructive criticism.
+
+The general structure our group will follow in order to ensure that documents are reviewed
+is as follows:
+
+A member creates a file or document and uploads it to GitLab. The remaining members go onto
+GitLab and read the work. Each remaining member will write up a short, but concise 
+paragraph regarding what improvements could be made, and overall constructive criticism.
+At the following meeting, the piece of work and notes will be discussed openly between
+group members and any changes that are agreed on will  be made. This method ensures that
+all pieces of work are not only to a high standard, but incorporates all members ideas.
+
+This method will be carried out for all pieces of work created and uploaded to GitLab.
+
+To indicate that a file has been submitted and that the reviewing process has taken place,
+we will use the history section on GitLab. There we will be able to monitor how many versions
+of a file exist, what the latest version contains and whether or not it is the final version
+ready for submission.  
+
+-- Quality assurance:
+
+As mentioned, quality assurance will be enforced by a general structure put in place by the
+group. It will consist of reviewing each piece of work by every other member of the group
+(discluding the author), and writing notes or improvement and constructive criticism. From
+there all notes of improvement will be added by the origional author and the piece will be
+uploaded to GitLab once more. This process will repeat until the group are satisfied with 
+the quality of the work.
+
+To ensure the quality of the groups work is at its best, we will all follow a few general 
+guidelines when prodcing work. These include:
+
+- Using TAB instead of SPACE to indent code.
+- Using the font 'Courier New'.
+- Using a font size of 12.
+- Headings should be font size 16.
+- Document titles should be font size 20.
+- Document creation date on top right of page (Header).
+- Document page number on bottom right of page (Footer).
