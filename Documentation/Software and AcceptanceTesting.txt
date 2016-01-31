@@ -1,4 +1,6 @@
 Software and Acceptance Testing
 
 	Unit tests will be written before programming begins on each class. Tests will be designed to verify the class conforms to it's representation in the Class diagram created for the project. When each class required in a Use Case passes the necessary parts of it's Unit test for that Use Case an Integration test will be written that covers that Use Case as a whole. These tests will automate as much as possible the testing needed to show that the project performs as required, and only when these tests are passed will the system be tested manually.
+	All tests will include a responsiveness test that will require the functionality tested to be complete within a short time to pass. The design requirement this imposes will eliminate a likely source of User Interface problems.
 	To record the results of the tests an Issue will be created on GitLab with the Testing label for each Test. This Issue will contain the results of the test and will be updated every time a change is made in the project that causes new results.
+	Once the user interface and most Use Cases have passed manual tests by the developers they will be tested by a third party using the user interface.
