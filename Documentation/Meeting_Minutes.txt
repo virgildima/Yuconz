@@ -1,7 +1,11 @@
-Meeting Minutes:
+Meeting Minutes
 
-2016-01-28
+29/01/2016
+	Decided on standards to use in documentation.
+	Started the Class diagram for the project.
+
+28/01/2016
 	Decided meetings will be every Thursday at 1pm in the Computer Science Common Room.
 	Agreed on unit testing for quality control. Detail in quality assurance document.
 	Divided planning documents among the group. Assigned using Gitlab Issue tracking.
-	Decided reviews will be done on gitlab by anyone, any document not reviewed by the next meeting will be reviewed then.
+	Decided reviews will be done on Gitlab by anyone, any document not reviewed by the next meeting will be reviewed then.
