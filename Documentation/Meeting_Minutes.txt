@@ -9,3 +9,7 @@ Meeting Minutes
 29/01/2016
 	Decided on standards to use in documentation.
 	Started the Class diagram for the project.
+
+04/02/2016
+	Divided tasks between ourselves.
+	Discussed Class diagram and the Libraries we might use.
