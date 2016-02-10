@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=boolean\ setup()
+comment1.params=
+comment1.target=boolean\ isViable()
+comment2.params=
+comment2.target=boolean\ deleteDB()
+numComments=3
