@@ -3,10 +3,10 @@ import java.util.*;
 public class Authentication extends DB_Core
 {
     static final String dbName = "authenticationDB";
-    Connection conn = null;
-    Statement stmt = null;
-    PreparedStatement prepStmt = null;
-    ResultSet rs = null;
+    static Connection conn = null;
+    static Statement stmt = null;
+    static PreparedStatement prepStmt = null;
+    static ResultSet rs = null;
     
     String currentUser = null;
     
@@ -37,9 +37,10 @@ public class Authentication extends DB_Core
                                 +"ID            CHAR(6) NOT NULL PRIMARY KEY, "
                                 +"PASSHASH      VARCHAR(128) NOT NULL, "
                                 +"AUTHLEVEL     INT NOT NULL, "
+                                +"DEPARTMENT     INT NOT NULL, "
                                 +"SURNAME       VARCHAR(50) NOT NULL, "
                                 +"FIRSTNAME     VARCHAR(30) NOT NULL, "
-                                +"LOCKED        SMALLINT NOT NULL)";
+                                +"LOCKED        BOOLEAN NOT NULL)";
             stmt.execute(str);
             str = "CREATE TABLE givenPermission ("
                                 +"ID        VARCHAR(6) NOT NULL, "
@@ -55,35 +56,58 @@ public class Authentication extends DB_Core
         }
     }
     
-    public boolean addNewUser(String userID, String passhash, AccessRights accessRights, String surname, String firstname)
+    public boolean addNewUser(String userID, String passhash, AccessRights accessRights, Department department, String surname, String firstname)
     {
         Boolean success = false;
         try{
-            String str = "INSERT INTO users (ID, PASSHASH, AUTHLEVEL, SURNAME, FIRSTNAME, LOCKED) VALUES (?,?,?,?,?,false)";
+            String str = "INSERT INTO users (ID, PASSHASH, AUTHLEVEL, DEPARTMENT, SURNAME, FIRSTNAME, LOCKED) VALUES (?,?,?,?,?,?,false)";
             prepStmt = conn.prepareStatement(str);
             
             prepStmt.setString(1,userID);
             prepStmt.setString(2,passhash);
             prepStmt.setInt(3,accessRights.toInt());
-            prepStmt.setString(4,surname);
-            prepStmt.setString(5,firstname);
+            prepStmt.setInt(4,department.toInt());
+            prepStmt.setString(5,surname);
+            prepStmt.setString(6,firstname);
             
             
-            success = prepStmt.execute(str);
-            System.out.println(dbName+" ready.");
+            success = (prepStmt.executeUpdate()==1);
         } catch (Exception e) {
-            System.out.println("Insert user encountered an error.");
-            e.printStackTrace();
+           System.out.println("Insert user encountered an error.");
+           e.printStackTrace();
+           return false;
         }
         return success;
     }
-    public boolean login(int userID, String passhash, AccessRights accessRights)
+    public boolean login(String userID, String passhash, AccessRights accessRights)
     {
-        return false;
+        Boolean success = false;
+        try{
+            String str = "SELECT COUNT(*) FROM users WHERE ID=? AND PASSHASH=? AND AUTHLEVEL=? AND LOCKED=false";
+            prepStmt = conn.prepareStatement(str);
+            
+            prepStmt.setString(1,userID);
+            prepStmt.setString(2,passhash);
+            prepStmt.setInt(3,accessRights.toInt());
+            
+            rs = prepStmt.executeQuery();
+            rs.next();
+            if(rs.getInt(1)==1){
+                currentUser = userID;
+                success = true;
+            }
+        } catch (Exception e) {
+           System.out.println("Insert user encountered an error.");
+           e.printStackTrace();
+           return false;
+        }
+        
+        return success;
     }
     public boolean logout()
     {
-        return false;
+        currentUser = null;
+        return true;
     }
     public boolean givePermission(String userID, int documentID)
     {
@@ -108,6 +132,24 @@ public class Authentication extends DB_Core
     
     public static void deleteDB()
     {
+        try{
+            conn.close();
+        } catch (Exception e) {
+           System.out.println("Could not close connection");
+           e.printStackTrace();
+        }
+        try{
+            stmt.executeQuery("DROP TABLE users");
+        } catch (Exception e) {
+           System.out.println("Could not drop users");
+           e.printStackTrace();
+        }
+        try{
+            stmt.executeQuery("DROP TABLE givenPermission");
+        } catch (Exception e) {
+           System.out.println("Could not drop givenPermission");
+           e.printStackTrace();
+        }
         DB_Core.deleteDB(dbName);
     }
     

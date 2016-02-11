@@ -36,6 +36,22 @@ public class AuthenticationTest
     {
         assertTrue("Not Viable",au.isViable());
     }
+    @Test
+    public void addUser()
+    {
+        assertTrue("Did not add",au.addNewUser("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User,Department.HR,"Smith","John"));
+    }
+    @Test
+    public void login()
+    {
+        assertTrue("Could not log in",au.login("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User));
+    }
+    @Test
+    public void logout()
+    {
+        au.login("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User);
+        assertTrue("Did not log out",au.logout());
+    }
 
     /**
      * Tears down the test fixture.
@@ -45,5 +61,7 @@ public class AuthenticationTest
     @After
     public void tearDown()
     {
+        
+        Authentication.deleteDB();
     }
 }
