@@ -6,5 +6,6 @@ public class Database extends DB_Core
      */
     public Database()
     {
+                System.out.println("Drivers: "+DriverManager.getDrivers());
     }
 }

@@ -7,5 +7,11 @@
  */
 public enum AccessRights
 {
-    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    Basic_User(0), Manager(1), HR_Employee(2), Director(3);
+    private int value;
+    
+    private AccessRights(int value)
+    {   
+        this.value = value;
+    }
 }

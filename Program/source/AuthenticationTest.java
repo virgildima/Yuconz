@@ -1,5 +1,4 @@
 
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -19,7 +18,7 @@ public class AuthenticationTest
     public AuthenticationTest()
     {
     }
-
+    Authentication au = null;
     /**
      * Sets up the test fixture.
      *
@@ -28,12 +27,13 @@ public class AuthenticationTest
     @Before
     public void setUp()
     {
+        Authentication.deleteDB();
+        au = new Authentication();
     }
     
     @Test
     public void setupCorrect()
     {
-        Authentication au = new Authentication();
         assertTrue("Not Viable",au.isViable());
     }
 
