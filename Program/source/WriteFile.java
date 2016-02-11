@@ -25,7 +25,7 @@ public class WriteFile
     }
 
     public void SaveToFile( String textLine ) throws IOException {
-        try {
+        
             FileWriter write = new FileWriter( path , append_to_file);
             PrintWriter print_line = new PrintWriter( write );
 
@@ -33,9 +33,7 @@ public class WriteFile
 
             print_line.close();
         }
-        catch(IOException e) {
-            System.out.println("Sorry, unable to save!");
-        }
+        
     }
 
-}
+
