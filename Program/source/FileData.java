@@ -26,8 +26,8 @@ public class FileData
         // Write to a file
 
         try {
-            WriteFile data = new WriteFile( file_name , true );
-            data.SaveToFile( "This is another line of text" );
+            SaveToFile data = new SaveToFile( file_name , true );
+            data.writeToFile( "This is another line of text" );
         }
         catch (IOException e) {
             System.out.println( "Text File Written To" );
