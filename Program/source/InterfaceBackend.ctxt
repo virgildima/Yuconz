@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=gui
+comment0.target=InterfaceBackend(GUI)
+comment0.text=\r\n\ These\ refer\ to\ instance\ varibles\ or\ fields\ thus\ this\ allows\ me\ to\ use\ some\ in\ this\ class.\r\n
+comment1.params=
+comment1.target=GUI\ gui()
+numComments=2
