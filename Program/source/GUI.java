@@ -5,6 +5,8 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.applet.Applet;
 import java.util.Arrays;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -27,6 +29,7 @@ public class GUI
     public JTextField usernameField;
     public JPasswordField passwordField;
     char[] passArray = new char[] {'1'};
+    public String str;
 
     public GUI()
     {
@@ -69,6 +72,38 @@ public class GUI
             JOptionPane.INFORMATION_MESSAGE);
     }
 
+    public String passwordSHA512(String generatedPassword)
+    {
+        str = generatedPassword;
+        if(generatedPassword.length() > 6 || generatedPassword.length() < 6  )
+        {
+            JOptionPane.showMessageDialog(frame,
+            "The password must be 6 characters long",
+            "Password length incorrect", 
+            JOptionPane.INFORMATION_MESSAGE);
+            
+
+        }
+        else
+        {
+            byte[] array = str.getBytes();
+
+            try {
+                MessageDigest digest = MessageDigest.getInstance("SHA-512");
+                byte[] bytes  = digest.digest(str.getBytes());
+                StringBuilder sb = new StringBuilder();
+                for(int i=0; i< bytes.length ;i++)
+                {
+                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+                }
+                str = sb.toString();
+            } catch (NoSuchAlgorithmException e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+        return str;
+    }
+
     private void afterLoginFrame()
     {
 
@@ -109,9 +144,7 @@ public class GUI
         loggedIn.add(employeeFiredLabel);
         loggedIn.add(employeeFired);
 
-        
         employeeSearch.setText("Replace and type to search");
-
         employeeForename.setEditable(false);
         employeeSurname.setEditable(false);  
         employeeBirthDate.setEditable(false);
@@ -169,8 +202,8 @@ public class GUI
         loginButton.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    //&& passArray.equals(passwordField.getPassword())
-                    if(usernameField.getText().equals("username"))
+
+                    if(usernameField.getText().equals("username")&& str.equals(passwordField.getPassword()))
                     {
                         JOptionPane.showMessageDialog(frame,
                             "Logged in",
