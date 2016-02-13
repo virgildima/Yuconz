@@ -5,8 +5,7 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.applet.Applet;
 import java.util.Arrays;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 
 /**
  *
@@ -29,7 +28,7 @@ public class GUI
     public JTextField usernameField;
     public JPasswordField passwordField;
     char[] passArray = new char[] {'1'};
-    public String str;
+    public String passwordString;
 
     public GUI()
     {
@@ -38,73 +37,8 @@ public class GUI
 
     }
 
-    /**
-     * Method which closes the program
-     */
 
-    private void quit()
-    {
-        System.exit(0);
-    }
-
-    /**
-     * 
-     */
-
-    private void about()
-    {
-        JOptionPane.showMessageDialog(frame,
-            "This is the user interface for the Yuconz user review system.",
-            "About.", 
-            JOptionPane.INFORMATION_MESSAGE);
-
-    }
-
-    /**
-     * 
-     */
-
-    private void help()
-    {
-        JOptionPane.showMessageDialog(frame,
-            "In order for you to login, you must enter your username in the text field labelled "+ " 'username' " + "and the password in the text field labelled" + " 'password'.",
-            "Help.", 
-            JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public String passwordSHA512(String generatedPassword)
-    {
-        str = generatedPassword;
-        if(generatedPassword.length() > 6 || generatedPassword.length() < 6  )
-        {
-            JOptionPane.showMessageDialog(frame,
-            "The password must be 6 characters long",
-            "Password length incorrect", 
-            JOptionPane.INFORMATION_MESSAGE);
-            
-
-        }
-        else
-        {
-            byte[] array = str.getBytes();
-
-            try {
-                MessageDigest digest = MessageDigest.getInstance("SHA-512");
-                byte[] bytes  = digest.digest(str.getBytes());
-                StringBuilder sb = new StringBuilder();
-                for(int i=0; i< bytes.length ;i++)
-                {
-                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-                }
-                str = sb.toString();
-            } catch (NoSuchAlgorithmException e) {
-                throw new UnsupportedOperationException(e);
-            }
-        }
-        return str;
-    }
-
-    private void afterLoginFrame()
+    protected void afterLoginFrame()
     {
 
         JFrame afterLoginFrame = new JFrame("Yuconz Employee System");
@@ -167,6 +101,8 @@ public class GUI
      */
     private void makeFrame()
     {
+        GUI gui = new GUI();
+        InterfaceBackend ib = new InterfaceBackend(gui);
 
         JPanel ptext = new JPanel();
         ptext.setLayout(new GridLayout(3,3));
@@ -201,31 +137,8 @@ public class GUI
 
         loginButton.addActionListener(new ActionListener() {
 
-                public void actionPerformed(ActionEvent e) {
-
-                    if(usernameField.getText().equals("username")&& str.equals(passwordField.getPassword()))
-                    {
-                        JOptionPane.showMessageDialog(frame,
-                            "Logged in",
-                            "User Details Accepted.", 
-                            JOptionPane.INFORMATION_MESSAGE);
-                        frame.setVisible(false);
-                        frame.dispose();
-                        afterLoginFrame();
-                    }
-
-                    else
-                    {
-                        JOptionPane.showMessageDialog(frame,
-                            "Incorrect Login Details",
-                            "User details are incorrect.", 
-                            JOptionPane.INFORMATION_MESSAGE);
-                    }
-
-                }
-
+                public void actionPerformed(ActionEvent e) { ib.checkPasswordUsername(); }
             });
-
     }
 
     /**
@@ -235,6 +148,9 @@ public class GUI
 
     public void menuBar(JFrame frame)
     {
+        GUI gui = new GUI();
+        InterfaceBackend ib = new InterfaceBackend(gui);
+
         final int SHORTCUT_MASK =
             Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
@@ -249,20 +165,20 @@ public class GUI
 
         item = new JMenuItem("About");
         item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) { about(); }
+                public void actionPerformed(ActionEvent e) { ib.about(); }
             });
         menu.add(item);
 
         item = new JMenuItem("help");
 
         item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) { help(); }
+                public void actionPerformed(ActionEvent e) { ib.help(); }
             });
         menu.add(item);
 
         item = new JMenuItem("Quit");
         item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) { quit(); }
+                public void actionPerformed(ActionEvent e) { ib.quit(); }
             });
         menu.add(item);
     }
