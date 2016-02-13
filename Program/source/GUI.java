@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
 import java.applet.Applet;
-import java.util.Arrays;
 
 /**
  *
@@ -14,11 +13,9 @@ import java.util.Arrays;
 
 public class GUI
 {
-    private JFrame frame;
-    private JFrame afterLoginFrame;
-    /**
-     * These are buttons which are used in this class with action listeners so the player can click on the answer they want.
-     */
+    protected JFrame frame;
+    protected JFrame afterLoginFrame;
+
     private JButton loginButton;
 
     private Container content;
@@ -26,7 +23,8 @@ public class GUI
 
     public JTextField usernameField;
     public JPasswordField passwordField;
-    char[] passArray = new char[] {'1'};
+
+   
 
     public GUI()
     {
@@ -35,41 +33,7 @@ public class GUI
 
     }
 
-    /**
-     * Method which closes the program
-     */
-
-    private void quit()
-    {
-        System.exit(0);
-    }
-
-    /**
-     * 
-     */
-
-    private void about()
-    {
-        JOptionPane.showMessageDialog(frame,
-            "This is the user interface for the Yuconz user review system.",
-            "About.", 
-            JOptionPane.INFORMATION_MESSAGE);
-
-    }
-
-    /**
-     * 
-     */
-
-    private void help()
-    {
-        JOptionPane.showMessageDialog(frame,
-            "In order for you to login, you must enter your username in the text field labelled "+ " 'username' " + "and the password in the text field labelled" + " 'password'.",
-            "Help.", 
-            JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    private void afterLoginFrame()
+    protected void afterLoginFrame()
     {
 
         JFrame afterLoginFrame = new JFrame("Yuconz Employee System");
@@ -109,9 +73,7 @@ public class GUI
         loggedIn.add(employeeFiredLabel);
         loggedIn.add(employeeFired);
 
-        
         employeeSearch.setText("Replace and type to search");
-
         employeeForename.setEditable(false);
         employeeSurname.setEditable(false);  
         employeeBirthDate.setEditable(false);
@@ -132,15 +94,14 @@ public class GUI
      * 
      * 
      */
-    private void makeFrame()
+    protected void makeFrame()
     {
+        frame = new JFrame("Login");
 
         JPanel ptext = new JPanel();
         ptext.setLayout(new GridLayout(3,3));
 
-        frame = new JFrame("Login");
         Dimension textDimension = new Dimension(140, 21);
-
         usernameField = new JTextField();
         usernameField.setPreferredSize(textDimension);
 
@@ -158,18 +119,17 @@ public class GUI
         ptext.add(passwordField);
         ptext.add(loginButton);
 
-        menuBar(frame);
+        actionListeners(frame);
         frame.setVisible(true);
         frame.getContentPane().add(ptext);
         frame.setResizable(false);
 
         frame.pack();
         frame.setLocationRelativeTo(null);
-
+        
         loginButton.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    //&& passArray.equals(passwordField.getPassword())
+                public void actionPerformed(ActionEvent e) { 
+                    //&& passwordString.equals(passwordField.getPassword())
                     if(usernameField.getText().equals("username"))
                     {
                         JOptionPane.showMessageDialog(frame,
@@ -187,23 +147,22 @@ public class GUI
                             "Incorrect Login Details",
                             "User details are incorrect.", 
                             JOptionPane.INFORMATION_MESSAGE);
-                    }
-
-                }
-
+                    } }
             });
 
     }
+
 
     /**
      * 
      * 
      */
 
-    public void menuBar(JFrame frame)
+    public void actionListeners(JFrame frame)
     {
-        final int SHORTCUT_MASK =
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+        InterfaceBackend ib = new InterfaceBackend(GUI.this);
+
+        
 
         JMenuBar menubar = new JMenuBar();
         frame.setJMenuBar(menubar);
@@ -216,21 +175,24 @@ public class GUI
 
         item = new JMenuItem("About");
         item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) { about(); }
+                public void actionPerformed(ActionEvent e) { ib.about(); }
             });
         menu.add(item);
 
         item = new JMenuItem("help");
 
         item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) { help(); }
+                public void actionPerformed(ActionEvent e) { ib.help(); }
             });
         menu.add(item);
 
         item = new JMenuItem("Quit");
         item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) { quit(); }
+                public void actionPerformed(ActionEvent e) { ib.quit(); }
             });
         menu.add(item);
+
+        
     }
+
 }
