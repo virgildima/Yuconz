@@ -3,10 +3,10 @@ import java.util.*;
 public class Authentication extends DB_Core
 {
     static final String dbName = "authenticationDB";
-    static Connection conn = null;
-    static Statement stmt = null;
-    static PreparedStatement prepStmt = null;
-    static ResultSet rs = null;
+    Connection conn = null;
+    Statement stmt = null;
+    PreparedStatement prepStmt = null;
+    ResultSet rs = null;
     
     String currentUser = null;
     
@@ -129,8 +129,7 @@ public class Authentication extends DB_Core
     {
         return conn!=null;
     }
-    
-    public static void deleteDB()
+    public void close()
     {
         try{
             conn.close();
@@ -138,18 +137,10 @@ public class Authentication extends DB_Core
            System.out.println("Could not close connection");
            e.printStackTrace();
         }
-        try{
-            stmt.executeQuery("DROP TABLE users");
-        } catch (Exception e) {
-           System.out.println("Could not drop users");
-           e.printStackTrace();
-        }
-        try{
-            stmt.executeQuery("DROP TABLE givenPermission");
-        } catch (Exception e) {
-           System.out.println("Could not drop givenPermission");
-           e.printStackTrace();
-        }
+    }
+    
+    public static void deleteDB()
+    {
         DB_Core.deleteDB(dbName);
     }
     

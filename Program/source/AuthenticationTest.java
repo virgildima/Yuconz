@@ -12,13 +12,21 @@ import org.junit.Test;
  */
 public class AuthenticationTest
 {
+    Authentication au = null;
+    
     /**
      * Default constructor for test class AuthenticationTest
      */
     public AuthenticationTest()
     {
+        System.out.println("Starting Authentication Tests");
+        au = new Authentication();
+        System.out.println("    au created");
+        au.close();
+        System.out.println("    au closed");
+        Authentication.deleteDB();
+        System.out.println("    au deleted");
     }
-    Authentication au = null;
     /**
      * Sets up the test fixture.
      *
@@ -27,28 +35,35 @@ public class AuthenticationTest
     @Before
     public void setUp()
     {
-        Authentication.deleteDB();
+        System.out.println("Setting up au");
         au = new Authentication();
+        System.out.println("    au created");
     }
     
     @Test
     public void setupCorrect()
     {
+        System.out.println("Test: setupCorrect");
         assertTrue("Not Viable",au.isViable());
     }
     @Test
     public void addUser()
     {
+        System.out.println("Test: addUser");
         assertTrue("Did not add",au.addNewUser("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User,Department.HR,"Smith","John"));
     }
     @Test
     public void login()
     {
-        assertTrue("Could not log in",au.login("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User));
+        System.out.println("Test: login");
+        au.addNewUser("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User,Department.HR,"Smith","John");
+        assertTrue("Could not log in",      au.login("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User)           );
     }
     @Test
     public void logout()
     {
+        System.out.println("Test: logout");
+        au.addNewUser("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User,Department.HR,"Smith","John");
         au.login("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User);
         assertTrue("Did not log out",au.logout());
     }
@@ -61,7 +76,10 @@ public class AuthenticationTest
     @After
     public void tearDown()
     {
-        
+        System.out.println("Closing au");
+        au.close();
+        System.out.println("    au closed");
         Authentication.deleteDB();
+        System.out.println("    au deleted");
     }
 }
