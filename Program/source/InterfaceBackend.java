@@ -18,6 +18,7 @@ public class InterfaceBackend
 
     private GUI gui;
     protected JFrame frame;
+    public String password;
 
     /**
      * These refer to instance varibles or fields thus this allows me to use some in this class.
@@ -33,8 +34,9 @@ public class InterfaceBackend
     {
         GUI guiClass = new GUI();
 
-        if(password.length() > 6 || password.length() < 6  )
+        if(password.length() != 6  )
         {
+            password = null;
             JOptionPane.showMessageDialog(frame,
                 "The password must be 6 characters long",
                 "Password length incorrect", 
@@ -43,22 +45,22 @@ public class InterfaceBackend
         }
         else
         {
-            byte[] array = gui.passwordString.getBytes();
+            byte[] array = password.getBytes();
 
             try {
                 MessageDigest digest = MessageDigest.getInstance("SHA-512");
-                byte[] bytes  = digest.digest(gui.passwordString.getBytes());
+                byte[] bytes  = digest.digest(password.getBytes());
                 StringBuilder strBuild = new StringBuilder();
                 for(int i=0; i< bytes.length ;i++)
                 {
                     strBuild.append(Integer.toString((bytes[i] & 0xff) + 0x100, 6).substring(1));
                 }
-                gui.passwordString = strBuild.toString();
+                password = strBuild.toString();
             } catch (NoSuchAlgorithmException e) {
                 throw new UnsupportedOperationException(e);
             }
         }
-        return guiClass.passwordString;
+        return password;
     }
 
     /**

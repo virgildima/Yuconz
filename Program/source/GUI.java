@@ -13,8 +13,8 @@ import java.applet.Applet;
 
 public class GUI
 {
-    private JFrame frame;
-    private JFrame afterLoginFrame;
+    protected JFrame frame;
+    protected JFrame afterLoginFrame;
 
     private JButton loginButton;
 
@@ -24,7 +24,7 @@ public class GUI
     public JTextField usernameField;
     public JPasswordField passwordField;
 
-    public String passwordString;
+   
 
     public GUI()
     {
