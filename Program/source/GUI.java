@@ -4,8 +4,6 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
 import java.applet.Applet;
-import java.util.Arrays;
-
 
 /**
  *
@@ -17,9 +15,7 @@ public class GUI
 {
     private JFrame frame;
     private JFrame afterLoginFrame;
-    /**
-     * These are buttons which are used in this class with action listeners so the player can click on the answer they want.
-     */
+
     private JButton loginButton;
 
     private Container content;
@@ -27,7 +23,7 @@ public class GUI
 
     public JTextField usernameField;
     public JPasswordField passwordField;
-    char[] passArray = new char[] {'1'};
+
     public String passwordString;
 
     public GUI()
@@ -36,7 +32,6 @@ public class GUI
         InterfaceBackend UI = new InterfaceBackend(GUI.this);
 
     }
-
 
     protected void afterLoginFrame()
     {
@@ -99,17 +94,14 @@ public class GUI
      * 
      * 
      */
-    private void makeFrame()
+    protected void makeFrame()
     {
-        GUI gui = new GUI();
-        InterfaceBackend ib = new InterfaceBackend(gui);
+        frame = new JFrame("Login");
 
         JPanel ptext = new JPanel();
         ptext.setLayout(new GridLayout(3,3));
 
-        frame = new JFrame("Login");
         Dimension textDimension = new Dimension(140, 21);
-
         usernameField = new JTextField();
         usernameField.setPreferredSize(textDimension);
 
@@ -127,32 +119,50 @@ public class GUI
         ptext.add(passwordField);
         ptext.add(loginButton);
 
-        menuBar(frame);
+        actionListeners(frame);
         frame.setVisible(true);
         frame.getContentPane().add(ptext);
         frame.setResizable(false);
 
         frame.pack();
         frame.setLocationRelativeTo(null);
-
+        
         loginButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) { 
+                    //&& passwordString.equals(passwordField.getPassword())
+                    if(usernameField.getText().equals("username"))
+                    {
+                        JOptionPane.showMessageDialog(frame,
+                            "Logged in",
+                            "User Details Accepted.", 
+                            JOptionPane.INFORMATION_MESSAGE);
+                        frame.setVisible(false);
+                        frame.dispose();
+                        afterLoginFrame();
+                    }
 
-                public void actionPerformed(ActionEvent e) { ib.checkPasswordUsername(); }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(frame,
+                            "Incorrect Login Details",
+                            "User details are incorrect.", 
+                            JOptionPane.INFORMATION_MESSAGE);
+                    } }
             });
+
     }
+
 
     /**
      * 
      * 
      */
 
-    public void menuBar(JFrame frame)
+    public void actionListeners(JFrame frame)
     {
-        GUI gui = new GUI();
-        InterfaceBackend ib = new InterfaceBackend(gui);
+        InterfaceBackend ib = new InterfaceBackend(GUI.this);
 
-        final int SHORTCUT_MASK =
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+        
 
         JMenuBar menubar = new JMenuBar();
         frame.setJMenuBar(menubar);
@@ -181,5 +191,8 @@ public class GUI
                 public void actionPerformed(ActionEvent e) { ib.quit(); }
             });
         menu.add(item);
+
+        
     }
+
 }

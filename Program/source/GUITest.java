@@ -13,6 +13,8 @@ import org.junit.Test;
  */
 public class GUITest
 {
+    private GUI gUI1;
+
     /**
      * Default constructor for test class GUITest
      */
@@ -28,7 +30,7 @@ public class GUITest
     @Before
     public void setUp()
     {
-        
+        gUI1 = new GUI();
     }
 
     /**
@@ -40,4 +42,10 @@ public class GUITest
     public void tearDown()
     {
     }
+
 }
+
+
+
+
+
