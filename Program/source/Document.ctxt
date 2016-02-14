@@ -1,10 +1,11 @@
 #BlueJ class context
 comment0.params=attributeName\ newValue
 comment0.target=void\ setValue(java.lang.String,\ java.lang.String)
-comment0.text=\r\n\ public\ method\ setValue()\r\n\ \r\n\ Method\ sets\ a\ new\ value\ to\ a\ documents\ attribute\ based\ on\ attributeName\ paramater\r\n\ that\ is\ passed\ to\ it.\r\n\ \r\n\ @param\ attributeName\:\ The\ name\ of\ the\ attribute\ you\ wish\ to\ change\ the\ value\ of.\r\n\ @param\ newValue\:\ The\ new\ value\ you\ wish\ to\ set\ attributeName\ as.\r\n\ \r\n\ No\ meaningful\ return\ type.\ Either\ True\ or\ Void.\r\n
+comment0.text=\r\n\ public\ method\ setValue()\r\n\ \r\n\ Method\ sets\ a\ new\ value\ to\ a\ documents\ attribute.\r\n\ \r\n\ @param\ attributeName\:\ The\ name\ of\ the\ attribute\ you\ wish\ to\ change\ the\ value\ of.\r\n\ @param\ newValue\:\ The\ new\ value\ you\ wish\ to\ set\ attributeName\ as.\r\n\ \r\n\ No\ meaningful\ return\ type.\ Either\ True\ or\ Void.\r\n
 comment1.params=dataType
 comment1.target=java.lang.String\ getData(java.lang.String)
 comment1.text=\r\n\ public\ method\ getData()\r\n\ \r\n\ Gets\ data\ of\ document.\r\n\ \r\n\ Returns\ data\ in\ as\ a\ String.\r\n
 comment2.params=file
 comment2.target=java.lang.String\ getExtension(java.io.File)
+comment2.text=\r\n\ private\ method\ getExtension()\r\n\ \r\n\ Method\ used\ to\ get\ extension\ of\ active\ document/\ file.\r\n\ \r\n\ @param\ file\:\ The\ name\ (more\ specifically\ the\ path)\ of\ the\ active\ file.\r\n\ \r\n\ Returns\ String.\r\n
 numComments=3
