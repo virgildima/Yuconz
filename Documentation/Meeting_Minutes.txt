@@ -12,4 +12,19 @@ Meeting Minutes
 
 04/02/2016
 	Divided tasks between ourselves.
-	Discussed Class diagram and the Libraries we might use.
+	Discussed Class diagram and the Libraries we might use. Issue tickets were created to assign the tasks.
+
+05/02/2016
+
+Further discussion on our tasks and how we are going to handle Stage 3. Checked each other's work, and provided clarification to any questions or miscommunications
+
+10/02/2016
+Check up on progress, generalised discussion and questions about the project. Most of the meeting was doing the work we were assigned.
+
+11/02/2016
+More or less the same as the previous meeting. Progress on the assigned tasks are going well, and we believe that we are ahead of schedule at this moment in time.
+
+12/02/2016
+Bug correction and work catch up. Asked clarification questions to David so he can ask Miles on our behalf.
+
+
