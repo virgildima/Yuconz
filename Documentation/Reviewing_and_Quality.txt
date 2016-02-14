@@ -40,3 +40,11 @@ guidelines when prodcing work. These include:
 - Document titles should be font size 20.
 - Document creation date on top right of page (Header).
 - Document page number on bottom right of page (Footer).
+
+
+-:Further Notes on Code
+
+Since all documents are review by group members before handing in we can assess whether or not we believe our format to be consistent. This is one of out main sign off procedures.
+
+Classes, methods, among other things which are named should be ideally named and and well laid out. e.g. code is not bunched together if they do not need to be so it can be easily read. Related code e.g. same type or part of something. Can be NEATLY bundled together.
+

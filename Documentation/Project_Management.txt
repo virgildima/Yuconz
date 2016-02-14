@@ -13,9 +13,7 @@ Issue tickets help with progress monitoring, when work is completed the tickets 
 Project Risk Management
 Using the Gantt chart of deadlines, issue tickets and milestones we can use these effectivly avauluate risk so we can make informed decisions on how to prioritize, assign and mitigate a task. A contingency plan will be for risks that is likely to be an issue (if there is any). If a risk is realised then a group meeting will be called to finalise the best plan of action.
 
-
-
-
+All roles are assigned at meetings and meetings following will be used to review our actions and individuals work. As said before the issue tickets on Gitlab will be used to monitor progress as well as chat logs from Facebook ect. At these meetings there is a possibility that plans will be changed and this will be discussed depending the situation so that we may be flexible in our respons.
 
 
 

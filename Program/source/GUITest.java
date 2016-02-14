@@ -6,15 +6,13 @@ import org.junit.Test;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.applet.Applet;
+
 
 /**
  * The test class GUITest.
  *
  * @author  (Gavin Porter)
- * @version (1.0)
+ * @version (1.4)
  */
 public class GUITest
 {
@@ -39,10 +37,6 @@ public class GUITest
         gUI1 = new GUI();
 
     }
-    public void login()
-    {
-
-    }
 
     @Test
     public void testUI()
@@ -64,6 +58,9 @@ public class GUITest
     }
 
     @Test
+    /**
+     * Tests using a password which is less than a length of 6 or more than.
+     */
     public void passwordNullIfNotLength6()
     {
         InterfaceBackend interfac1 = new InterfaceBackend(gUI1);
@@ -72,14 +69,17 @@ public class GUITest
     }
 
     @Test
+    /**
+     * Test a password which is 6 in length and see if it is accepted.
+     * and its not null
+     */
     public void passwordAcceptedIfLength6()
     {
         InterfaceBackend interfac1 = new InterfaceBackend(gUI1);
         java.lang.String string1 = interfac1.passwordSHA512("123456");
+        assertNotNull(string1);
 
-        
     }
-
     @Test
     public void MenuBarTest()
     {
@@ -88,7 +88,5 @@ public class GUITest
         interfac1.help();
 
     }
-
 }
-
 

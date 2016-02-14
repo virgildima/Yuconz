@@ -10,8 +10,10 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author  (Gavin Porter)
- * @version (1.0)
+* @author  (Gavin Porter)
+ * @version (1.4)
+ * 
+ * This handles some of the logic and the actions of components in the GUI class
  */
 public class InterfaceBackend
 {
@@ -33,6 +35,11 @@ public class InterfaceBackend
     public String passwordSHA512(String password)
     {
         GUI guiClass = new GUI();
+        
+        /**
+         * This checks if the pasword length is 6 characters long
+         * if its not then the password is set to null.
+         */
 
         if(password.length() != 6  )
         {
@@ -45,11 +52,22 @@ public class InterfaceBackend
         }
         else
         {
+            /**
+             * this uses the algorithmn SHA-512 to hide the password.
+             * This adds some security to the login.
+             * Create a byte array and get the bytes equal to the password.
+             * MessageDigest is a one way , and hash outputs a fixed length hash value
+             * 
+             * CodeReference:
+             * http://stackoverflow.com/questions/33085493/hash-a-password-with-sha-512-in-java
+             * 
+             * password returns a string of numbers.
+             */
             byte[] array = password.getBytes();
 
             try {
-                MessageDigest digest = MessageDigest.getInstance("SHA-512");
-                byte[] bytes  = digest.digest(password.getBytes());
+                MessageDigest mDigest = MessageDigest.getInstance("512");
+                byte[] bytes  = mDigest.digest(password.getBytes());
                 StringBuilder strBuild = new StringBuilder();
                 for(int i=0; i< bytes.length ;i++)
                 {
@@ -73,7 +91,7 @@ public class InterfaceBackend
     }
 
     /**
-     * 
+     * Tells the user informatiob about the login page
      */
 
     public void about()
@@ -86,7 +104,7 @@ public class InterfaceBackend
     }
 
     /**
-     * 
+     * Tells the user what they need to do.
      */
 
     public void help()
