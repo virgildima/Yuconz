@@ -3,10 +3,6 @@ import java.util.*;
 public class Authentication extends DB_Core
 {
     static final String dbName = "authenticationDB";
-    Connection conn = null;
-    Statement stmt = null;
-    PreparedStatement prepStmt = null;
-    ResultSet rs = null;
     
     String currentUser = null;
     
@@ -139,43 +135,22 @@ public class Authentication extends DB_Core
         }
     }
     
-    public static void deleteDB()
-    {
-        DB_Core.deleteDB(dbName);
-    }
-    
-    public void printMetaData(String table)
+    public void deleteAll()
     {
         try{
-            rs = stmt.executeQuery("SELECT * FROM "+table);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            System.out.println("Columns:");
-            for(int i=1;i<=rsmd.getColumnCount();i++)
-            {
-                System.out.println(rsmd.getColumnLabel(i)+"; "+rsmd.getColumnTypeName(i)+"; "+rsmd.getPrecision(i));
-            }
+            String str = "DROP TABLE users";
+                stmt.execute(str);
         } catch (Exception e) {
-            
+            System.out.println("users could not be deleted properly.");
+            e.printStackTrace();
         }
-    }
-    public void printTables()
-    {
         try{
-            rs = stmt.executeQuery("SELECT TABLENAME FROM SYS.SYSTABLES WHERE TABLETYPE='T'");
-            System.out.println("Tables:");
-            while(rs.next())
-            {
-                System.out.println(rs.getString(1));
-            }
+            String str = "DROP TABLE givenPermission";
+                stmt.execute(str);
         } catch (Exception e) {
-            
+            System.out.println("givenPermission could not be deleted properly.");
+            e.printStackTrace();
         }
     }
-    
-    
-    
-    
-    
-    
     
 }

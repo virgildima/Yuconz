@@ -2,12 +2,17 @@ import java.io.File;
 import java.sql.*;
 public abstract class DB_Core
 {
-   //  Database credentials
-   static final String USER = "username";
-   static final String PASS = "password";
-   static boolean isSetup = false;
-
-        
+    //  Database credentials
+    protected static final String USER = "username";
+    protected static final String PASS = "password";
+    protected static boolean isSetup = false;
+    
+    protected Connection conn = null;
+    protected Statement stmt = null;
+    protected PreparedStatement prepStmt = null;
+    protected ResultSet rs = null;
+    
+    
     protected static boolean setup()
     {
         if(!isSetup){
@@ -24,10 +29,6 @@ public abstract class DB_Core
     {
         return false;
     }
-    protected static void deleteDB(String dbName)
-    {
-        deleteDirectory(new File(dbName));
-    }
     protected static boolean isTableCount(Connection conn,int expected)
     {
         try{
@@ -41,6 +42,35 @@ public abstract class DB_Core
             e.printStackTrace();
         }
         return false;
+    }
+    
+    public void printMetaData(String table)
+    {
+        try{
+            rs = stmt.executeQuery("SELECT * FROM "+table);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            System.out.println("Columns:");
+            for(int i=1;i<=rsmd.getColumnCount();i++)
+            {
+                System.out.println(rsmd.getColumnLabel(i)+"; "+rsmd.getColumnTypeName(i)+"; "+rsmd.getPrecision(i));
+            }
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    public void printTables()
+    {
+        try{
+            rs = stmt.executeQuery("SELECT TABLENAME FROM SYS.SYSTABLES WHERE TABLETYPE='T'");
+            System.out.println("Tables:");
+            while(rs.next())
+            {
+                System.out.println(rs.getString(1));
+            }
+        } catch (Exception e) {
+            
+        }
     }
     
     static private boolean deleteDirectory(File path) {
