@@ -7,6 +7,8 @@ public abstract class DB_Core
     protected static final String PASS = "password";
     protected static boolean isSetup = false;
     
+    String dbName;
+    
     protected Connection conn = null;
     protected Statement stmt = null;
     protected PreparedStatement prepStmt = null;
@@ -25,6 +27,36 @@ public abstract class DB_Core
         }
         return isSetup;
     }
+    protected boolean connect()
+    {
+            try {
+                String str = "jdbc:derby:"+dbName+";create=true";
+                conn = DriverManager.getConnection(str);
+                stmt = conn.createStatement();
+                return true;
+            }catch(Exception e){
+                e.printStackTrace();
+                System.out.println("Unable to connect to database.");
+                return false;
+            }
+    }
+    
+    protected void createDB(String[] strs)
+    {
+        System.out.println("Creating "+dbName+".");
+        for(int i=0;i<strs.length;i++)
+        {
+            try{
+                stmt.execute(strs[i]);
+            } catch (Exception e) {
+                System.out.println(dbName+" could not be created properly.");
+                e.printStackTrace();
+                return;
+            }
+        }
+        System.out.println(dbName+" ready.");
+    }
+    
     public boolean isViable()
     {
         return false;
@@ -73,7 +105,7 @@ public abstract class DB_Core
         }
     }
     
-    static private boolean deleteDirectory(File path) {
+    static protected boolean deleteDirectory(File path) {
     if( path.exists() ) {
       File[] files = path.listFiles();
       for(int i=0; i<files.length; i++) {

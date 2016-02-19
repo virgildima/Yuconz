@@ -2,8 +2,6 @@ import java.sql.*;
 import java.util.*;
 public class Authentication extends DB_Core
 {
-    static final String dbName = "authenticationDB";
-    
     String currentUser = null;
     
     /**
@@ -11,45 +9,36 @@ public class Authentication extends DB_Core
      */
     public Authentication()
     {
+        dbName = "authenticationDB";
         if(setup()){
-            try {
-                conn = DriverManager.getConnection("jdbc:derby:"+dbName+";create=true");
-                stmt = conn.createStatement();
-            }catch(Exception e){
-                e.printStackTrace();
-                System.out.println("Unable to connect to database.");
-            }
-            if(!isTableCount(conn,2))
+            if(connect())
             {
-                createDB();
+                if(!isTableCount(conn,2))
+                {
+                    createDB();
+                }
             }
         }
     }
     private void createDB()
     {
         System.out.println("Creating "+dbName+".");
-        try{
-            String str = "CREATE TABLE users ("
-                                +"ID            CHAR(6) NOT NULL PRIMARY KEY, "
-                                +"PASSHASH      VARCHAR(128) NOT NULL, "
-                                +"AUTHLEVEL     INT NOT NULL, "
-                                +"DEPARTMENT     INT NOT NULL, "
-                                +"SURNAME       VARCHAR(50) NOT NULL, "
-                                +"FIRSTNAME     VARCHAR(30) NOT NULL, "
-                                +"LOCKED        BOOLEAN NOT NULL)";
-            stmt.execute(str);
-            str = "CREATE TABLE givenPermission ("
-                                +"ID        VARCHAR(6) NOT NULL, "
-                                +"DOCID     INT NOT NULL,"
-                                +"GIVENBYID VARCHAR(6) NOT NULL,"
-                                +"PRIMARY KEY (ID, DOCID))";
-            stmt.execute(str);
-            
-            System.out.println(dbName+" ready.");
-        } catch (Exception e) {
-            System.out.println(dbName+" could not be created properly.");
-            e.printStackTrace();
-        }
+        super.createDB(new String[] {
+            "CREATE TABLE users ("
+                +"ID            CHAR(6) NOT NULL PRIMARY KEY, "
+                +"PASSHASH      VARCHAR(128) NOT NULL, "
+                +"AUTHLEVEL     INT NOT NULL, "
+                +"DEPARTMENT     INT NOT NULL, "
+                +"SURNAME       VARCHAR(50) NOT NULL, "
+                +"FIRSTNAME     VARCHAR(30) NOT NULL, "
+                +"LOCKED        BOOLEAN NOT NULL)",
+            "CREATE TABLE givenPermission ("
+                +"ID        VARCHAR(6) NOT NULL, "
+                +"DOCID     INT NOT NULL,"
+                +"GIVENBYID VARCHAR(6) NOT NULL,"
+                +"PRIMARY KEY (ID, DOCID))"
+            }
+        );
     }
     
     public boolean addNewUser(String userID, String passhash, AccessRights accessRights, Department department, String surname, String firstname)
@@ -123,7 +112,7 @@ public class Authentication extends DB_Core
     }
     public boolean isViable()
     {
-        return conn!=null;
+        return (conn!=null)&&(isTableCount(conn,2));
     }
     public void close()
     {
@@ -138,19 +127,30 @@ public class Authentication extends DB_Core
     public void deleteAll()
     {
         try{
-            String str = "DROP TABLE users";
-                stmt.execute(str);
+            if(rs!=null)
+            {
+                rs.close();
+                rs = null;
+            }
+            try{
+                String str = "DROP TABLE users";
+                    stmt.execute(str);
+            } catch (Exception e) {
+                System.out.println("users could not be deleted properly.");
+                e.printStackTrace();
+            }
+            try{
+                String str = "DROP TABLE givenPermission";
+                    stmt.execute(str);
+            } catch (Exception e) {
+                System.out.println("givenPermission could not be deleted properly.");
+                e.printStackTrace();
+            }
         } catch (Exception e) {
-            System.out.println("users could not be deleted properly.");
+            System.out.println("database could not be deleted properly.");
             e.printStackTrace();
         }
-        try{
-            String str = "DROP TABLE givenPermission";
-                stmt.execute(str);
-        } catch (Exception e) {
-            System.out.println("givenPermission could not be deleted properly.");
-            e.printStackTrace();
-        }
+        
     }
     
 }
