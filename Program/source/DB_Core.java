@@ -120,6 +120,16 @@ public abstract class DB_Core
         return( path.delete() );
     }
     
+    public void close()
+    {
+        try{
+            conn.close();
+        } catch (Exception e) {
+           System.out.println("Could not close connection");
+           e.printStackTrace();
+        }
+    }
+    
     protected boolean deleteTables(String[] tables)
     {
         try{
@@ -143,7 +153,7 @@ public abstract class DB_Core
             e.printStackTrace();
             return false;
         }
-        System.out.println(dbName+" could not be deleted properly.");
+        System.out.println(dbName+" deleted.");
         return true;
     }
 }

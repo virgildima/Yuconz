@@ -114,15 +114,6 @@ public class Authentication extends DB_Core
     {
         return (conn!=null)&&(isTableCount(conn,2));
     }
-    public void close()
-    {
-        try{
-            conn.close();
-        } catch (Exception e) {
-           System.out.println("Could not close connection");
-           e.printStackTrace();
-        }
-    }
     
     public void deleteAll()
     {

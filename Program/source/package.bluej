@@ -237,6 +237,7 @@ target8.editor.x=0
 target8.editor.y=0
 target8.height=50
 target8.name=Department
+target8.naviview.expanded=true
 target8.showInterface=false
 target8.type=EnumTarget
 target8.typeParameters=
