@@ -15,4 +15,6 @@ comment6.params=
 comment6.target=void\ printTables()
 comment7.params=path
 comment7.target=boolean\ deleteDirectory(java.io.File)
-numComments=8
+comment8.params=tables
+comment8.target=boolean\ deleteTables(java.lang.String[])
+numComments=9

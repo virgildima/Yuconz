@@ -126,31 +126,7 @@ public class Authentication extends DB_Core
     
     public void deleteAll()
     {
-        try{
-            if(rs!=null)
-            {
-                rs.close();
-                rs = null;
-            }
-            try{
-                String str = "DROP TABLE users";
-                    stmt.execute(str);
-            } catch (Exception e) {
-                System.out.println("users could not be deleted properly.");
-                e.printStackTrace();
-            }
-            try{
-                String str = "DROP TABLE givenPermission";
-                    stmt.execute(str);
-            } catch (Exception e) {
-                System.out.println("givenPermission could not be deleted properly.");
-                e.printStackTrace();
-            }
-        } catch (Exception e) {
-            System.out.println("database could not be deleted properly.");
-            e.printStackTrace();
-        }
-        
+       deleteTables(new String[] {"users","givenPermission"});
     }
     
 }

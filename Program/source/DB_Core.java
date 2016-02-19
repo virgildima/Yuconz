@@ -106,17 +106,44 @@ public abstract class DB_Core
     }
     
     static protected boolean deleteDirectory(File path) {
-    if( path.exists() ) {
-      File[] files = path.listFiles();
-      for(int i=0; i<files.length; i++) {
-         if(files[i].isDirectory()) {
-           deleteDirectory(files[i]);
-         }
-         else {
-           files[i].delete();
-         }
-      }
+        if( path.exists() ) {
+          File[] files = path.listFiles();
+          for(int i=0; i<files.length; i++) {
+             if(files[i].isDirectory()) {
+               deleteDirectory(files[i]);
+             }
+             else {
+               files[i].delete();
+             }
+          }
+        }
+        return( path.delete() );
     }
-    return( path.delete() );
-  }
+    
+    protected boolean deleteTables(String[] tables)
+    {
+        try{
+            if(rs!=null)
+            {
+                rs.close();
+                rs = null;
+            }
+            for(int i=0;i<tables.length;i++)
+            {
+                try{
+                    stmt.execute("DROP TABLE "+tables[i]);
+                } catch (Exception e) {
+                    System.out.println(tables[i]+" could not be deleted properly.");
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("database could not be deleted properly.");
+            e.printStackTrace();
+            return false;
+        }
+        System.out.println(dbName+" could not be deleted properly.");
+        return true;
+    }
 }
