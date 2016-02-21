@@ -4,31 +4,46 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
 import java.applet.Applet;
-import java.util.Arrays;
 
 /**
  *
  * @author  (Gavin Porter)
- * @version (1.0)
+ * @version (1.4)
+ * 
+ * This is class is were most components of the GUI are.
+ * This class ensures the create of a login screen and a example screen after login.
+ * 
  */
 
 public class GUI
 {
-    private JFrame frame;
-    private JFrame afterLoginFrame;
     /**
-     * These are buttons which are used in this class with action listeners so the player can click on the answer they want.
+     * The main frame.
      */
-    private JButton loginButton;
+    protected JFrame frame;
 
-    private Container content;
-    private Container tContent;
+    /**
+     * Frame after login.
+     */
+    protected JFrame afterLoginFrame;
 
+    /**
+     * The button used to login to the system.
+     */
+
+    protected JButton loginButton;
+
+    /**
+     * The username field and the password field to login the system.
+     */
     public JTextField usernameField;
     public JPasswordField passwordField;
-    char[] passArray = new char[] {'1'};
 
+    /**
+     * Create the frame for the GUI.
+     */
     public GUI()
+
     {
         makeFrame();
         InterfaceBackend UI = new InterfaceBackend(GUI.this);
@@ -36,51 +51,37 @@ public class GUI
     }
 
     /**
-     * Method which closes the program
+     * The creation of all textfields and labels.
+     * Please not that this exists purely for example and testing the login. 
+     * At this current build, this is no way the final after login screen
      */
-
-    private void quit()
+    protected void afterLoginFrame()
     {
-        System.exit(0);
-    }
-
-    /**
-     * 
-     */
-
-    private void about()
-    {
-        JOptionPane.showMessageDialog(frame,
-            "This is the user interface for the Yuconz user review system.",
-            "About.", 
-            JOptionPane.INFORMATION_MESSAGE);
-
-    }
-
-    /**
-     * 
-     */
-
-    private void help()
-    {
-        JOptionPane.showMessageDialog(frame,
-            "In order for you to login, you must enter your username in the text field labelled "+ " 'username' " + "and the password in the text field labelled" + " 'password'.",
-            "Help.", 
-            JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    private void afterLoginFrame()
-    {
+        /**
+         * Frame appears after login.
+         */
 
         JFrame afterLoginFrame = new JFrame("Yuconz Employee System");
         JPanel loggedIn = new JPanel(new GridLayout(15,15));
+
+        /**
+         * The layout of the frame
+         */
         afterLoginFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        /**
+         * Labels for the text fields
+         */
 
         JLabel forenameLabel = new JLabel("Name: ");
         JLabel suspendedLabel = new JLabel("Suspended: ");
         JLabel lastReviewLabel = new JLabel("Last Review: ");
         JLabel employeeRaiseRecommendationLabel = new JLabel("Raise Recommendation: ");
         JLabel employeeFiredLabel = new JLabel("Fired: ");
+
+        /**
+         * Textfields
+         */
 
         JTextField employeeSearch = new JTextField(20);
         JTextField employeeForename = new JTextField(20);
@@ -91,9 +92,17 @@ public class GUI
         JTextField employeeFired = new JTextField(20);
         JTextField employeeBirthDate = new JTextField(20);
 
+        /**
+         * Labels for the text fields
+         */
+
         JLabel surnameLabel = new JLabel("Surname: ");
         JLabel employeeNumberLabel = new JLabel("Employee Number: ");
         JLabel employeeBirthDateLabel = new JLabel("Date of birth: ");
+
+        /**
+         * adding the labels and fields to the panel called loggedIn
+         */
 
         loggedIn.add(employeeSearch);
         loggedIn.add(forenameLabel);
@@ -109,15 +118,21 @@ public class GUI
         loggedIn.add(employeeFiredLabel);
         loggedIn.add(employeeFired);
 
-        
-        employeeSearch.setText("Replace and type to search");
+        /**
+         * Disabling editing on some of the textfields
+         */
 
+        employeeSearch.setText("Replace and type to search");
         employeeForename.setEditable(false);
         employeeSurname.setEditable(false);  
         employeeBirthDate.setEditable(false);
         employeeLastReview.setEditable(false);
         employeeSuspended.setEditable(false);  
         employeeFired.setEditable(false);
+
+        /**
+         * Setting the size and postion of the frame
+         */
 
         afterLoginFrame.setSize(1000, 500);
         afterLoginFrame.setVisible(true);
@@ -129,47 +144,67 @@ public class GUI
 
     /**
      * 
+     * This is the creation of the login frame
      * 
      * 
      */
-    private void makeFrame()
+    protected void makeFrame()
     {
+        frame = new JFrame("Login");
+
+        /**
+         * Creating the panel and its layout.
+         */
 
         JPanel ptext = new JPanel();
         ptext.setLayout(new GridLayout(3,3));
 
-        frame = new JFrame("Login");
-        Dimension textDimension = new Dimension(140, 21);
-
+        /**
+         * setting the size of the text field and password field
+         */
+        Dimension textSize = new Dimension(140, 21);
         usernameField = new JTextField();
-        usernameField.setPreferredSize(textDimension);
-
         passwordField = new JPasswordField();
-        passwordField.setPreferredSize(textDimension);
+        passwordField.setPreferredSize(textSize);
 
+        /**
+         * labels for the username and passwordfields
+         */
         JLabel usernameLabel = new JLabel("Username: ");
         JLabel passwordLabel = new JLabel("Password: ");
+        
 
         JButton loginButton = new JButton("Login");
+        
+        /**
+         * adding buttons, labels and fields to the panel
+         */
 
         ptext.add(usernameLabel);
         ptext.add(usernameField);
         ptext.add(passwordLabel);
         ptext.add(passwordField);
         ptext.add(loginButton);
+        
+        /**
+         * The creation and display of the frame
+         */
 
-        menuBar(frame);
+        actionListeners(frame);
         frame.setVisible(true);
         frame.getContentPane().add(ptext);
         frame.setResizable(false);
 
         frame.pack();
         frame.setLocationRelativeTo(null);
+        
+        /**
+         * Checkes the username and refuses entery to teh system if it is wrong.
+         */
 
         loginButton.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    //&& passArray.equals(passwordField.getPassword())
+                public void actionPerformed(ActionEvent e) { 
+                    //&& passwordString.equals(passwordField.getPassword())
                     if(usernameField.getText().equals("username"))
                     {
                         JOptionPane.showMessageDialog(frame,
@@ -187,23 +222,19 @@ public class GUI
                             "Incorrect Login Details",
                             "User details are incorrect.", 
                             JOptionPane.INFORMATION_MESSAGE);
-                    }
-
-                }
-
+                    } }
             });
 
     }
 
     /**
-     * 
+     * Referencing to methods in the interfacebackend class
      * 
      */
 
-    public void menuBar(JFrame frame)
+    public void actionListeners(JFrame frame)
     {
-        final int SHORTCUT_MASK =
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+        InterfaceBackend ib = new InterfaceBackend(GUI.this);
 
         JMenuBar menubar = new JMenuBar();
         frame.setJMenuBar(menubar);
@@ -216,21 +247,22 @@ public class GUI
 
         item = new JMenuItem("About");
         item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) { about(); }
+                public void actionPerformed(ActionEvent e) { ib.about(); }
             });
         menu.add(item);
 
         item = new JMenuItem("help");
 
         item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) { help(); }
+                public void actionPerformed(ActionEvent e) { ib.help(); }
             });
         menu.add(item);
 
         item = new JMenuItem("Quit");
         item.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) { quit(); }
+                public void actionPerformed(ActionEvent e) { ib.quit(); }
             });
         menu.add(item);
+
     }
 }

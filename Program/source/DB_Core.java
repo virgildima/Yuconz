@@ -2,12 +2,19 @@ import java.io.File;
 import java.sql.*;
 public abstract class DB_Core
 {
-   //  Database credentials
-   static final String USER = "username";
-   static final String PASS = "password";
-   static boolean isSetup = false;
-
-        
+    //  Database credentials
+    protected static final String USER = "username";
+    protected static final String PASS = "password";
+    protected static boolean isSetup = false;
+    
+    String dbName;
+    
+    protected Connection conn = null;
+    protected Statement stmt = null;
+    protected PreparedStatement prepStmt = null;
+    protected ResultSet rs = null;
+    
+    
     protected static boolean setup()
     {
         if(!isSetup){
@@ -20,13 +27,39 @@ public abstract class DB_Core
         }
         return isSetup;
     }
+    protected boolean connect()
+    {
+            try {
+                String str = "jdbc:derby:"+dbName+";create=true";
+                conn = DriverManager.getConnection(str);
+                stmt = conn.createStatement();
+                return true;
+            }catch(Exception e){
+                e.printStackTrace();
+                System.out.println("Unable to connect to database.");
+                return false;
+            }
+    }
+    
+    protected void createDB(String[] strs)
+    {
+        System.out.println("Creating "+dbName+".");
+        for(int i=0;i<strs.length;i++)
+        {
+            try{
+                stmt.execute(strs[i]);
+            } catch (Exception e) {
+                System.out.println(dbName+" could not be created properly.");
+                e.printStackTrace();
+                return;
+            }
+        }
+        System.out.println(dbName+" ready.");
+    }
+    
     public boolean isViable()
     {
         return false;
-    }
-    protected static void deleteDB(String dbName)
-    {
-        deleteDirectory(new File(dbName));
     }
     protected static boolean isTableCount(Connection conn,int expected)
     {
@@ -43,7 +76,36 @@ public abstract class DB_Core
         return false;
     }
     
-    static private boolean deleteDirectory(File path) {
+    public void printMetaData(String table)
+    {
+        try{
+            rs = stmt.executeQuery("SELECT * FROM "+table);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            System.out.println("Columns:");
+            for(int i=1;i<=rsmd.getColumnCount();i++)
+            {
+                System.out.println(rsmd.getColumnLabel(i)+"; "+rsmd.getColumnTypeName(i)+"; "+rsmd.getPrecision(i));
+            }
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    public void printTables()
+    {
+        try{
+            rs = stmt.executeQuery("SELECT TABLENAME FROM SYS.SYSTABLES WHERE TABLETYPE='T'");
+            System.out.println("Tables:");
+            while(rs.next())
+            {
+                System.out.println(rs.getString(1));
+            }
+        } catch (Exception e) {
+            
+        }
+    }
+    
+    static protected boolean deleteDirectory(File path) {
     if( path.exists() ) {
       File[] files = path.listFiles();
       for(int i=0; i<files.length; i++) {
