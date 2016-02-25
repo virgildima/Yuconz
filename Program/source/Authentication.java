@@ -3,6 +3,8 @@ import java.util.*;
 public class Authentication extends DB_Core
 {
     String currentUser = null;
+    AccessRights accessRights = null;
+    Department department = null;
     
     /**
      * Constructor for objects of class Authentication
@@ -64,22 +66,37 @@ public class Authentication extends DB_Core
         }
         return success;
     }
+    
+    /**
+     * Returns true if the user logged in successfuly.
+     * Returns false if they did not.
+     */
     public boolean login(String userID, String passhash, AccessRights accessRights)
     {
         Boolean success = false;
+        Department department = null;
+        int ar = 0;
+        
+        
         try{
-            String str = "SELECT COUNT(*) FROM users WHERE ID=? AND PASSHASH=? AND AUTHLEVEL=? AND LOCKED=false";
+            String str = "SELECT COUNT(*), DEPARTMENT, AUTHLEVEL FROM users WHERE ID=? AND PASSHASH=? AND LOCKED=false";
             prepStmt = conn.prepareStatement(str);
             
             prepStmt.setString(1,userID);
             prepStmt.setString(2,passhash);
-            prepStmt.setInt(3,accessRights.toInt());
             
             rs = prepStmt.executeQuery();
             rs.next();
             if(rs.getInt(1)==1){
-                currentUser = userID;
-                success = true;
+                department = Department.fromInt(rs.getInt(2));
+                ar = rs.getInt(3);
+                if(accessRights.toInt()<=ar || (department.equals(Department.HR) && accessRights.equals(AccessRights.HR_User)))
+                {
+                    currentUser = userID;
+                    this.accessRights = accessRights;
+                    this.department = department;
+                    success = true;
+                }
             }
         } catch (Exception e) {
            System.out.println("Insert user encountered an error.");
@@ -92,6 +109,8 @@ public class Authentication extends DB_Core
     public boolean logout()
     {
         currentUser = null;
+        accessRights = null;
+        department = null;
         return true;
     }
     public boolean givePermission(String userID, int documentID)
