@@ -19,4 +19,20 @@ public enum Department
     {
         return this.value;
     }
+    
+    public static Department fromInt(int value)
+    {
+        switch (value)
+        {
+            case 0:
+                return Department.Admin;
+            case 20:
+                return Department.Sales;
+            case 40:
+                return Department.Services;
+            case 60:
+                return Department.HR;
+        }
+        return null;
+    }
 }

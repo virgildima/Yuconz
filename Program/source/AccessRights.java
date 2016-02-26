@@ -19,4 +19,22 @@ public enum AccessRights
     {
         return this.value;
     }
+    
+    public static AccessRights fromInt(int value)
+    {
+        switch (value)
+        {
+            case 0:
+                return AccessRights.Basic_User;
+            case 20:
+                return AccessRights.Manager;
+            case 40:
+                return AccessRights.SeniorManager;
+            case 60:
+                return AccessRights.Director;
+            case 80:
+                return AccessRights.HR_User;
+        }
+        return null;
+    }
 }

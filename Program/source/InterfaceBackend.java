@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
-* @author  (Gavin Porter)
+ * @author  (Gavin Porter)
  * @version (1.4)
  * 
  * This handles some of the logic and the actions of components in the GUI class
@@ -18,24 +18,24 @@ import java.security.NoSuchAlgorithmException;
 public class InterfaceBackend
 {
 
-    private GUI gui;
+    
     protected JFrame frame;
     public String password;
 
     /**
      * These refer to instance varibles or fields thus this allows me to use some in this class.
      */
-    public InterfaceBackend(GUI gui)
+    public InterfaceBackend()
     {
-        this.gui = gui;
+        
         this.frame = frame;
 
     }
 
     public String passwordSHA512(String password)
     {
-        GUI guiClass = new GUI();
         
+
         /**
          * This checks if the pasword length is 6 characters long
          * if its not then the password is set to null.
@@ -50,7 +50,7 @@ public class InterfaceBackend
                 JOptionPane.INFORMATION_MESSAGE);
 
         }
-        else
+        else 
         {
             /**
              * this uses the algorithmn SHA-512 to hide the password.
@@ -66,7 +66,7 @@ public class InterfaceBackend
             byte[] array = password.getBytes();
 
             try {
-                MessageDigest mDigest = MessageDigest.getInstance("512");
+                MessageDigest mDigest = MessageDigest.getInstance("SHA-512");
                 byte[] bytes  = mDigest.digest(password.getBytes());
                 StringBuilder strBuild = new StringBuilder();
                 for(int i=0; i< bytes.length ;i++)
@@ -79,7 +79,7 @@ public class InterfaceBackend
             }
         }
         return password;
-    }
+    }  
 
     /**
      * Method which closes the program
@@ -115,9 +115,6 @@ public class InterfaceBackend
             JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public GUI gui()
-    {
-        return gui;
-    }
+    
 
 }

@@ -10,6 +10,7 @@ comment2.params=userID\ passhash\ accessRights\ department\ surname\ firstname
 comment2.target=boolean\ addNewUser(java.lang.String,\ java.lang.String,\ AccessRights,\ Department,\ java.lang.String,\ java.lang.String)
 comment3.params=userID\ passhash\ accessRights
 comment3.target=boolean\ login(java.lang.String,\ java.lang.String,\ AccessRights)
+comment3.text=\r\n\ Returns\ true\ if\ the\ user\ logged\ in\ successfuly.\r\n\ Returns\ false\ if\ they\ did\ not.\r\n
 comment4.params=
 comment4.target=boolean\ logout()
 comment5.params=userID\ documentID

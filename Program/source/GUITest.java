@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -6,7 +5,6 @@ import org.junit.Test;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
 
 /**
  * The test class GUITest.
@@ -16,7 +14,10 @@ import javax.swing.*;
  */
 public class GUITest
 {
-    private GUI gUI1;
+
+   
+    GUI gui = new GUI();
+    Authentication auth = new Authentication();
 
     /**
      * Default constructor for test class GUITest
@@ -34,16 +35,7 @@ public class GUITest
     @Before
     public void setUp()
     {
-        gUI1 = new GUI();
-
-    }
-
-    @Test
-    public void testUI()
-    {
-        gUI1.afterLoginFrame();
-        gUI1.makeFrame();
-
+       
     }
 
     /**
@@ -58,12 +50,49 @@ public class GUITest
     }
 
     @Test
+    public void test()
+    {
+        
+        InterfaceBackend interfac2 = new InterfaceBackend();
+        java.lang.String string2 = interfac2.passwordSHA512("123456");
+        gui.passwordField.setText(string2);
+        gui.usernameField.setText("1234567");
+ 
+        InterfaceBackend ib = new InterfaceBackend();
+        AccessRights access = AccessRights.Basic_User;
+        
+       
+            if(auth.login(gui.usernameField.getText() ,string2 , access))
+            {
+
+                JOptionPane.showMessageDialog(gui.frame,
+                    "Logged in",
+                    "User Details Accepted.", 
+                    JOptionPane.INFORMATION_MESSAGE);
+                gui.frame.setVisible(false);
+                gui.frame.dispose();
+                gui.afterLoginFrame();
+                System.out.println("Successful login");
+
+            }
+        
+        else
+        {
+            JOptionPane.showMessageDialog(gui.frame,
+                "Incorrect Login Details",
+                "User details are incorrect.", 
+                JOptionPane.INFORMATION_MESSAGE);
+                System.out.println("Login not successful");
+        }
+    }
+
+    @Test
     /**
      * Tests using a password which is less than a length of 6 or more than.
      */
     public void passwordNullIfNotLength6()
     {
-        InterfaceBackend interfac1 = new InterfaceBackend(gUI1);
+        InterfaceBackend interfac1 = new InterfaceBackend();
         assertEquals(null, interfac1.passwordSHA512("1"));
         assertEquals(null, interfac1.passwordSHA512("1234567"));
     }
@@ -75,17 +104,9 @@ public class GUITest
      */
     public void passwordAcceptedIfLength6()
     {
-        InterfaceBackend interfac1 = new InterfaceBackend(gUI1);
+        InterfaceBackend interfac1 = new InterfaceBackend();
         java.lang.String string1 = interfac1.passwordSHA512("123456");
         assertNotNull(string1);
-
-    }
-    @Test
-    public void MenuBarTest()
-    {
-        InterfaceBackend interfac1 = new InterfaceBackend(gUI1);
-        interfac1.about();
-        interfac1.help();
 
     }
 }
