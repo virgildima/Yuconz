@@ -41,15 +41,11 @@ public class InterfaceBackendTest
     }
 
     @Test
-    /**
-     * Check that the gui is not null
-     */
-    public void guiTest()
+    public void CreatePassword()
     {
-        GUI gUI2 = new GUI();
-        InterfaceBackend interfac1 = new InterfaceBackend(gUI2); 
-        assertNotNull(interfac1.gui());
-       
+        InterfaceBackend interfac1 = new InterfaceBackend();
+        assertNotNull(interfac1.passwordSHA512("123456"));
     }
 }
+
 

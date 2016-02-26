@@ -38,6 +38,8 @@ public class GUI
      */
     public JTextField usernameField;
     public JPasswordField passwordField;
+    
+    Authentication auth = new Authentication();
 
     /**
      * Create the frame for the GUI.
@@ -46,7 +48,8 @@ public class GUI
 
     {
         makeFrame();
-        InterfaceBackend UI = new InterfaceBackend(GUI.this);
+        InterfaceBackend UI = new InterfaceBackend();
+        
 
     }
 
@@ -62,7 +65,7 @@ public class GUI
          */
 
         JFrame afterLoginFrame = new JFrame("Yuconz Employee System");
-        JPanel loggedIn = new JPanel(new GridLayout(15,15));
+        JPanel loggedIn = new JPanel(new GridLayout(25,15));
 
         /**
          * The layout of the frame
@@ -74,10 +77,14 @@ public class GUI
          */
 
         JLabel forenameLabel = new JLabel("Name: ");
-        JLabel suspendedLabel = new JLabel("Suspended: ");
+        JLabel emailAddressLabel = new JLabel("E-mail: ");
         JLabel lastReviewLabel = new JLabel("Last Review: ");
         JLabel employeeRaiseRecommendationLabel = new JLabel("Raise Recommendation: ");
-        JLabel employeeFiredLabel = new JLabel("Fired: ");
+        JLabel employeeMobileLabel = new JLabel("Mobile Number: ");
+        JLabel employeeHomeLabel = new JLabel("Homephone Number: ");
+        JLabel employeeHomeAddressLabel = new JLabel("Home Address: ");
+        JLabel employeeGenderLabel = new JLabel("Gender: ");
+        JLabel employeePostcodeLabel = new JLabel("Postcode: ");
 
         /**
          * Textfields
@@ -88,9 +95,13 @@ public class GUI
         JTextField employeeSurname = new JTextField(20);
         JTextField employeeLastReview = new JTextField(20);
         JTextField employeeRaiseRecommendation = new JTextField(20);
-        JTextField employeeSuspended = new JTextField(20);
-        JTextField employeeFired = new JTextField(20);
+        JTextField employeeEmailAddress = new JTextField(20);
+        JTextField employeeMobile = new JTextField(20);
         JTextField employeeBirthDate = new JTextField(20);
+        JTextField employeeHomephone = new JTextField(20);
+        JTextField employeeHomeAddress = new JTextField(20);
+        JTextField employeeGender = new JTextField(20);
+        JTextField employeePostcode = new JTextField(20);
 
         /**
          * Labels for the text fields
@@ -105,18 +116,38 @@ public class GUI
          */
 
         loggedIn.add(employeeSearch);
+        
         loggedIn.add(forenameLabel);
         loggedIn.add(employeeForename);
+        
         loggedIn.add(surnameLabel);
         loggedIn.add(employeeSurname);
+        
         loggedIn.add(employeeBirthDateLabel);
         loggedIn.add(employeeBirthDate);
+        
         loggedIn.add(lastReviewLabel);
         loggedIn.add(employeeLastReview);
-        loggedIn.add(suspendedLabel);
-        loggedIn.add(employeeSuspended);
-        loggedIn.add(employeeFiredLabel);
-        loggedIn.add(employeeFired);
+        
+        loggedIn.add(emailAddressLabel);
+        loggedIn.add(employeeEmailAddress);
+        
+        loggedIn.add(employeeMobileLabel);
+        loggedIn.add(employeeMobile);
+        
+        loggedIn.add(employeeHomeLabel);
+        loggedIn.add(employeeHomephone);
+        
+        loggedIn.add(employeeHomeAddressLabel);
+        loggedIn.add(employeeHomeAddress);
+        
+        loggedIn.add(employeeGenderLabel);
+        loggedIn.add(employeeGender);
+        
+        
+        loggedIn.add(employeePostcodeLabel);
+        loggedIn.add(employeePostcode);
+        
 
         /**
          * Disabling editing on some of the textfields
@@ -127,8 +158,12 @@ public class GUI
         employeeSurname.setEditable(false);  
         employeeBirthDate.setEditable(false);
         employeeLastReview.setEditable(false);
-        employeeSuspended.setEditable(false);  
-        employeeFired.setEditable(false);
+        employeeEmailAddress.setEditable(false);  
+        employeeMobile.setEditable(false);
+        employeeHomephone.setEditable(false);
+        employeeHomeAddress.setEditable(false);
+        employeeGender.setEditable(false);
+        employeePostcode.setEditable(false);
 
         /**
          * Setting the size and postion of the frame
@@ -172,10 +207,8 @@ public class GUI
          */
         JLabel usernameLabel = new JLabel("Username: ");
         JLabel passwordLabel = new JLabel("Password: ");
-        
 
         JButton loginButton = new JButton("Login");
-        
         /**
          * adding buttons, labels and fields to the panel
          */
@@ -185,7 +218,7 @@ public class GUI
         ptext.add(passwordLabel);
         ptext.add(passwordField);
         ptext.add(loginButton);
-        
+
         /**
          * The creation and display of the frame
          */
@@ -197,15 +230,19 @@ public class GUI
 
         frame.pack();
         frame.setLocationRelativeTo(null);
-        
+
         /**
-         * Checkes the username and refuses entery to teh system if it is wrong.
+         * Checkes the username and refuses entery to the system if it is wrong.
          */
 
         loginButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) { 
                     //&& passwordString.equals(passwordField.getPassword())
-                    if(usernameField.getText().equals("username"))
+                    boolean isLoggedin = false;
+                    InterfaceBackend ib = new InterfaceBackend();
+                    AccessRights access = AccessRights.Basic_User;
+                    
+                    if(auth.login(usernameField.getText(),ib.password , access))
                     {
                         JOptionPane.showMessageDialog(frame,
                             "Logged in",
@@ -214,6 +251,7 @@ public class GUI
                         frame.setVisible(false);
                         frame.dispose();
                         afterLoginFrame();
+                        isLoggedin = true;
                     }
 
                     else
@@ -222,6 +260,7 @@ public class GUI
                             "Incorrect Login Details",
                             "User details are incorrect.", 
                             JOptionPane.INFORMATION_MESSAGE);
+                            isLoggedin = false;
                     } }
             });
 
@@ -234,7 +273,7 @@ public class GUI
 
     public void actionListeners(JFrame frame)
     {
-        InterfaceBackend ib = new InterfaceBackend(GUI.this);
+        InterfaceBackend ib = new InterfaceBackend();
 
         JMenuBar menubar = new JMenuBar();
         frame.setJMenuBar(menubar);
