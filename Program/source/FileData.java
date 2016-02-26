@@ -1,10 +1,10 @@
 
 import java.io.IOException;
 /**
- * Write a description of class FileData here.
+ * FileData class responsible for storing the main method of the file creation.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+* @author Virgil Dima 
+ * @version 05.02.2016
  */
 public class FileData
 {

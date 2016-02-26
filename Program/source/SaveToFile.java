@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class SaveToFile here.
+ * SaveToFile class that creates a file in the location(path) required.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Virgil Dima 
+ * @version 05.02.2016
  */
 
 import java.io.FileWriter;

@@ -3,10 +3,10 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 /**
- * Write a description of class ReadFile here.
+ * ReadFile class help a user open up a saved file and read it.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Virgil Dima 
+ * @version 05.02.2016
  */
 public class ReadFile
 {
