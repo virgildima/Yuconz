@@ -14,9 +14,12 @@ Meeting Minutes
 	Divided tasks between ourselves.
 	Discussed Class diagram and the Libraries we might use. Issue tickets were created to assign the tasks.
 
+
 05/02/2016
 
 Further discussion on our tasks and how we are going to handle Stage 3. Checked each other's work, and provided clarification to any questions or miscommunications
+
+Gavin is now building the GUI, Andy authenication ect, Chris is doing the staff documents ect and Virgil is also doing some of the document system.
 
 10/02/2016
 Check up on progress, generalised discussion and questions about the project. Most of the meeting was doing the work we were assigned.
