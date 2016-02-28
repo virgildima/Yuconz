@@ -36,9 +36,9 @@ public class PersonalDetailsDocument extends Document
      * 
      * Returns a String as a return type.
      */
-    public void getValue(String attributeName){
+    public String getValue(String attributeName){
     
-        getValue(attributeList, attributeName);
+        return getValue(attributeList, attributeName);
     }
     
     public HashMap getData(){
