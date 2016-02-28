@@ -8,6 +8,9 @@ import java.util.HashMap;
 public class PersonalDetailsDocument extends Document
 {
 
+    private String[] attributeList = {"firstname","surname","DOB","address_1","address_2",
+                                        "town","county","postcode","telephone","mobile","next_of_kin","next_of_kin_CN","staffID"};
+    
      /**
      * public method setValue()
      * 
@@ -20,48 +23,8 @@ public class PersonalDetailsDocument extends Document
      */
     @SuppressWarnings("unchecked")
     public void setValue(String attributeName, String newValue){
- 
-        switch(attributeName){
         
-            case "firstname":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "surname":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "DOB":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "address_1":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "address_2":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "town":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "county":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "postcode":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "telephone":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "mobile":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "next_of_kin":
-                returnMap().put(attributeName, newValue);
-                break;
-            case "next_of_kin_CN":
-                returnMap().put(attributeName, newValue);
-                break;
-            default: 
-                System.out.println("ERROR: no valid attribute named: " + attributeName + ".");
-        }
+        setValue(attributeList, attributeName, newValue);
     }
     
      /**
@@ -73,36 +36,13 @@ public class PersonalDetailsDocument extends Document
      * 
      * Returns a String as a return type.
      */
-    public String getData(String attributeName){
+    public void getValue(String attributeName){
     
-        switch(attributeName){
-        
-            case "firstname":
-                return returnMap().get(attributeName).toString();
-            case "surname":
-                return returnMap().get(attributeName).toString();
-            case "DOB":
-                return returnMap().get(attributeName).toString();
-            case "address_1":
-                return returnMap().get(attributeName).toString();
-            case "address_2":
-                return returnMap().get(attributeName).toString();
-            case "town":
-                return returnMap().get(attributeName).toString();
-            case "county":
-                return returnMap().get(attributeName).toString();
-            case "postcode":
-                return returnMap().get(attributeName).toString();
-            case "telephone":
-                return returnMap().get(attributeName).toString();
-            case "mobile":
-                return returnMap().get(attributeName).toString();
-            case "next_of_kin":
-                return returnMap().get(attributeName).toString();
-            case "next_of_kin_CN":
-                return returnMap().get(attributeName).toString();
-            default: 
-                return "ERROR: no valid attribute named: " + attributeName + ".";
-        }
+        getValue(attributeList, attributeName);
+    }
+    
+    public HashMap getData(){
+    
+        return getData();
     }
 }

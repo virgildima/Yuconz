@@ -9,12 +9,29 @@ import java.util.HashMap;
  */
 public abstract class Document
 {  
-    private HashMap<String, String> documentAttributes = new HashMap<String, String>();
+    private HashMap<String, String> documentData = new HashMap<String, String>();
             
     
-    public HashMap returnMap(){
-    
-        return documentAttributes;
+     /**
+     * public method setValue()
+     * 
+     * Method gets the value to a documents attribute.
+     * 
+     * @param attributeName: The name of the attribute you wish to change thea value of.
+     * 
+     * Returns a String as a return type.
+     */
+    @SuppressWarnings("unchecked")
+    protected void setValue(String[] attributeList, String attributeName, String newValue){
+        
+        for(int i = 0; i < attributeList.length; i++){
+        
+            if(attributeName == attributeList[i]){
+            
+                    documentData.put(attributeName, newValue);
+            }
+            else System.out.println("ERROR: no valid attribute named: " + attributeName + ".");
+        }
     }
     
      /**
@@ -24,27 +41,24 @@ public abstract class Document
      * 
      * Returns data in as a String.
      */
-    public String getData(String attributeName){
+    protected String getValue(String[] attributeList, String attributeName){
    
-        if(attributeName != "" && attributeName != null && doesExist(attributeName) == true)
-            return documentAttributes.get(attributeName);
-        else
-            return "ERROR: whitespace not a valid source of input, or no valid attribute named: " + attributeName + ".";
+        for(int i = 0; i < attributeList.length; i++){
+        
+            if(attributeName == attributeList[i]){
+            
+                    documentData.get(attributeName);
+            }
+            else return "ERROR: no valid attribute named: " + attributeName + ".";
+        }
+        
+        return "ERROR: no valid attribute named: " + attributeName + ".";
     }
     
-    /**
-     * private method doesExist()
-     * 
-     * Checks whether or not a String entered in exixts as a attribute within the 
-     * documentAttributes HashMap.
-     */
-    private boolean doesExist(String attribute){
-        
-        if(documentAttributes.containsKey(attribute) == true){
-        
-            return true;
-        }
-        else return false;
+
+    protected HashMap getData(){
+    
+        return documentData;
     }
     
 }
