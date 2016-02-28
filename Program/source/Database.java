@@ -35,7 +35,8 @@ public class Database extends DB_Core
                 +"PHONE     VARCHAR(50) NOT NULL, "
                 +"MOBILE    VARCHAR(50) NOT NULL, "
                 +"NOK       VARCHAR(50) NOT NULL, "
-                +"NOKPHONE  VARCHAR(50) NOT NULL, "
+                +"NOKPHONE  VARCHAR(50) NOT NULL "
+                +")"
             }
         );
     }

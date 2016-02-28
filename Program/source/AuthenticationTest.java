@@ -18,7 +18,6 @@ public class AuthenticationTest
      */
     public AuthenticationTest()
     {
-        System.out.println("1");
         System.out.println("Starting Authentication Tests");
         au = new Authentication();
         System.out.println("    au created");
@@ -35,7 +34,6 @@ public class AuthenticationTest
     @Before
     public void setUp()
     {
-        System.out.println("2");
         System.out.println("Setting up au");
         au = new Authentication();
         System.out.println("    au created");
@@ -44,21 +42,18 @@ public class AuthenticationTest
     @Test
     public void setupCorrect()
     {
-        System.out.println("3");
         System.out.println("Test: setupCorrect");
         assertTrue("Not Viable",au.isViable());
     }
     @Test
     public void addUser()
     {
-        System.out.println("4");
         System.out.println("Test: addUser");
         assertTrue("Did not add",au.addNewUser("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User,Department.HR,"Smith","John"));
     }
     @Test
     public void login()
     {
-        System.out.println("5");
         System.out.println("Test: login");
         au.addNewUser("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User,Department.HR,"Smith","John");
         assertTrue("Could not log in",      au.login("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User)           );
@@ -66,7 +61,6 @@ public class AuthenticationTest
     @Test
     public void logout()
     {
-        System.out.println("6");
         System.out.println("Test: logout");
         au.addNewUser("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User,Department.HR,"Smith","John");
         au.login("123457","passwordsShouldBeHashedBeforeGoingInHere",AccessRights.Basic_User);
@@ -81,7 +75,6 @@ public class AuthenticationTest
     @After
     public void tearDown()
     {
-        System.out.println("7");
         au.deleteAll();
         System.out.println("    au deleted");
         au.close();

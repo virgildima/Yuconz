@@ -22,16 +22,14 @@ public abstract class Document
      * Returns a String as a return type.
      */
     @SuppressWarnings("unchecked")
-    protected void setValue(String[] attributeList, String attributeName, String newValue){
+    protected boolean setValue(String[] attributeList, String attributeName, String newValue){
+        int i = getIndex(attributeList, attributeName);
         
-        for(int i = 0; i < attributeList.length; i++){
-        
-            if(attributeName == attributeList[i]){
-            
-                    documentData.put(attributeName, newValue);
-            }
-            else System.out.println("ERROR: no valid attribute named: " + attributeName + ".");
+        if(i<0){
+            return false;
         }
+        documentData.put(attributeName,newValue);
+        return true;
     }
     
      /**
@@ -42,17 +40,23 @@ public abstract class Document
      * Returns data in as a String.
      */
     protected String getValue(String[] attributeList, String attributeName){
-   
+        int i = getIndex(attributeList, attributeName);
+        
+        if(i<0){
+            return "ERROR: no valid attribute named: " + attributeName + ".";
+        }
+        return documentData.get(attributeName);
+    }
+        
+    private int getIndex(String[] attributeList, String attributeName)
+    {
         for(int i = 0; i < attributeList.length; i++){
         
             if(attributeName == attributeList[i]){
-            
-                    documentData.get(attributeName);
+                    return i;
             }
-            else return "ERROR: no valid attribute named: " + attributeName + ".";
         }
-        
-        return "ERROR: no valid attribute named: " + attributeName + ".";
+        return -1;
     }
     
 
