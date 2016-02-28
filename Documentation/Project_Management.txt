@@ -1,19 +1,71 @@
 Project Management
 
-	Our goal with these project is creating software which will enable certain members of staff to edit, create and to approve documents for annual reviews. These documents are only accessible by certain members of staff.
+	Our goal with this project is to create software which will enable certain members of staff to edit, create manage documents such as annual reviews. These documents are only accessible by certain members of staff.
 We have a number of objectives, first of which we will be creating a product which meets the requires of the recipient and of our contractual agreement, and to have a well-documented and thought out creation of the system.
+
 Planning and management
-	With regards to the above there shall be a number of planning and management methods we shall be using. 	 First of which would be group meetings, these will take place every Thursday at 1pm. Additional group meetings can be done on a Wednesday, Thursday (not at 1pm) or through Skype if we do not need to physically meet. Additional group meetings will likely be organized on the Facebook group we have setup.
-Communication will be handled using Facebook, Skype and possibly WhatsApp. In addition to this will we also be using phone calls and group meetings.
-If it were not possible for a group member ot attend a group meeting due to a suitable reason, then Skype will be used as it allows to have a far more flexible meeting time. Skype has suitable tools for group meetings with its file sharing and screen sharing capabilities.
-We will be using a Gantt chart to record all of the group members’ deadlines, this includes deadlines set by the group. We do this so we may organize ourselves in a way which will not interrupt our group meetings and work. This allows to allocate work efficiently which is not disrupt group member's work out side of the group project.
-Issue tickets will be created and assigned to members of the group so they know what the need to be doing and has to be be completed by a specific date.
+
+	With regards to the above there shall be a number of planning and management methods we shall be using. First of which would be group meetings, these will take place every Thursday at 1pm. Additional group meetings can be done on a Wednesday, Thursday (not at 1pm) or through Facebook if we do not need to physically meet. Additional group meetings will likely be organized on the Facebook group we have set up.
+	Communication will be handled using Facebook or Skype. In addition to this we will also be using phone calls and group meetings.
+	If it were not possible for a group member to attend a group meeting due to a suitable reason, then Facebook or Skype will be used as it allows for a far more flexible meeting arrangement. Skype has suitable tools for group meetings with its file sharing and screen sharing capabilities.
+	We will be using a Gantt chart to record all of the group member's deadlines, this includes deadlines set by the group. We do this so we may organize ourselves in a way which will not interrupt our group meetings and work. This allows us to allocate work efficiently while not disrupting a group member's work out side of the group project.
+	Issue tickets will be created and assigned to members of the group so they know what they need to be doing and what has to be completed by a specific date.
+
+
+All roles are assigned at meetings and meetings following will be used to review our actions and individuals work. As said before the issue tickets on Gitlab will be used to monitor progress as well as chat logs from Facebook ect. At these meetings there is a possibility that plans will be changed and this will be discussed depending the situation so that we may be flexible in our response.
+
+
+
 Progress Monitoring
-Issue tickets help with progress monitoring, when work is completed the tickets will be closed and comments on the ticket will be saved and the completed work will be uploaded. In each group meeting we will check the groups progress since the last meeting and address any issues which as come across since then. Milestones will be used so we can keep track of each individual contribution to the work required of them.
+
+	Issue tickets help with progress monitoring, when work is completed the tickets will be closed and comments on the ticket will be saved and the completed work will be uploaded. In each group meeting we will check the groups progress since the last meeting and address any issues we have come across since then. Milestones will be used so we can keep track of each individual contribution to the work required of them.
+
+
 Project Risk Management
-Using the Gantt chart of deadlines, issue tickets and milestones we can use these effectivly avauluate risk so we can make informed decisions on how to prioritize, assign and mitigate a task. A contingency plan will be for risks that is likely to be an issue (if there is any). If a risk is realised then a group meeting will be called to finalise the best plan of action.
 
-All roles are assigned at meetings and meetings following will be used to review our actions and individuals work. As said before the issue tickets on Gitlab will be used to monitor progress as well as chat logs from Facebook ect. At these meetings there is a possibility that plans will be changed and this will be discussed depending the situation so that we may be flexible in our respons.
+	Using the Gantt chart of deadlines, issue tickets and milestones we can effectively evaluate the risk of missing a deadline so we can make informed decisions on how to prioritize, assign and mitigate risks. A contingency plan will be made for risks that are likely to be an issue (if there are any). If a significant risk is realised, then a group meeting will be called to finalise the best plan of action.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UPDATES:
+Currently the Gnatt chart is being utilised
+ 
+
+This is not the full chart. The chart has been very useful in helping us see potential times when we can meet if we cannot meet during the usual time.
+
+
+The issue tracking has been extremely useful. When a task is complete the ticket is closed, sometimes a comment is made to provide more information on the completed task.
+
+
+
+31/01/2016
+
+2
+
+1
 
