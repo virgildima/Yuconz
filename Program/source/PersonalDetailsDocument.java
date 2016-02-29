@@ -43,6 +43,11 @@ public class PersonalDetailsDocument extends Document
     
     public HashMap getData(){
     
-        return getData();
+        return super.getData();
+    }
+    
+    @Override public boolean equals(Object doc)
+    {
+        return super.equals((Document)doc);
     }
 }

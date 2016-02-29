@@ -29,6 +29,7 @@ public class DatabaseTest
         System.out.println("    db deleted");
         db.close();
         System.out.println("    db closed");
+        db = null;
     }
 
     /**
@@ -72,14 +73,26 @@ public class DatabaseTest
     {
         System.out.println("Test: addPDDocument");
         assertTrue("Did not add",db.addPersonalDetailsDocument(pdDoc));
-        //assertTrue("Added PD_Document did not match",db.getPersonalDetailsDocument("123456").getData().equals(pdDoc.getData()));
+        PersonalDetailsDocument fromDB = db.getPersonalDetailsDocument("123456");
+        assertTrue("Added PD_Document did not match",fromDB.equals(pdDoc));
     }
     @Test
-    public void updateDocument()
+    public void getPDDocument()
     {
-        System.out.println("Test: updateDocument");
-        
-        assertTrue("Did not update",db.updatePersonalDetailsDocument(pdDoc));
+        System.out.println("Test: getPDDocument");
+        db.addPersonalDetailsDocument(pdDoc);
+        PersonalDetailsDocument fromDB = db.getPersonalDetailsDocument("123456");
+        assertTrue("Added PD_Document did not match",fromDB.equals(pdDoc));
+    }
+    @Test
+    public void updatePDDocument()
+    {
+        System.out.println("Test: updatePDDocument");
+        db.addPersonalDetailsDocument(pdDoc);
+        pdDoc.setValue("mobile","07734567895");
+        db.updatePersonalDetailsDocument(pdDoc);
+        PersonalDetailsDocument fromDB = db.getPersonalDetailsDocument("123456");
+        assertTrue("Updated PD_Document did not match",fromDB.equals(pdDoc));
     }
     
     /**

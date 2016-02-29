@@ -7,4 +7,6 @@ comment1.target=java.lang.String\ getValue(java.lang.String)
 comment1.text=\r\n\ public\ method\ setValue()\r\n\ \r\n\ Method\ gets\ the\ value\ to\ a\ documents\ attribute.\r\n\ \r\n\ @param\ attributeName\:\ The\ name\ of\ the\ attribute\ you\ wish\ to\ change\ thea\ value\ of.\r\n\ \r\n\ Returns\ a\ String\ as\ a\ return\ type.\r\n
 comment2.params=
 comment2.target=java.util.HashMap\ getData()
-numComments=3
+comment3.params=doc
+comment3.target=boolean\ equals(java.lang.Object)
+numComments=4

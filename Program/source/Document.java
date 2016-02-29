@@ -59,6 +59,11 @@ public abstract class Document
         return -1;
     }
     
+    public boolean equals(Document doc)
+    {
+        return documentData == doc.getData();
+    }
+    
 
     protected HashMap getData(){
     

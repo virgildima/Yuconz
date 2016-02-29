@@ -18,6 +18,10 @@ public class Database extends DB_Core
             }
         }
     }
+    
+    /**
+     * This creates the Documents Database
+     */
     private void createDB()
     {
         System.out.println("Creating "+dbName+".");
@@ -41,6 +45,12 @@ public class Database extends DB_Core
         );
     }
     
+    /**
+     * Adds a new document to the database.
+     * 
+     * @param doc The document to add to the database.
+     * @return if the document was added to the database successfuly.
+     */
     public boolean addPersonalDetailsDocument(PersonalDetailsDocument doc)
     {
         Boolean success = false;
@@ -71,6 +81,12 @@ public class Database extends DB_Core
         return success;
     }
     
+    /**
+     * Updates an existing document in the database.
+     * 
+     * @param doc The document to update, containing the new data.
+     * @return if the document was updated successfuly.
+     */
     public boolean updatePersonalDetailsDocument(PersonalDetailsDocument doc)
     {
         Boolean success = false;
@@ -101,9 +117,14 @@ public class Database extends DB_Core
         return success;
     }
     
+    /**
+     * Returns a document from the database.
+     * 
+     * @param staffID The staff ID on the personal Details document to get.
+     * @return The document requested or null.
+     */
     public PersonalDetailsDocument getPersonalDetailsDocument(String staffID)
     {
-        Boolean success = false;
         try{
             String str = "SELECT * FROM personal WHERE STAFFID=?";
             prepStmt = conn.prepareStatement(str);
@@ -129,7 +150,7 @@ public class Database extends DB_Core
                 doc.setValue("next_of_kin",rs.getString(12));
                 doc.setValue("next_of_kin_CN",rs.getString(13));
                 
-                success = true;
+                return doc;
             }
         } catch (Exception e) {
            System.out.println("Get Document encountered an error.");
@@ -140,6 +161,11 @@ public class Database extends DB_Core
         return null;
     }
     
+    /**
+     * Returns if the database exists and a connection has been made.
+     * 
+     * @return If the database can be used.
+     */
     public boolean isViable()
     {
         return (conn!=null)&&(isTableCount(conn,1));
