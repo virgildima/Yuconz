@@ -14,12 +14,15 @@ Meeting Minutes
 	Divided tasks between ourselves.
 	Discussed Class diagram and the Libraries we might use. Issue tickets were created to assign the tasks.
 
+
 05/02/2016
 
 Further discussion on our tasks and how we are going to handle Stage 3. Checked each other's work, and provided clarification to any questions or miscommunications
 
+Gavin is now building the GUI, Andy authenication ect, Chris is doing the staff documents ect and Virgil is also doing some of the document system.
+
 10/02/2016
-Check up on progress, generalised discussion and questions about the project. Most of the meeting was doing the work we were assigned.
+Check up on progress, generalised discussion and questions about the project. Most of the meeting was doing the work we were assigned. 
 
 11/02/2016
 More or less the same as the previous meeting. Progress on the assigned tasks are going well, and we believe that we are ahead of schedule at this moment in time.
@@ -27,4 +30,23 @@ More or less the same as the previous meeting. Progress on the assigned tasks ar
 12/02/2016
 Bug correction and work catch up. Asked clarification questions to David so he can ask Miles on our behalf.
 
+
+
+18/02/2016
+Discussed stage 4. The previous roles/tasks that were assigned before are still the same. Raised concerns that code was not commented well. A lot of this meeting was reading each other’s code. We want to make sure that there are no issues when we merge our work. 
+We also started talking about what is needed next, e.g. GUI is in the progress of being attached to the Authentication class. Document classes are all progress really well; we are all thinking that work will be done earlier than we thought it would be done.
+
+Documents are being updated and the talks about the alterations document has started.
+
+19/02/2016
+Not much discussion in this meeting, essentially this was a coding meeting. This is where we will assist each other if somebody is stuck, ask questions about each other’s code and what we should do. E.g. Andrew talked about how he was changing/adding to his classes, as did chris.
+
+25/02/2016
+This was more discussion about the stage 4 requirements. This meeting was heavily focused on the alterations document, which we are finding a difficult document to fill out. We feel that we have done very well and there are very little problems without plans so far. This means that we have been struggling to think of any justifiable alterations. We did talk about that git would not work on Chris’s computer so we suggested that he use raptor or send one of us the files and we will upload them.
+
+26/02/2016
+This is was mostly a programming meeting. We discussed about one of the classes Chris created, we decided that perhaps he could do it a different way, which would be better than his current. We talked about array lists, switch statements and about his gitlab issues. We were attempting to allow Andrews classes to access Chris’s classes, we have now resolve this problems. 
+31/01/2016
+
+1
 

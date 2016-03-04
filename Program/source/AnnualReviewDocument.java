@@ -1,16 +1,19 @@
 import java.util.HashMap;
-/**
- * Write a description of class PersonalDetailsDocument here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class PersonalDetailsDocument extends Document
-{
 
-    private String[] attributeList = {"firstname","surname","DOB","address_1","address_2",
-                                        "town","county","postcode","telephone","mobile","next_of_kin","next_of_kin_CN","staffID"};
+/**
+ * AnnualReview implementaion document
+ * 
+ * @author Chris Wing 
+ * @version 0.1
+ */
+public class AnnualReviewDocument extends Document
+{
     
+    private String[] attributeList = {"staffID", "name", "manager", "second_manager", "section", "job_title", "performance_summary", "personal_goals_achieved", "future_goals_set", 
+                                        "reviewer_comments", "reviewer_recommendation", "reviewer_signature", "manager_signature", "second_manager_signatue", "date_of_review"};
+                                        
+    
+                                        
      /**
      * public method setValue()
      * 
@@ -36,18 +39,13 @@ public class PersonalDetailsDocument extends Document
      * 
      * Returns a String as a return type.
      */
-    public String getValue(String attributeName){
+    public void getValue(String attributeName){
     
-        return getValue(attributeList, attributeName);
+        getValue(attributeList, attributeName);
     }
     
     public HashMap getData(){
     
-        return super.getData();
-    }
-    
-    @Override public boolean equals(Object doc)
-    {
-        return super.equals((Document)doc);
+        return getData();
     }
 }

@@ -1,0 +1,10 @@
+Alterations
+All deadlines for the course are now on Student Data Services. This means that all deadlines will be added to the gantt chart for all group members to see and plan their personal time accordingly.
+Improvements to the meetings minutes are now done. This provides us with a better description of the previous meetings and future ones too.
+General agreement to communicate more, e.g. Facebook group etc. We feel that if people need help they should ask, although this is the case now, we would like it to be more frequent regardless of how silly they think the question is. We encourage the asking of questions.
+Increased the frequency of updating the group of any alterations through the Facebook group even though we can see the changes on Gitlab. We need to make sure that edited documents and code is made known to the group.
+More commenting, it would be a lot easier and faster to read and understand the code if there were more comments with an acceptable level of detail. 
+Problems with Gitlab so one of us is using raptor currently to get around it.
+All database creation moved from authentication to DB_Core.
+The wiki page hasn’t been essential and we have found it better to communicate through other means and this has been effective
+No alterations have been made to the regular meeting times

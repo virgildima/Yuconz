@@ -1,10 +1,14 @@
 #BlueJ class context
-comment0.params=
-comment0.target=java.util.HashMap\ returnMap()
-comment1.params=attributeName
-comment1.target=java.lang.String\ getData(java.lang.String)
+comment0.params=attributeList\ attributeName\ newValue
+comment0.target=boolean\ setValue(java.lang.String[],\ java.lang.String,\ java.lang.String)
+comment0.text=\r\n\ public\ method\ setValue()\r\n\ \r\n\ Method\ gets\ the\ value\ to\ a\ documents\ attribute.\r\n\ \r\n\ @param\ attributeName\:\ The\ name\ of\ the\ attribute\ you\ wish\ to\ change\ thea\ value\ of.\r\n\ \r\n\ Returns\ a\ String\ as\ a\ return\ type.\r\n
+comment1.params=attributeList\ attributeName
+comment1.target=java.lang.String\ getValue(java.lang.String[],\ java.lang.String)
 comment1.text=\r\n\ public\ method\ getData()\r\n\ \r\n\ Gets\ data\ of\ document.\r\n\ \r\n\ Returns\ data\ in\ as\ a\ String.\r\n
-comment2.params=attribute
-comment2.target=boolean\ doesExist(java.lang.String)
-comment2.text=\r\n\ private\ method\ doesExist()\r\n\ \r\n\ Checks\ whether\ or\ not\ a\ String\ entered\ in\ exixts\ as\ a\ attribute\ within\ the\ \r\n\ documentAttributes\ HashMap.\r\n
-numComments=3
+comment2.params=attributeList\ attributeName
+comment2.target=int\ getIndex(java.lang.String[],\ java.lang.String)
+comment3.params=doc
+comment3.target=boolean\ equals(Document)
+comment4.params=
+comment4.target=java.util.HashMap\ getData()
+numComments=5
