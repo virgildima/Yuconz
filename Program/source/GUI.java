@@ -236,13 +236,17 @@ public class GUI
          */
 
         loginButton.addActionListener(new ActionListener() {
+            
                 public void actionPerformed(ActionEvent e) { 
                     //&& passwordString.equals(passwordField.getPassword())
                     boolean isLoggedin = false;
                     InterfaceBackend ib = new InterfaceBackend();
                     AccessRights access = AccessRights.Basic_User;
                     
-                    if(auth.login(usernameField.getText(),ib.password , access))
+                    String passHash = ib.passwordSHA512(passwordField.getPassword().toString());
+                    System.out.println(ib.passwordSHA512(passwordField.getPassword().toString()));
+                    System.out.println(passwordField.getPassword().toString());
+                    if(auth.login(usernameField.getText(), passHash, access))
                     {
                         JOptionPane.showMessageDialog(frame,
                             "Logged in",
@@ -265,6 +269,14 @@ public class GUI
             });
 
     }
+//     public boolean test()
+//     {
+//          InterfaceBackend ib = new InterfaceBackend();
+//         if(ib.passwordSHA512(passwordField.getPassword().toString().equals(ib.returnPass()))){
+//             return true;
+//         }
+//    }
+  
 
     /**
      * Referencing to methods in the interfacebackend class
