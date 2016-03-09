@@ -21,6 +21,7 @@ public class InterfaceBackend
     
     protected JFrame frame;
     public String password;
+    public  String encryptPass;
 
     /**
      * These refer to instance varibles or fields thus this allows me to use some in this class.
@@ -34,7 +35,7 @@ public class InterfaceBackend
 
     public String passwordSHA512(String password)
     {
-        
+        this.password = password;
 
         /**
          * This checks if the pasword length is 6 characters long
@@ -78,8 +79,14 @@ public class InterfaceBackend
                 throw new UnsupportedOperationException(e);
             }
         }
-        return password;
+        
+        return  encryptPass = password;
     }  
+    
+    public  String getEncrypted()
+    {
+        return this.encryptPass = encryptPass;
+    }
 
     /**
      * Method which closes the program

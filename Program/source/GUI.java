@@ -40,6 +40,7 @@ public class GUI
     public JPasswordField passwordField;
     
     Authentication auth = new Authentication();
+    InterfaceBackend ib = new InterfaceBackend();
 
     /**
      * Create the frame for the GUI.
@@ -48,8 +49,8 @@ public class GUI
 
     {
         makeFrame();
-        InterfaceBackend UI = new InterfaceBackend();
-        
+       
+ 
 
     }
 
@@ -239,14 +240,17 @@ public class GUI
             
                 public void actionPerformed(ActionEvent e) { 
                     //&& passwordString.equals(passwordField.getPassword())
+                    //System.out.println(ib.passwordSHA512(passwordField.getPassword().toString()));
+                    //System.out.println(passwordField.getPassword().toString());
                     boolean isLoggedin = false;
-                    InterfaceBackend ib = new InterfaceBackend();
+               
                     AccessRights access = AccessRights.Basic_User;
-                    
-                    String passHash = ib.passwordSHA512(passwordField.getPassword().toString());
-                    System.out.println(ib.passwordSHA512(passwordField.getPassword().toString()));
-                    System.out.println(passwordField.getPassword().toString());
-                    if(auth.login(usernameField.getText(), passHash, access))
+                    String enteredPass = ib.passwordSHA512(String.valueOf(passwordField.getPassword()));
+                    System.out.println(enteredPass);
+                    System.out.println(ib.getEncrypted());
+                    if(enteredPass == ib.getEncrypted())
+                    {
+                    if(auth.login(usernameField.getText(), enteredPass, access))
                     {
                         JOptionPane.showMessageDialog(frame,
                             "Logged in",
@@ -265,13 +269,15 @@ public class GUI
                             "User details are incorrect.", 
                             JOptionPane.INFORMATION_MESSAGE);
                             isLoggedin = false;
-                    } }
+                    } 
+                }
+                }
             });
 
     }
 //     public boolean test()
 //     {
-//          InterfaceBackend ib = new InterfaceBackend();
+//          
 //         if(ib.passwordSHA512(passwordField.getPassword().toString().equals(ib.returnPass()))){
 //             return true;
 //         }
@@ -285,7 +291,7 @@ public class GUI
 
     public void actionListeners(JFrame frame)
     {
-        InterfaceBackend ib = new InterfaceBackend();
+        
 
         JMenuBar menubar = new JMenuBar();
         frame.setJMenuBar(menubar);
