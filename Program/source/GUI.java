@@ -38,7 +38,7 @@ public class GUI
      */
     public JTextField usernameField;
     public JPasswordField passwordField;
-    
+
     Authentication auth = new Authentication();
     InterfaceBackend ib = new InterfaceBackend();
 
@@ -49,8 +49,7 @@ public class GUI
 
     {
         makeFrame();
-       
- 
+
 
     }
 
@@ -117,38 +116,36 @@ public class GUI
          */
 
         loggedIn.add(employeeSearch);
-        
+
         loggedIn.add(forenameLabel);
         loggedIn.add(employeeForename);
-        
+
         loggedIn.add(surnameLabel);
         loggedIn.add(employeeSurname);
-        
+
         loggedIn.add(employeeBirthDateLabel);
         loggedIn.add(employeeBirthDate);
-        
+
         loggedIn.add(lastReviewLabel);
         loggedIn.add(employeeLastReview);
-        
+
         loggedIn.add(emailAddressLabel);
         loggedIn.add(employeeEmailAddress);
-        
+
         loggedIn.add(employeeMobileLabel);
         loggedIn.add(employeeMobile);
-        
+
         loggedIn.add(employeeHomeLabel);
         loggedIn.add(employeeHomephone);
-        
+
         loggedIn.add(employeeHomeAddressLabel);
         loggedIn.add(employeeHomeAddress);
-        
+
         loggedIn.add(employeeGenderLabel);
         loggedIn.add(employeeGender);
-        
-        
+
         loggedIn.add(employeePostcodeLabel);
         loggedIn.add(employeePostcode);
-        
 
         /**
          * Disabling editing on some of the textfields
@@ -236,21 +233,19 @@ public class GUI
          * Checkes the username and refuses entery to the system if it is wrong.
          */
 
-        loginButton.addActionListener(new ActionListener() {
-            
-                public void actionPerformed(ActionEvent e) { 
+        loginButton.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
                     //&& passwordString.equals(passwordField.getPassword())
                     //System.out.println(ib.passwordSHA512(passwordField.getPassword().toString()));
                     //System.out.println(passwordField.getPassword().toString());
                     boolean isLoggedin = false;
-               
+
                     AccessRights access = AccessRights.Basic_User;
-                    String enteredPass = ib.passwordSHA512(String.valueOf(passwordField.getPassword()));
-                    System.out.println(enteredPass);
-                    System.out.println(ib.getEncrypted());
-                    if(enteredPass == ib.getEncrypted())
-                    {
-                    if(auth.login(usernameField.getText(), enteredPass, access))
+
+                    if(auth.login(usernameField.getText(), ib.getEncrypted(), access))
                     {
                         JOptionPane.showMessageDialog(frame,
                             "Logged in",
@@ -268,13 +263,12 @@ public class GUI
                             "Incorrect Login Details",
                             "User details are incorrect.", 
                             JOptionPane.INFORMATION_MESSAGE);
-                            isLoggedin = false;
+                        isLoggedin = false;
                     } 
                 }
-                }
             });
-
     }
+
 
     /**
      * Referencing to methods in the interfacebackend class
@@ -283,7 +277,6 @@ public class GUI
 
     public void actionListeners(JFrame frame)
     {
-        
 
         JMenuBar menubar = new JMenuBar();
         frame.setJMenuBar(menubar);
