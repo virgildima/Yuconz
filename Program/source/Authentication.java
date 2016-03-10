@@ -79,7 +79,7 @@ public class Authentication extends DB_Core
         
         
         try{
-            String str = "SELECT COUNT(*), DEPARTMENT, AUTHLEVEL FROM users WHERE ID=? AND PASSHASH=? AND LOCKED=false";
+            String str = "SELECT DEPARTMENT, AUTHLEVEL FROM users WHERE ID=? AND PASSHASH=? AND LOCKED=false";
             prepStmt = conn.prepareStatement(str);
             
             prepStmt.setString(1,userID);
