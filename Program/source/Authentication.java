@@ -87,17 +87,16 @@ public class Authentication extends DB_Core
             
             rs = prepStmt.executeQuery();
             rs.next();
-            if(rs.getInt(1)==1){
-                department = Department.fromInt(rs.getInt(2));
-                ar = rs.getInt(3);
-                if(accessRights.toInt()<=ar || (department.equals(Department.HR) && accessRights.equals(AccessRights.HR_User)))
-                {
-                    currentUser = userID;
-                    this.accessRights = accessRights;
-                    this.department = department;
-                    success = true;
-                }
+            department = Department.fromInt(rs.getInt(1));
+            ar = rs.getInt(2);
+            if(accessRights.toInt()<=ar || (department.equals(Department.HR) && accessRights.equals(AccessRights.HR_User)))
+            {
+                currentUser = userID;
+                this.accessRights = accessRights;
+                this.department = department;
+                success = true;
             }
+            
         } catch (Exception e) {
            System.out.println("Insert user encountered an error.");
            e.printStackTrace();
