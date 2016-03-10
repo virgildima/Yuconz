@@ -244,8 +244,9 @@ public class GUI
                     boolean isLoggedin = false;
 
                     AccessRights access = AccessRights.Basic_User;
+                    String passHash = ib.passwordSHA512(String.valueOf( passwordField.getPassword()));
 
-                    if(auth.login(usernameField.getText(), ib.getEncrypted(), access))
+                    if(auth.login(usernameField.getText(), passHash, access))
                     {
                         JOptionPane.showMessageDialog(frame,
                             "Logged in",
