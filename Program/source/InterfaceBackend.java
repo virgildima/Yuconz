@@ -42,7 +42,7 @@ public class InterfaceBackend
          * if its not then the password is set to null.
          */
 
-        if(password.length() != 6  )
+        if(password.length() == 0  )
         {
             password = null;
             JOptionPane.showMessageDialog(frame,

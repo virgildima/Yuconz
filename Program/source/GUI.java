@@ -275,14 +275,6 @@ public class GUI
             });
 
     }
-//     public boolean test()
-//     {
-//          
-//         if(ib.passwordSHA512(passwordField.getPassword().toString().equals(ib.returnPass()))){
-//             return true;
-//         }
-//    }
-  
 
     /**
      * Referencing to methods in the interfacebackend class
