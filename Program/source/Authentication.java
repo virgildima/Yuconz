@@ -28,7 +28,7 @@ public class Authentication extends DB_Core
         super.createDB(new String[] {
             "CREATE TABLE users ("
                 +"ID            CHAR(6) NOT NULL PRIMARY KEY, "
-                +"PASSHASH      VARCHAR(128) NOT NULL, "
+                +"PASSHASH      VARCHAR(192) NOT NULL, "
                 +"AUTHLEVEL     INT NOT NULL, "
                 +"DEPARTMENT     INT NOT NULL, "
                 +"SURNAME       VARCHAR(50) NOT NULL, "
