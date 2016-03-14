@@ -28,7 +28,7 @@ public class Authentication extends DB_Core
         super.createDB(new String[] {
             "CREATE TABLE users ("
                 +"ID            CHAR(6) NOT NULL PRIMARY KEY, "
-                +"PASSHASH      VARCHAR(128) NOT NULL, "
+                +"PASSHASH      VARCHAR(192) NOT NULL, "
                 +"AUTHLEVEL     INT NOT NULL, "
                 +"DEPARTMENT     INT NOT NULL, "
                 +"SURNAME       VARCHAR(50) NOT NULL, "
@@ -79,7 +79,7 @@ public class Authentication extends DB_Core
         
         
         try{
-            String str = "SELECT COUNT(*), DEPARTMENT, AUTHLEVEL FROM users WHERE ID=? AND PASSHASH=? AND LOCKED=false";
+            String str = "SELECT DEPARTMENT, AUTHLEVEL FROM users WHERE ID=? AND PASSHASH=? AND LOCKED=false";
             prepStmt = conn.prepareStatement(str);
             
             prepStmt.setString(1,userID);
@@ -87,17 +87,16 @@ public class Authentication extends DB_Core
             
             rs = prepStmt.executeQuery();
             rs.next();
-            if(rs.getInt(1)==1){
-                department = Department.fromInt(rs.getInt(2));
-                ar = rs.getInt(3);
-                if(accessRights.toInt()<=ar || (department.equals(Department.HR) && accessRights.equals(AccessRights.HR_User)))
-                {
-                    currentUser = userID;
-                    this.accessRights = accessRights;
-                    this.department = department;
-                    success = true;
-                }
+            department = Department.fromInt(rs.getInt(1));
+            ar = rs.getInt(2);
+            if(accessRights.toInt()<=ar || (department.equals(Department.HR) && accessRights.equals(AccessRights.HR_User)))
+            {
+                currentUser = userID;
+                this.accessRights = accessRights;
+                this.department = department;
+                success = true;
             }
+            
         } catch (Exception e) {
            System.out.println("Insert user encountered an error.");
            e.printStackTrace();

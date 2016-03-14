@@ -42,6 +42,7 @@ dependency21.from=DatabaseTest
 dependency21.to=Database
 dependency21.type=UsesDependency
 dependency22.from=DatabaseTest
+<<<<<<< HEAD
 dependency22.to=PersonalDetailsDocument
 dependency22.type=UsesDependency
 dependency23.from=PersonalDetailsDocumentTest
@@ -49,6 +50,24 @@ dependency23.to=PersonalDetailsDocument
 dependency23.type=UsesDependency
 dependency3.from=Authentication
 dependency3.to=Department
+=======
+dependency22.to=Authentication
+dependency22.type=UsesDependency
+dependency23.from=DatabaseTest
+dependency23.to=AccessRights
+dependency23.type=UsesDependency
+dependency24.from=DatabaseTest
+dependency24.to=Department
+dependency24.type=UsesDependency
+dependency25.from=DatabaseTest
+dependency25.to=PersonalDetailsDocument
+dependency25.type=UsesDependency
+dependency26.from=PersonalDetailsDocumentTest
+dependency26.to=PersonalDetailsDocument
+dependency26.type=UsesDependency
+dependency3.from=GUI
+dependency3.to=GUI
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 dependency3.type=UsesDependency
 dependency4.from=FileData
 dependency4.to=ReadFile
@@ -69,6 +88,7 @@ dependency9.from=InterfaceBackendTest
 dependency9.to=GUI
 dependency9.type=UsesDependency
 objectbench.height=76
+<<<<<<< HEAD
 objectbench.width=1318
 package.editor.height=611
 package.editor.width=1248
@@ -86,24 +106,68 @@ target1.editor.y=-8
 target1.height=50
 target1.name=DB_Core
 target1.naviview.expanded=true
+=======
+objectbench.width=1576
+package.editor.height=739
+package.editor.width=1478
+package.editor.x=-9
+package.editor.y=-9
+package.numDependencies=26
+package.numTargets=18
+package.showExtends=true
+package.showUses=true
+project.charset=UTF-8
+readme.editor.height=700
+readme.editor.width=900
+readme.editor.x=0
+readme.editor.y=0
+target1.editor.height=860
+target1.editor.width=800
+target1.editor.x=800
+target1.editor.y=0
+target1.height=50
+target1.name=DB_Core
+target1.naviview.expanded=false
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target1.showInterface=false
 target1.type=AbstractTarget
 target1.typeParameters=
 target1.width=80
+<<<<<<< HEAD
 target1.x=670
 target1.y=110
 target10.height=50
 target10.name=AnnualReviewDocument
+=======
+target1.x=850
+target1.y=380
+target10.editor.height=700
+target10.editor.width=900
+target10.editor.x=32
+target10.editor.y=12
+target10.height=50
+target10.name=AnnualReviewDocument
+target10.naviview.expanded=false
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target10.showInterface=false
 target10.type=ClassTarget
 target10.typeParameters=
 target10.width=160
+<<<<<<< HEAD
 target10.x=360
 target10.y=10
 target11.editor.height=700
 target11.editor.width=900
 target11.editor.x=40
 target11.editor.y=20
+=======
+target10.x=350
+target10.y=10
+target11.editor.height=700
+target11.editor.width=900
+target11.editor.x=31
+target11.editor.y=11
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target11.height=50
 target11.name=InterfaceBackendTest
 target11.naviview.expanded=false
@@ -111,6 +175,7 @@ target11.showInterface=false
 target11.type=UnitTestTargetJunit4
 target11.typeParameters=
 target11.width=150
+<<<<<<< HEAD
 target11.x=50
 target11.y=70
 target12.association=AuthenticationTest
@@ -118,6 +183,14 @@ target12.editor.height=784
 target12.editor.width=1280
 target12.editor.x=0
 target12.editor.y=0
+=======
+target11.x=420
+target11.y=270
+target12.editor.height=876
+target12.editor.width=1612
+target12.editor.x=-8
+target12.editor.y=-8
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target12.height=50
 target12.name=Authentication
 target12.naviview.expanded=true
@@ -125,18 +198,28 @@ target12.showInterface=false
 target12.type=ClassTarget
 target12.typeParameters=
 target12.width=110
+<<<<<<< HEAD
 target12.x=520
 target12.y=250
 target13.editor.height=700
 target13.editor.width=900
 target13.editor.x=0
 target13.editor.y=0
+=======
+target12.x=750
+target12.y=470
+target13.editor.height=876
+target13.editor.width=1612
+target13.editor.x=-8
+target13.editor.y=-8
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target13.height=50
 target13.name=DocumentInterface
 target13.naviview.expanded=false
 target13.showInterface=false
 target13.type=InterfaceTarget
 target13.typeParameters=
+<<<<<<< HEAD
 target13.width=130
 target13.x=820
 target13.y=130
@@ -145,6 +228,16 @@ target14.editor.height=784
 target14.editor.width=800
 target14.editor.x=800
 target14.editor.y=0
+=======
+target13.width=80
+target13.x=590
+target13.y=300
+target14.association=GUITest
+target14.editor.height=912
+target14.editor.width=1612
+target14.editor.x=-9
+target14.editor.y=-9
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target14.height=50
 target14.name=Database
 target14.naviview.expanded=true
@@ -163,9 +256,15 @@ target15.name=GUI
 target15.showInterface=false
 target15.type=ClassTarget
 target15.typeParameters=
+<<<<<<< HEAD
 target15.width=80
 target15.x=760
 target15.y=10
+=======
+target15.width=100
+target15.x=620
+target15.y=280
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target16.editor.height=700
 target16.editor.width=900
 target16.editor.x=40
@@ -176,6 +275,7 @@ target16.naviview.expanded=false
 target16.showInterface=false
 target16.type=UnitTestTargetJunit4
 target16.typeParameters=
+<<<<<<< HEAD
 target16.width=100
 target16.x=820
 target16.y=210
@@ -186,10 +286,23 @@ target17.editor.y=20
 target17.height=50
 target17.name=FileData
 target17.naviview.expanded=false
+=======
+target16.width=80
+target16.x=430
+target16.y=130
+target17.editor.height=1050
+target17.editor.width=976
+target17.editor.x=952
+target17.editor.y=0
+target17.height=50
+target17.name=GUITest
+target17.naviview.expanded=true
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target17.showInterface=false
-target17.type=ClassTarget
+target17.type=UnitTestTargetJunit4
 target17.typeParameters=
 target17.width=80
+<<<<<<< HEAD
 target17.x=800
 target17.y=370
 target18.editor.height=700
@@ -198,10 +311,21 @@ target18.editor.x=0
 target18.editor.y=0
 target18.height=50
 target18.name=DocumentAttributes
+=======
+target17.x=190
+target17.y=370
+target18.editor.height=700
+target18.editor.width=900
+target18.editor.x=24
+target18.editor.y=13
+target18.height=50
+target18.name=PersonalDetailsDocumentTest
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target18.naviview.expanded=true
 target18.showInterface=false
 target18.type=ClassTarget
 target18.typeParameters=
+<<<<<<< HEAD
 target18.width=140
 target18.x=370
 target18.y=150
@@ -222,6 +346,16 @@ target2.editor.height=700
 target2.editor.width=900
 target2.editor.x=32
 target2.editor.y=12
+=======
+target18.width=200
+target18.x=790
+target18.y=20
+target2.association=PersonalDetailsDocumentTest
+target2.editor.height=860
+target2.editor.width=1280
+target2.editor.x=0
+target2.editor.y=0
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target2.height=50
 target2.name=PersonalDetailsDocument
 target2.naviview.expanded=false
@@ -263,19 +397,28 @@ target4.showInterface=false
 target4.type=UnitTestTargetJunit4
 target4.typeParameters=
 target4.width=130
+<<<<<<< HEAD
 target4.x=550
 target4.y=220
 target5.editor.height=700
 target5.editor.width=900
 target5.editor.x=0
 target5.editor.y=0
+=======
+target4.x=700
+target4.y=460
+target5.editor.height=912
+target5.editor.width=1612
+target5.editor.x=-9
+target5.editor.y=-9
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target5.height=50
 target5.name=InterfaceBackend
 target5.showInterface=false
 target5.type=ClassTarget
 target5.typeParameters=
 target5.width=130
-target5.x=380
+target5.x=370
 target5.y=290
 target6.editor.height=700
 target6.editor.width=900
@@ -301,6 +444,7 @@ target7.showInterface=false
 target7.type=ClassTarget
 target7.typeParameters=
 target7.width=80
+<<<<<<< HEAD
 target7.x=190
 target7.y=440
 target8.editor.height=700
@@ -310,6 +454,17 @@ target8.editor.y=104
 target8.height=50
 target8.name=AccessRights
 target8.naviview.expanded=true
+=======
+target7.x=70
+target7.y=60
+target8.editor.height=912
+target8.editor.width=976
+target8.editor.x=-8
+target8.editor.y=0
+target8.height=50
+target8.name=AccessRights
+target8.naviview.expanded=false
+>>>>>>> 311d316037cca5d26404cd4785832a1b8779b32f
 target8.showInterface=false
 target8.type=EnumTarget
 target8.typeParameters=
