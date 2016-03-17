@@ -73,8 +73,11 @@ public class DatabaseTest
     {
         System.out.println("Test: addPDDocument");
         assertTrue("Did not add",db.addPersonalDetailsDocument(pdDoc));
+        System.out.println("Test: addPDDocument 1");
         PersonalDetailsDocument fromDB = db.getPersonalDetailsDocument("123456");
+        System.out.println("Test: addPDDocument 2");
         assertTrue("Added PD_Document did not match",fromDB.equals(pdDoc));
+        System.out.println("Test: addPDDocument 3");
     }
     @Test
     public void getPDDocument()
