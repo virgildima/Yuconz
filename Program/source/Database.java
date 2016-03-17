@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.*;
 public class Database extends DB_Core
 {
-    
+    private DB_PersonalDetails db_PersonalDetails;
     
     
     
@@ -15,6 +15,7 @@ public class Database extends DB_Core
         if(setup()){
             if(connect())
             {
+                db_PersonalDetails = new DB_PersonalDetails(conn);
                 if(!isTableCount(conn,1))
                 {
                     createDB();
@@ -30,23 +31,8 @@ public class Database extends DB_Core
     {
         System.out.println("Creating "+dbName+".");
         super.createDB(new String[] {
-            "CREATE TABLE personal ("
-                +"STAFFID   CHAR(6) NOT NULL PRIMARY KEY, "
-                +"FIRSTNAME   VARCHAR(50) NOT NULL, "
-                +"SURNAME   VARCHAR(50) NOT NULL, "
-                +"DOB       CHAR(10) NOT NULL, "
-                +"ADDRESS1  VARCHAR(50) NOT NULL, "
-                +"ADDRESS2  VARCHAR(50) NOT NULL, "
-                +"TOWN      VARCHAR(50) NOT NULL, "
-                +"COUNTY    VARCHAR(50) NOT NULL, "
-                +"POSTCODE  VARCHAR(50) NOT NULL, "
-                +"PHONE     VARCHAR(50) NOT NULL, "
-                +"MOBILE    VARCHAR(50) NOT NULL, "
-                +"NOK       VARCHAR(50) NOT NULL, "
-                +"NOKPHONE  VARCHAR(50) NOT NULL "
-                +")"
-            }
-        );
+            db_PersonalDetails.createTableStr()
+        });
     }
     
     /**
@@ -57,31 +43,7 @@ public class Database extends DB_Core
      */
     public boolean addPersonalDetailsDocument(PersonalDetailsDocument doc)
     {
-        Boolean success = false;
-        try{
-            String str = "INSERT INTO personal VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            prepStmt = conn.prepareStatement(str);
-            
-            prepStmt.setString(1,doc.getValue("staffID"));
-            prepStmt.setString(2,doc.getValue("firstname"));
-            prepStmt.setString(3,doc.getValue("surname"));
-            prepStmt.setString(4,doc.getValue("DOB"));
-            prepStmt.setString(5,doc.getValue("address_1"));
-            prepStmt.setString(6,doc.getValue("address_2"));
-            prepStmt.setString(7,doc.getValue("town"));
-            prepStmt.setString(8,doc.getValue("county"));
-            prepStmt.setString(9,doc.getValue("postcode"));
-            prepStmt.setString(10,doc.getValue("telephone"));
-            prepStmt.setString(11,doc.getValue("mobile"));
-            prepStmt.setString(12,doc.getValue("next_of_kin"));
-            prepStmt.setString(13,doc.getValue("next_of_kin_CN"));
-            
-            success = (prepStmt.executeUpdate()==1);
-        } catch (Exception e) {
-           System.out.println("Add Document encountered an error.");
-           e.printStackTrace();
-           return false;
-        }
+        boolean success = db_PersonalDetails.addDocument(doc);
         return success;
     }
     

@@ -6,10 +6,10 @@ import java.sql.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class DB_PersonalDetails extends DB_TableHandler
+public class DB_PersonalDetails extends DB_TableHandler<PersonalDetailsDocument>
 {
-    private String tableName = "personal";
-    private String createTableStr = 
+    private static String tableName = "personal";
+    private static String createTableStr = 
         "CREATE TABLE "+tableName+" ("
             +"STAFFID   CHAR(6) NOT NULL PRIMARY KEY, "
             +"FIRSTNAME   VARCHAR(50) NOT NULL, "
@@ -31,13 +31,18 @@ public class DB_PersonalDetails extends DB_TableHandler
         this.conn = conn;
     }
     
+    public String createTableStr()
+    {
+        return createTableStr;
+    }
+    
     /**
-     * Creates a prepared statement for adding the document to the table
+     * add the document to the table
      * 
      * @param doc The document to add to the table.
-     * @return the preparedStatement for the document.
+     * @return if the document was added to the table.
      */
-    public PreparedStatement addDocument(PersonalDetailsDocument doc)
+    public boolean addDocument(PersonalDetailsDocument doc)
     {
         PreparedStatement prepStmt = prepStmt(
             "INSERT INTO personal VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -50,6 +55,8 @@ public class DB_PersonalDetails extends DB_TableHandler
             doc.getValue("next_of_kin_CN")}
             );
         
-        return prepStmt;
+        boolean success = execPrepStmt(prepStmt);
+        
+        return success;
     }
 }

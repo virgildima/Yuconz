@@ -6,7 +6,7 @@ import java.sql.*;
  * @author (your name here)
  * @version (version number or date here)
  */
-public abstract class DB_TableHandler
+public abstract class DB_TableHandler<DocType>
 {
     
     protected Connection conn;
@@ -19,7 +19,7 @@ public abstract class DB_TableHandler
             
             for(int i = 1;i<=vals.length;i++)
             {
-                prepStmt.setString(i,vals[i]);
+                prepStmt.setString(i,vals[i-1]);
             }
         } catch (Exception e) {
            System.out.println("Prepare Statement encountered an error.");
@@ -29,12 +29,31 @@ public abstract class DB_TableHandler
         return prepStmt;
     }
     
+    protected boolean execPrepStmt(PreparedStatement prepStmt)
+    {
+        Boolean success = false;
+        try{
+            success = (prepStmt.executeUpdate()==1);
+        } catch (Exception e) {
+           System.out.println("Execute Statement encountered an error.");
+           e.printStackTrace();
+           success = false;
+        }
+        return success;
+    }
     
     /**
-     * Creates a prepared statement for adding the document to the table
+     * The SQL string to create the table
+     * 
+     * @return the SQL string.
+     */
+    abstract public String createTableStr();
+    
+    /**
+     * add the document to the table
      * 
      * @param doc The document to add to the table.
-     * @return the preparedStatement for the document.
+     * @return if the document was added.
      */
-    abstract public PreparedStatement addDocument(PersonalDetailsDocument doc);
+    abstract public boolean addDocument(DocType doc);
 }
