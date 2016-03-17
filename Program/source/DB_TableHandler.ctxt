@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=str\ vals
+comment0.target=java.sql.PreparedStatement\ prepStmt(java.lang.String,\ java.lang.String[])
+comment1.params=doc
+comment1.target=java.sql.PreparedStatement\ addDocument(PersonalDetailsDocument)
+comment1.text=\r\n\ Creates\ a\ prepared\ statement\ for\ adding\ the\ document\ to\ the\ table\r\n\ \r\n\ @param\ doc\ The\ document\ to\ add\ to\ the\ table.\r\n\ @return\ the\ preparedStatement\ for\ the\ document.\r\n
+numComments=2
