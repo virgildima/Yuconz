@@ -1,10 +1,13 @@
-import java.awt.*;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import java.awt.Dimension;
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import java.awt.*;
-import java.applet.Applet;
 
+import java.applet.Applet;
+import java.util.*;
 /**
  *
  * @author  (Gavin Porter)
@@ -31,7 +34,7 @@ public class GUI
      * The button used to login to the system.
      */
 
-    protected JButton loginButton;
+    protected JButton loginButto;
 
     /**
      * The username field and the password field to login the system.
@@ -43,13 +46,29 @@ public class GUI
     InterfaceBackend ib = new InterfaceBackend();
 
     /**
+     * Textfields
+     */
+
+    JTextField employeeSearch = new JTextField(20);
+    JTextField employeeForename = new JTextField(20);
+    JTextField employeeSurname = new JTextField(20);
+    JTextField employeeLastReview = new JTextField(20);
+    JTextField employeeRaiseRecommendation = new JTextField(20);
+    JTextField employeeEmailAddress = new JTextField(20);
+    JTextField employeeMobile = new JTextField(20);
+    JTextField employeeBirthDate = new JTextField(20);
+    JTextField employeeHomephone = new JTextField(20);
+    JTextField employeeHomeAddress = new JTextField(20);
+    JTextField employeeGender = new JTextField(20);
+    JTextField employeePostcode = new JTextField(20);
+
+    /**
      * Create the frame for the GUI.
      */
     public GUI()
 
     {
         makeFrame();
-
 
     }
 
@@ -85,23 +104,6 @@ public class GUI
         JLabel employeeHomeAddressLabel = new JLabel("Home Address: ");
         JLabel employeeGenderLabel = new JLabel("Gender: ");
         JLabel employeePostcodeLabel = new JLabel("Postcode: ");
-
-        /**
-         * Textfields
-         */
-
-        JTextField employeeSearch = new JTextField(20);
-        JTextField employeeForename = new JTextField(20);
-        JTextField employeeSurname = new JTextField(20);
-        JTextField employeeLastReview = new JTextField(20);
-        JTextField employeeRaiseRecommendation = new JTextField(20);
-        JTextField employeeEmailAddress = new JTextField(20);
-        JTextField employeeMobile = new JTextField(20);
-        JTextField employeeBirthDate = new JTextField(20);
-        JTextField employeeHomephone = new JTextField(20);
-        JTextField employeeHomeAddress = new JTextField(20);
-        JTextField employeeGender = new JTextField(20);
-        JTextField employeePostcode = new JTextField(20);
 
         /**
          * Labels for the text fields
@@ -152,16 +154,6 @@ public class GUI
          */
 
         employeeSearch.setText("Replace and type to search");
-        employeeForename.setEditable(false);
-        employeeSurname.setEditable(false);  
-        employeeBirthDate.setEditable(false);
-        employeeLastReview.setEditable(false);
-        employeeEmailAddress.setEditable(false);  
-        employeeMobile.setEditable(false);
-        employeeHomephone.setEditable(false);
-        employeeHomeAddress.setEditable(false);
-        employeeGender.setEditable(false);
-        employeePostcode.setEditable(false);
 
         /**
          * Setting the size and postion of the frame
@@ -172,6 +164,9 @@ public class GUI
         afterLoginFrame.getContentPane().add(loggedIn);
         afterLoginFrame.setResizable(false);
         afterLoginFrame.setLocationRelativeTo(null);
+        /**
+         * Checkes the username and refuses entery to the system if it is wrong.
+         */
 
     }
 
@@ -207,6 +202,7 @@ public class GUI
         JLabel passwordLabel = new JLabel("Password: ");
 
         JButton loginButton = new JButton("Login");
+
         /**
          * adding buttons, labels and fields to the panel
          */
@@ -216,6 +212,12 @@ public class GUI
         ptext.add(passwordLabel);
         ptext.add(passwordField);
         ptext.add(loginButton);
+        
+
+        JComboBox rights = new JComboBox(AccessRights.values());
+        rights.setMaximumRowCount(5);
+        ptext.add(rights);
+       
 
         /**
          * The creation and display of the frame
@@ -228,48 +230,104 @@ public class GUI
 
         frame.pack();
         frame.setLocationRelativeTo(null);
-
-        /**
-         * Checkes the username and refuses entery to the system if it is wrong.
-         */
+        
 
         loginButton.addActionListener(new ActionListener() 
             {
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    //&& passwordString.equals(passwordField.getPassword())
-                    //System.out.println(ib.passwordSHA512(passwordField.getPassword().toString()));
-                    //System.out.println(passwordField.getPassword().toString());
-                    boolean isLoggedin = false;
 
-                    AccessRights access = AccessRights.Basic_User;
+                   
+                    
                     String passHash = ib.passwordSHA512(String.valueOf( passwordField.getPassword()));
 
-                    if(auth.login(usernameField.getText(), passHash, access))
+                    if(auth.login(usernameField.getText(), passHash , AccessRights.Basic_User))
                     {
-                        JOptionPane.showMessageDialog(frame,
-                            "Logged in",
-                            "User Details Accepted.", 
-                            JOptionPane.INFORMATION_MESSAGE);
-                        frame.setVisible(false);
-                        frame.dispose();
+                        successfulLogin();
                         afterLoginFrame();
-                        isLoggedin = true;
+                        
+                        notEditable();
                     }
+                    else if(auth.login(usernameField.getText(), passHash ,  AccessRights.Manager))
+                    {
+                        successfulLogin();
+                        afterLoginFrame();
 
+                       isEditable();
+                    }
+                    else if(auth.login(usernameField.getText(), passHash , AccessRights.SeniorManager))
+                    {
+                        successfulLogin();
+                        afterLoginFrame();
+
+                        isEditable();
+                    }
+                    else if(auth.login(usernameField.getText(), passHash , AccessRights.Director))
+                    {
+                        successfulLogin();
+                        afterLoginFrame();
+
+                        isEditable();
+                    }
+                    else if(auth.login(usernameField.getText(), passHash , AccessRights.HR_User))
+                    {
+                        successfulLogin();
+                        afterLoginFrame();
+
+                        isEditable();
+                    }
                     else
                     {
                         JOptionPane.showMessageDialog(frame,
                             "Incorrect Login Details",
                             "User details are incorrect.", 
                             JOptionPane.INFORMATION_MESSAGE);
-                        isLoggedin = false;
+
                     } 
                 }
             });
+
     }
 
+    public void successfulLogin()
+    {
+        JOptionPane.showMessageDialog(frame,
+            "Logged in",
+            "User Details Accepted.", 
+            JOptionPane.INFORMATION_MESSAGE);
+        frame.setVisible(false);
+        frame.dispose();
+
+    }
+
+    public void notEditable()
+    {
+        employeeForename.setEditable(false);
+        employeeSurname.setEditable(false);  
+        employeeBirthDate.setEditable(false);
+        employeeLastReview.setEditable(false);
+        employeeEmailAddress.setEditable(false);  
+        employeeMobile.setEditable(false);
+        employeeHomephone.setEditable(false);
+        employeeHomeAddress.setEditable(false);
+        employeeGender.setEditable(false);
+        employeePostcode.setEditable(false);
+    }
+
+    public void isEditable()
+    {
+        employeeForename.setEditable(true);
+        employeeSurname.setEditable(true);  
+        employeeBirthDate.setEditable(true);
+        employeeLastReview.setEditable(true);
+        employeeEmailAddress.setEditable(true);  
+        employeeMobile.setEditable(true);
+        employeeHomephone.setEditable(true);
+        employeeHomeAddress.setEditable(true);
+        employeeGender.setEditable(true);
+        employeePostcode.setEditable(true);
+    }
 
     /**
      * Referencing to methods in the interfacebackend class
