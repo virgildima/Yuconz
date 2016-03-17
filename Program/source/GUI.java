@@ -61,6 +61,9 @@ public class GUI
     JTextField employeeHomeAddress = new JTextField(20);
     JTextField employeeGender = new JTextField(20);
     JTextField employeePostcode = new JTextField(20);
+    
+   //Accessrights for user
+    AccessRights userRights = null;
 
     /**
      * Create the frame for the GUI.
@@ -212,10 +215,13 @@ public class GUI
         ptext.add(passwordLabel);
         ptext.add(passwordField);
         ptext.add(loginButton);
-        
 
-        JComboBox rights = new JComboBox(AccessRights.values());
-        rights.setMaximumRowCount(5);
+        /**
+         * Creating the combobox for the user login
+         */
+
+        String[] access = AccessRights.names();
+        JComboBox rights = new JComboBox(AccessRights.names());
         ptext.add(rights);
        
 
@@ -230,7 +236,6 @@ public class GUI
 
         frame.pack();
         frame.setLocationRelativeTo(null);
-        
 
         loginButton.addActionListener(new ActionListener() 
             {
@@ -238,45 +243,30 @@ public class GUI
                 public void actionPerformed(ActionEvent e) 
                 { 
 
-                   
-                    
-                    String passHash = ib.passwordSHA512(String.valueOf( passwordField.getPassword()));
-
-                    if(auth.login(usernameField.getText(), passHash , AccessRights.Basic_User))
+                    userRights = AccessRights.fromString((String)rights.getSelectedItem());
+                    String passHash = ib.passwordSHA512(String.valueOf(passwordField.getPassword()));
+                    /**
+                     * Logging in
+                     */
+                    if(auth.login(usernameField.getText(), passHash , userRights))
                     {
-                        successfulLogin();
-                        afterLoginFrame();
-                        
-                        notEditable();
-                    }
-                    else if(auth.login(usernameField.getText(), passHash ,  AccessRights.Manager))
-                    {
-                        successfulLogin();
-                        afterLoginFrame();
 
-                       isEditable();
-                    }
-                    else if(auth.login(usernameField.getText(), passHash , AccessRights.SeniorManager))
-                    {
-                        successfulLogin();
-                        afterLoginFrame();
+                        if(userRights == AccessRights.Basic_User)
+                        {
+                            successfulLogin();
+                            afterLoginFrame();
 
-                        isEditable();
-                    }
-                    else if(auth.login(usernameField.getText(), passHash , AccessRights.Director))
-                    {
-                        successfulLogin();
-                        afterLoginFrame();
+                            notEditable();
+                        }
+                        else 
+                        {
+                            successfulLogin();
+                            afterLoginFrame();
 
-                        isEditable();
+                            isEditable();
+                        }
                     }
-                    else if(auth.login(usernameField.getText(), passHash , AccessRights.HR_User))
-                    {
-                        successfulLogin();
-                        afterLoginFrame();
 
-                        isEditable();
-                    }
                     else
                     {
                         JOptionPane.showMessageDialog(frame,
@@ -284,11 +274,14 @@ public class GUI
                             "User details are incorrect.", 
                             JOptionPane.INFORMATION_MESSAGE);
 
-                    } 
+                    }
                 }
+
             });
 
     }
+
+  
 
     public void successfulLogin()
     {

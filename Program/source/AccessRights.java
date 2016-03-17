@@ -41,7 +41,7 @@ public enum AccessRights
     }
     
     
-    public String[] names()
+    public static String[] names()
     {
         return names;
     }
