@@ -26,7 +26,7 @@ public class FileData
         // Write to a file
 
         try {
-            SaveToFile data = new SaveToFile( file_name , true );
+            SaveToFile1 data = new SaveToFile1( file_name , true );
             data.writeToFile( "This is another line of text" );
         }
         catch (IOException e) {
