@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.params=conn
+comment0.target=DB_PersonalDetails(java.sql.Connection)
+comment1.params=
+comment1.target=java.lang.String\ createTableStr()
+comment2.params=doc
+comment2.target=boolean\ addDocument(PersonalDetailsDocument)
+comment2.text=\r\n\ add\ the\ document\ to\ the\ table\r\n\ \r\n\ @param\ doc\ The\ document\ to\ add\ to\ the\ table.\r\n\ @return\ if\ the\ document\ was\ added\ to\ the\ table.\r\n
+numComments=3
