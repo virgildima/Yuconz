@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileOutputStream;
-import org.apache.poi.xwpf.usermodel.VerticalAlign;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -57,49 +57,78 @@ public class PersonalDetailsDocument extends Document
     {
         return super.equals((Document)doc);
     }
-
+    
+    /**
+     * Method that takes the class HashMap content and creates a .docx file from it
+     */
     public void SaveToFile(String fileName){
         try {
-          File file = new File(fileName);
-          FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
-
+            File file = new File(fileName);
+            //Write the Document in file system
+            FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
+            //Blank Document
             XWPFDocument doc = new XWPFDocument();
+            //create paragraph for Personal Details
             XWPFParagraph tempParagraph = doc.createParagraph();
+            tempParagraph.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun paragraphOneRunOne = tempParagraph.createRun();
+            paragraphOneRunOne.setBold(true);
+            paragraphOneRunOne.setFontSize(18);
             XWPFRun tempRun = tempParagraph.createRun();
-
             tempRun.setText("Personal Details.");
-          //  tempRun.setAlignment(tempRun.ALIGN_CENTER);
-           // tempRun.setText("Staff No:"+ doc.getstaffID() );
-          //  tempRun.setAlignment(tempRun.ALIGN_CENTER);
-            tempRun.setText("Surname:"+ doc.getSurname());
-            tempRun.setText("Name:"+ doc.getName());
-            tempRun.setText("Date Of Birth:"+ doc.getSurname());
-            tempRun.setText("Address:"+ doc.getSurname());
-            tempRun.setText("Town/City:"+ doc.getSurname());
-            tempRun.setText("Country:"+ doc.getSurname());
-            tempRun.setText("Postcode:"+ doc.getSurname());
-            tempRun.setText("Postcode:"+ doc.getSurname());
-            tempRun.setText("Postcode:"+ doc.getSurname());
-            tempRun.setText("Postcode:"+ doc.getSurname());
-            tempRun.setText("Postcode:"+ doc.getSurname());
-            tempRun.setFontSize(18);
+            //Create Another paragraph for staffID
+            tempParagraph=doc.createParagraph();
+            paragraphOneRunOne = tempParagraph.createRun();
+            tempRun = tempParagraph.createRun();
+            tempRun.setText("Staff No:"+  getValue("staffID") );
+            paragraphOneRunOne.addBreak();
+            //Create Another paragraph for Surname
+            XWPFRun paragraphOneRunTwo = tempParagraph.createRun();
+            tempParagraph.setAlignment(ParagraphAlignment.LEFT);
+            paragraphOneRunTwo = tempParagraph.createRun();
+            tempRun = tempParagraph.createRun();
+            paragraphOneRunTwo.setFontSize(12);
+            tempRun.setText("Surname:"+  getValue("surname"));
+            //Create Another paragraph for Name
+            tempParagraph=doc.createParagraph();
+            tempRun.setText("Name:"+ getValue("firstname"));
+            //Create Another paragraph for date of birth
+            tempParagraph=doc.createParagraph();
+            tempRun.setText("Date Of Birth:"+ getValue("DOB"));
+            //Create Another paragraph for adress 1
+            tempParagraph=doc.createParagraph();
+            tempRun.setText("Address:"+ getValue("address_1"));
+            //Create Another paragraph for address 2
+            tempParagraph=doc.createParagraph();
+            tempRun.setText( getValue("address_2"));
+            //Create Another paragraph for town
+            tempParagraph=doc.createParagraph();
+            tempRun.setText("Town/City:"+ getValue("town"));
+            //Create Another paragraph for country
+            tempParagraph=doc.createParagraph();
+            tempRun.setText("Country:"+ getValue("country"));
+            //Create Another paragraph for postcode
+            tempParagraph=doc.createParagraph();
+            tempRun.setText("Postcode:"+ getValue("postcode"));
+            //Create Another paragraph for telephone
+            tempParagraph=doc.createParagraph();
+            tempRun.setText("Telephone Number:"+ getValue("telephone"));
+            //Create Another paragraph for mobile
+            tempParagraph=doc.createParagraph();
+            tempRun.setText("Mobile number:"+ getValue("mobile"));
+            //Create Another paragraph for next of kin person
+            tempParagraph=doc.createParagraph();
+            tempRun.setText("Next of Kin:"+ getValue("next_of_kin"));
+            //Create Another paragraph for next of kin contact number
+            tempParagraph=doc.createParagraph();
+            tempRun.setText("Next of Kin contact number:"+ getValue("next_of_kin_CN"));
             doc.write(fos);
             fos.close();
 
-            System.out.println(file.getAbsolutePath()+ " created successfully!");
+            
 
         } catch (Exception e) {
 
         }
     }
-    
-	public static void main(String[] args) {
-		
-		//create docx file
-		createDocFile("C:\\DocxFile.docx");
-		
-		//create doc file
-		createDocFile("C:\\DocFile.doc");
-
-	}
 }

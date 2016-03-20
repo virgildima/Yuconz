@@ -1,11 +1,5 @@
 import java.util.HashMap;
 import java.io.FileWriter;
-import java.io.BufferedWriter;
-import java.util.Iterator;
-import java.util.Map.Entry;
-import java.util.Map;
-import java.lang.Integer;
-import java.lang.String;
 import java.io.IOException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -42,7 +36,7 @@ public abstract class Document
     }
 
     /**
-     * public method getData()
+     * public method getValue()
      * 
      * Gets data of document.
      * 
