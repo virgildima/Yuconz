@@ -72,9 +72,9 @@ public class DatabaseTest
     public void addPDDocument()
     {
         System.out.println("Test: addPDDocument");
-        assertTrue("Did not add",db.addPersonalDetailsDocument(pdDoc));
+        assertTrue("Did not add",db.addDocument(pdDoc));
         System.out.println("Test: addPDDocument 1");
-        PersonalDetailsDocument fromDB = db.getPersonalDetailsDocument("123456");
+        PersonalDetailsDocument fromDB = db.getDocument("123456",PersonalDetailsDocument.class);
         System.out.println("Test: addPDDocument 2");
         assertTrue("Added PD_Document did not match",fromDB.equals(pdDoc));
         System.out.println("Test: addPDDocument 3");
@@ -83,18 +83,18 @@ public class DatabaseTest
     public void getPDDocument()
     {
         System.out.println("Test: getPDDocument");
-        db.addPersonalDetailsDocument(pdDoc);
-        PersonalDetailsDocument fromDB = db.getPersonalDetailsDocument("123456");
+        db.addDocument(pdDoc);
+        PersonalDetailsDocument fromDB = db.getDocument("123456",PersonalDetailsDocument.class);
         assertTrue("Added PD_Document did not match",fromDB.equals(pdDoc));
     }
     @Test
     public void updatePDDocument()
     {
         System.out.println("Test: updatePDDocument");
-        db.addPersonalDetailsDocument(pdDoc);
+        db.addDocument(pdDoc);
         pdDoc.setValue("mobile","07734567895");
-        db.updatePersonalDetailsDocument(pdDoc);
-        PersonalDetailsDocument fromDB = db.getPersonalDetailsDocument("123456");
+        db.updateDocument(pdDoc);
+        PersonalDetailsDocument fromDB = db.getDocument("123456",PersonalDetailsDocument.class);
         assertTrue("Updated PD_Document did not match",fromDB.equals(pdDoc));
     }
     

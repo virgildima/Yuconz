@@ -29,28 +29,34 @@ public class PersonalDetailsDocumentTest
     @Before
     public void setUp()
     {
-        pdDoc = new PersonalDetailsDocument();
+        pdDoc = makeNew();
+    }
+    
+    private PersonalDetailsDocument makeNew()
+    {
+        PersonalDetailsDocument doc = new PersonalDetailsDocument();
         
-        pdDoc.setValue("staffID","123456");
-        pdDoc.setValue("firstname","John");
-        pdDoc.setValue("surname","Doe");
-        pdDoc.setValue("DOB","21/12/1990");
-        pdDoc.setValue("address_1","1 Road Ln");
-        pdDoc.setValue("address_2","Somewhere");
-        pdDoc.setValue("town","Canterbury");
-        pdDoc.setValue("county","Kent");
-        pdDoc.setValue("postcode","CT2 7NR");
-        pdDoc.setValue("telephone","01234567890");
-        pdDoc.setValue("mobile","07734567890");
-        pdDoc.setValue("next_of_kin","James Doe");
-        pdDoc.setValue("next_of_kin_CN","01234567899");
+        doc.setValue("staffID","123456");
+        doc.setValue("firstname","John");
+        doc.setValue("surname","Doe");
+        doc.setValue("DOB","21/12/1990");
+        doc.setValue("address_1","1 Road Ln");
+        doc.setValue("address_2","Somewhere");
+        doc.setValue("town","Canterbury");
+        doc.setValue("county","Kent");
+        doc.setValue("postcode","CT2 7NR");
+        doc.setValue("telephone","01234567890");
+        doc.setValue("mobile","07734567890");
+        doc.setValue("next_of_kin","James Doe");
+        doc.setValue("next_of_kin_CN","01234567899");
         
+        return doc;
     }
     
     @Test
     public void equals()
     {
-        PersonalDetailsDocument doc = pdDoc;
+        PersonalDetailsDocument doc = makeNew();
         assertTrue("Not Equal",pdDoc.equals(doc));
     }
     
