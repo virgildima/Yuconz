@@ -8,6 +8,11 @@ import javax.swing.event.*;
 
 import java.applet.Applet;
 import java.util.*;
+
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
 /**
  *
  * @author  (Gavin Porter)
@@ -29,12 +34,6 @@ public class GUI
      * Frame after login.
      */
     protected JFrame afterLoginFrame;
-
-    /**
-     * The button used to login to the system.
-     */
-
-    protected JButton loginButto;
 
     /**
      * The username field and the password field to login the system.
@@ -61,8 +60,8 @@ public class GUI
     JTextField employeeHomeAddress = new JTextField(20);
     JTextField employeeGender = new JTextField(20);
     JTextField employeePostcode = new JTextField(20);
-    
-   //Accessrights for user
+
+    //Accessrights for user
     AccessRights userRights = null;
 
     /**
@@ -173,6 +172,111 @@ public class GUI
 
     }
 
+    protected void employmentDetails()
+    {
+        JFrame employmentDetails = new JFrame("Yuconz Employee System");
+        JPanel employmentD = new JPanel(new GridLayout(25,15));
+        employmentDetails.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        JTextField CV = new JTextField(20);
+        JTextField employeeGender = new JTextField(20);
+        JTextField employeePostcode = new JTextField(20);
+        
+        
+        JButton open = new JButton("Open file");
+        
+        employmentD.add(open);
+   
+        employmentDetails.setSize(1000, 500);
+        employmentDetails.setVisible(true);
+        employmentDetails.getContentPane().add(employmentD);
+        employmentDetails.setResizable(false);
+        employmentDetails.setLocationRelativeTo(null);
+        
+        
+
+        open.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+
+                   
+                    try {
+                        Runtime.getRuntime().exec("explorer.exe C:\\Users");
+                    } catch(IOException a) {
+                        a.printStackTrace();
+
+                    }
+                }
+            });
+
+    }
+    protected void chooseFrame(){                      
+        JFrame chooseFrame = new JFrame("Yuconz Employee System");
+        JPanel chooseLoggedIn = new JPanel(new GridLayout(25,15));
+        chooseFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        JButton personalButton = new JButton("Personal Details");
+        JButton employmenDetails = new JButton("Employment details");
+        JButton salaryIncrease = new JButton("Salary increase records");
+        JButton promotionRecords = new JButton("Personal Details");
+
+        chooseLoggedIn.add(personalButton);
+        chooseLoggedIn.add(employmenDetails);
+        chooseLoggedIn.add(personalButton);
+        chooseLoggedIn.add(personalButton);
+
+        chooseFrame.setSize(1000, 500);
+        chooseFrame.setVisible(true);
+        chooseFrame.getContentPane().add(chooseLoggedIn);
+        chooseFrame.setResizable(false);
+        chooseFrame.setLocationRelativeTo(null);
+
+        personalButton.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+
+                    afterLoginFrame();
+                    chooseFrame.setVisible(false);
+                }
+            });
+
+        employmenDetails.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+
+                    employmentDetails();
+                    chooseFrame.setVisible(false);
+                    
+                }
+            });
+        salaryIncrease.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+
+                    afterLoginFrame();
+                    chooseFrame.setVisible(false);
+                }
+            });
+        promotionRecords.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+
+                    afterLoginFrame();
+                    chooseFrame.setVisible(false);
+                }
+            });
+    }
+
     /**
      * 
      * This is the creation of the login frame
@@ -205,7 +309,6 @@ public class GUI
         JLabel passwordLabel = new JLabel("Password: ");
 
         JButton loginButton = new JButton("Login");
-
         /**
          * adding buttons, labels and fields to the panel
          */
@@ -223,7 +326,6 @@ public class GUI
         String[] access = AccessRights.names();
         JComboBox rights = new JComboBox(AccessRights.names());
         ptext.add(rights);
-       
 
         /**
          * The creation and display of the frame
@@ -258,6 +360,14 @@ public class GUI
 
                             notEditable();
                         }
+
+                        else if(userRights == AccessRights.HR_User)
+                        {
+                            successfulLogin();
+                            chooseFrame();
+                            isEditable();
+
+                        }
                         else 
                         {
                             successfulLogin();
@@ -280,8 +390,6 @@ public class GUI
             });
 
     }
-
-  
 
     public void successfulLogin()
     {
@@ -360,3 +468,5 @@ public class GUI
 
     }
 }
+
+                                                                    
