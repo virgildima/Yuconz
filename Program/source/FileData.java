@@ -27,10 +27,10 @@ public class FileData
 
         try {
             SaveToFile1 data = new SaveToFile1( file_name , true );
-            data.writeToFile( "This is another line of text" );
+            data.writeToFile( "This is a line of text" );
         }
         catch (IOException e) {
-            System.out.println( "Text File Written To" );
+            System.out.println( "Text File Cannot Be Written " );
         }
     }
 }
