@@ -51,6 +51,15 @@ public abstract class Document
         return documentData.get(attributeName);
     }
 
+    /**
+     * Sets the value of an attribute for a document
+     */
+    abstract public void setValue(String attributeName,String newValue);
+    /**
+     * Gets the value of an attribute for a document
+     */
+    abstract public String getValue(String attributeName);
+    
     private int getIndex(String[] attributeList, String attributeName)
     {
         for(int i = 0; i < attributeList.length; i++){
@@ -64,7 +73,17 @@ public abstract class Document
 
     public boolean equals(Document doc)
     {
-        return documentData == doc.getData();
+        HashMap compData = doc.getData();
+        boolean equal = true;
+        for(String attr : documentData.keySet())
+        {
+            if(!documentData.get(attr).equals(compData.get(attr)))
+            {
+                equal = false;
+                break;
+            }
+        }
+        return equal;
     }
 
     protected HashMap getData(){
