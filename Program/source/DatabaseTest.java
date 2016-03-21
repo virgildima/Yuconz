@@ -44,21 +44,7 @@ public class DatabaseTest
         db = new Database();
         System.out.println("    db created");
         
-        pdDoc = new PersonalDetailsDocument();
-        
-        pdDoc.setValue("staffID","123456");
-        pdDoc.setValue("firstname","John");
-        pdDoc.setValue("surname","Doe");
-        pdDoc.setValue("DOB","21/12/1990");
-        pdDoc.setValue("address_1","1 Road Ln");
-        pdDoc.setValue("address_2","Somewhere");
-        pdDoc.setValue("town","Canterbury");
-        pdDoc.setValue("county","Kent");
-        pdDoc.setValue("postcode","CT2 7NR");
-        pdDoc.setValue("telephone","01234567890");
-        pdDoc.setValue("mobile","07734567890");
-        pdDoc.setValue("next_of_kin","James Doe");
-        pdDoc.setValue("next_of_kin_CN","01234567899");
+        pdDoc = TestData.defaultTestDoc(PersonalDetailsDocument.class);
         
     }
     

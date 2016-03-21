@@ -60,4 +60,10 @@ public class TerminationDoument extends Document
     {
         return super.equals((Document)doc);
     }
+    
+    /**
+     * Method that takes the class HashMap content and creates a .docx file from it
+     */
+    public void saveToFile(String filePath){
+    }
 }
