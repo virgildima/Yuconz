@@ -51,15 +51,25 @@ public class AnnualReviewDocument extends Document
 
     public HashMap getData(){
 
-        return getData();
+        return super.getData();
+    }
+    
+    /**
+     * public method equals()
+     * 
+     * Checks equality between two Document (any type) objects.
+     */
+    @Override public boolean equals(Object doc)
+    {
+        return super.equals((Document)doc);
     }
 
     /**
      * Method that takes the class HashMap content and creates a .docx file from it
      */
-    public void SaveToFile(String fileName){
+    public void SaveToFile(String filePath){
         try {
-            File file = new File(fileName);
+            File file = new File(filePath);
             //Write the Document in file system
             FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
             //Blank Document
@@ -114,7 +124,7 @@ public class AnnualReviewDocument extends Document
             tableRowOne.getCell(0).setText("No:");
             tableRowOne.addNewTableCell().setText("Objectives");
             tableRowOne.addNewTableCell().setText("Achievement"+ getValue("personal_goals_achieved"));
-            
+
             //create table paragraph
             XWPFRun paragraphOneRunThree = tempParagraph.createRun();
             tempParagraph.setAlignment(ParagraphAlignment.CENTER);
@@ -127,7 +137,7 @@ public class AnnualReviewDocument extends Document
             table2.setColBandSize(1);
             table2.setCellMargins(1, 1, 100, 30);
             tableRowOne2.getCell(0).setText("Performance summary"+ getValue("performance_summary"));
-            
+
             //paragraph for preview of future performances
             XWPFRun paragraphOneRunThree1 = tempParagraph.createRun();
             tempParagraph.setAlignment(ParagraphAlignment.LEFT);
@@ -149,7 +159,7 @@ public class AnnualReviewDocument extends Document
             tableRowOne3.getCell(0).setText("No.");
             tableRowOne3.getCell(1).setText(getValue("future_goals_set")); 
             table.setWidth(120);        // width of table
-            
+
             //create table paragraph for reviewer_comments
             XWPFRun paragraphOneRunFour1 = tempParagraph.createRun();
             tempParagraph.setAlignment(ParagraphAlignment.CENTER);
@@ -162,7 +172,7 @@ public class AnnualReviewDocument extends Document
             table4.setColBandSize(1);
             table4.setCellMargins(1, 1, 100, 30);
             tableRowOne4.getCell(0).setText("Reviewer comments"+ getValue("reviewer_comments"));
-            
+
             //paragraph for preview of future Recommandation
             XWPFRun paragraphOneRunFive = tempParagraph.createRun();
             tempParagraph.setAlignment(ParagraphAlignment.LEFT);
@@ -170,7 +180,7 @@ public class AnnualReviewDocument extends Document
             tempRun = tempParagraph.createRun();
             paragraphOneRunFour.setFontSize(12);
             tempRun.setText("Recommendation: stay in post / salary increase / promotion / probation / termination."+ getValue("reviewer_recommendation"));
-            
+
             //create table paragraph for reviewee signature
             XWPFRun paragraphOneRunSix = tempParagraph.createRun();
             tempParagraph.setAlignment(ParagraphAlignment.CENTER);
@@ -194,7 +204,7 @@ public class AnnualReviewDocument extends Document
             tableRowOne6.getCell(0).setText("Manager/Director signature"+ getValue("manager_signature"));
             tableRowOne6.addNewTableCell().setText("");
             tableRowOne6.addNewTableCell().setText("Date"+ getValue("date_of_review"));
-            
+
             //create third row
             XWPFTableRow tableRowOne7 = table5.getRow(1);
             table5.setRowBandSize(1);
@@ -204,10 +214,18 @@ public class AnnualReviewDocument extends Document
             tableRowOne7.getCell(0).setText("Second reviewer signature"+ getValue("second_manager_signatue"));
             tableRowOne7.addNewTableCell().setText("");
             tableRowOne7.addNewTableCell().setText("Date"+ getValue("date_of_review"));
+
             doc.write(fos);
             fos.close();
         } catch (Exception e) {
 
         }
+    }
+
+    public  void main(String[] args) {
+
+        //create docx file
+        SaveToFile("C:\\DocxFile.docx");
+
     }
 }

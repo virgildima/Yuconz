@@ -53,82 +53,127 @@ public class PersonalDetailsDocument extends Document
         return super.getData();
     }
 
+   /**
+     * public method equals()
+     * 
+     * Checks equality between two Document (any type) objects.
+     */
     @Override public boolean equals(Object doc)
     {
         return super.equals((Document)doc);
     }
-    
+
     /**
      * Method that takes the class HashMap content and creates a .docx file from it
      */
-    public void SaveToFile(String fileName){
+    public void SaveToFile(String filePath){
         try {
-            File file = new File(fileName);
+            File file = new File(filePath);
             //Write the Document in file system
             FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
             //Blank Document
             XWPFDocument doc = new XWPFDocument();
             //create paragraph for Personal Details
-            XWPFParagraph tempParagraph = doc.createParagraph();
-            tempParagraph.setAlignment(ParagraphAlignment.CENTER);
-            XWPFRun paragraphOneRunOne = tempParagraph.createRun();
-            paragraphOneRunOne.setBold(true);
-            paragraphOneRunOne.setFontSize(18);
-            XWPFRun tempRun = tempParagraph.createRun();
-            tempRun.setText("Personal Details.");
+            XWPFParagraph tempParagraph0 = doc.createParagraph();
+            tempParagraph0.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun tempRun0 = tempParagraph0.createRun();
+            tempRun0.setBold(true);
+            tempRun0.setFontSize(18);
+            tempRun0.setText("Personal details.");
             //Create Another paragraph for staffID
-            tempParagraph=doc.createParagraph();
-            paragraphOneRunOne = tempParagraph.createRun();
-            tempRun = tempParagraph.createRun();
-            tempRun.setText("Staff No:"+  getValue("staffID") );
-            paragraphOneRunOne.addBreak();
+            XWPFParagraph tempParagraph1 = doc.createParagraph();
+            tempParagraph1.setAlignment(ParagraphAlignment.CENTER);
+            XWPFRun tempRun1 = tempParagraph1.createRun();
+            tempRun1.setBold(true);
+            tempRun1.setFontSize(18);
+            tempRun1.setText("Staff No: "+  getValue("staffID") );
+            tempRun1.addBreak();
             //Create Another paragraph for Surname
-            XWPFRun paragraphOneRunTwo = tempParagraph.createRun();
-            tempParagraph.setAlignment(ParagraphAlignment.LEFT);
-            paragraphOneRunTwo = tempParagraph.createRun();
-            tempRun = tempParagraph.createRun();
-            paragraphOneRunTwo.setFontSize(12);
-            tempRun.setText("Surname:"+  getValue("surname"));
+            XWPFParagraph tempParagraph2 = doc.createParagraph();
+            XWPFRun tempRun2 = tempParagraph2.createRun();
+            tempParagraph2.setAlignment(ParagraphAlignment.LEFT);
+            tempRun2.setFontSize(14);
+            tempRun2.setText("Surname: "+  getValue("surname"));
+            tempRun2.addBreak();
             //Create Another paragraph for Name
-            tempParagraph=doc.createParagraph();
-            tempRun.setText("Name:"+ getValue("firstname"));
+            XWPFParagraph tempParagraph3=doc.createParagraph();
+            XWPFRun tempRun3 = tempParagraph2.createRun();
+            tempRun3.setFontSize(14);
+            tempRun3.setText("Name: "+ getValue("firstname"));
+            tempRun3.addBreak();
             //Create Another paragraph for date of birth
-            tempParagraph=doc.createParagraph();
-            tempRun.setText("Date Of Birth:"+ getValue("DOB"));
+            XWPFParagraph tempParagraph4=doc.createParagraph();
+            XWPFRun tempRun4 = tempParagraph2.createRun();
+            tempRun4.setFontSize(14);
+            tempRun4.setText("Date Of Birth: "+ getValue("DOB"));
+            tempRun4.addBreak();
             //Create Another paragraph for adress 1
-            tempParagraph=doc.createParagraph();
-            tempRun.setText("Address:"+ getValue("address_1"));
+            XWPFParagraph tempParagraph5=doc.createParagraph();
+            XWPFRun tempRun5 = tempParagraph2.createRun();
+            tempRun5.setFontSize(14);
+            tempRun5.setText("Address: "+ getValue("address_1"));
+            tempRun5.addBreak();
             //Create Another paragraph for address 2
-            tempParagraph=doc.createParagraph();
-            tempRun.setText( getValue("address_2"));
+            XWPFParagraph tempParagrap6h=doc.createParagraph();
+            XWPFRun tempRun6 = tempParagraph2.createRun();
+            tempRun6.setFontSize(14);
+            tempRun6.setText( getValue("address_2"));
+            tempRun6.addBreak();
             //Create Another paragraph for town
-            tempParagraph=doc.createParagraph();
-            tempRun.setText("Town/City:"+ getValue("town"));
-            //Create Another paragraph for country
-            tempParagraph=doc.createParagraph();
-            tempRun.setText("Country:"+ getValue("country"));
+            XWPFParagraph tempParagraph7=doc.createParagraph();
+            XWPFRun tempRun7 = tempParagraph2.createRun();
+            tempRun7.setFontSize(14);
+            tempRun7.setText("Town/City: "+ getValue("town"));
+            tempRun7.addBreak();
+            //Create Another paragraph for county
+            XWPFParagraph tempParagraph8=doc.createParagraph();
+            XWPFRun tempRun8 = tempParagraph2.createRun();
+            tempRun8.setFontSize(14);
+            tempRun8.setText("County: "+ getValue("county"));
+            tempRun8.addBreak();
             //Create Another paragraph for postcode
-            tempParagraph=doc.createParagraph();
-            tempRun.setText("Postcode:"+ getValue("postcode"));
+            XWPFParagraph tempParagraph9=doc.createParagraph();
+            XWPFRun tempRun9 = tempParagraph2.createRun();
+            tempRun9.setFontSize(14);
+            tempRun9.setText("Postcode: "+ getValue("postcode"));
+            tempRun9.addBreak();
             //Create Another paragraph for telephone
-            tempParagraph=doc.createParagraph();
-            tempRun.setText("Telephone Number:"+ getValue("telephone"));
+            XWPFParagraph tempParagraph10=doc.createParagraph();
+            XWPFRun tempRun10 = tempParagraph2.createRun();
+            tempRun10.setFontSize(14);
+            tempRun10.setText("Telephone Number: "+ getValue("telephone"));
+            tempRun10.addBreak();
             //Create Another paragraph for mobile
-            tempParagraph=doc.createParagraph();
-            tempRun.setText("Mobile number:"+ getValue("mobile"));
+            XWPFParagraph tempParagraph11=doc.createParagraph();
+            XWPFRun tempRun11 = tempParagraph2.createRun();
+            tempRun11.setFontSize(14);
+            tempRun11.setText("Mobile number: "+ getValue("mobile"));
+            tempRun11.addBreak();
             //Create Another paragraph for next of kin person
-            tempParagraph=doc.createParagraph();
-            tempRun.setText("Next of Kin:"+ getValue("next_of_kin"));
+            XWPFParagraph tempParagraph12=doc.createParagraph();
+            XWPFRun tempRun12 = tempParagraph2.createRun();
+            tempRun12.setFontSize(14);
+            tempRun12.setText("Next of Kin: "+ getValue("next_of_kin"));
+            tempRun12.addBreak();
             //Create Another paragraph for next of kin contact number
-            tempParagraph=doc.createParagraph();
-            tempRun.setText("Next of Kin contact number:"+ getValue("next_of_kin_CN"));
+            XWPFParagraph tempParagraph13=doc.createParagraph();
+            XWPFRun tempRun13 = tempParagraph2.createRun();
+            tempRun13.setFontSize(14);
+            tempRun13.setText("Next of Kin contact number: "+ getValue("next_of_kin_CN"));
+            tempRun13.addBreak();
+
             doc.write(fos);
             fos.close();
-
-            
 
         } catch (Exception e) {
 
         }
+    }
+
+    public  void main(String[] args) {
+
+        //create docx file
+        SaveToFile("C:\\DocxFile.docx");
+
     }
 }
