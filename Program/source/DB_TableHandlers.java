@@ -30,9 +30,9 @@ public enum DB_TableHandlers
             +"MANAGER_SIG       VARCHAR(50) NOT NULL, "
             +"SEC_MANAGER_SIG   VARCHAR(50) NOT NULL, "
             
-            +"D_REVIEWEE_SIG    CHAR(10) NOT NULL, "
-            +"D_MANAGER_SIG     CHAR(10) NOT NULL, "
-            +"D_SEC_MANAGER_SIG CHAR(10) NOT NULL "
+            +"D_REVIEWEE_SIG    VARCHAR(10) NOT NULL, "
+            +"D_MANAGER_SIG     VARCHAR(10) NOT NULL, "
+            +"D_SEC_MANAGER_SIG VARCHAR(10) NOT NULL "
             +")",
             
         "INSERT INTO annual VALUES (?,?,?,?,?,  ?,?,?,?,?,  ?,?,?,?,?,  ?,?)",
@@ -91,7 +91,7 @@ public enum DB_TableHandlers
         "personal",
         "CREATE TABLE personal ("
             +"STAFFID   CHAR(6) NOT NULL PRIMARY KEY, "
-            +"FIRSTNAME   VARCHAR(50) NOT NULL, "
+            +"FIRSTNAME VARCHAR(50) NOT NULL, "
             +"SURNAME   VARCHAR(50) NOT NULL, "
             +"DOB       CHAR(10) NOT NULL, "
             +"ADDRESS1  VARCHAR(50) NOT NULL, "
@@ -118,6 +118,64 @@ public enum DB_TableHandlers
         new String[] {"firstname","surname","DOB","address_1",
             "address_2","town","county","postcode","telephone","mobile",
             "next_of_kin","next_of_kin_CN","staffID"}
+            
+    ),
+    probation
+    (
+        "probation",
+        "CREATE TABLE probation ("
+            +"STAFFID       CHAR(6) NOT NULL PRIMARY KEY, "
+            
+            +"FIRSTNAME     VARCHAR(50) NOT NULL, "
+            +"SURNAME       VARCHAR(50) NOT NULL, "
+            +"PROB_REASON   VARCHAR(255) NOT NULL, "
+            
+            +"START_DATE    CHAR(10) NOT NULL, "
+            +"END_DATE      CHAR(10) NOT NULL, "
+            +"MANAGER_SIG   VARCHAR(10) NOT NULL "
+            +")",
+            
+        "INSERT INTO probation VALUES (?,  ?,?,?,  ?,?,?)",
+        "SELECT * FROM probation WHERE STAFFID=?",
+        "UPDATE probation SET FIRSTNAME=?,SURNAME=?,PROB_REASON=?,"
+        +"START_DATE=?,END_DATE=?,MANAGER_SIG=?"
+        +"WHERE STAFFID=?",
+        
+        new String[] {"staffID","firstname","surname","probation_reason",
+            "probation_start_date","probation_end_date","manager_signature"},
+        "staffID",
+        new String[] {"firstname","surname","probation_reason","probation_start_date",
+            "probation_end_date","manager_signature","staffID"}
+            
+    ),
+    promotion
+    (
+        "promotion",
+        "CREATE TABLE promotion ("
+            +"STAFFID       CHAR(6) NOT NULL PRIMARY KEY, "
+            
+            +"FIRSTNAME     VARCHAR(50) NOT NULL, "
+            +"SURNAME       VARCHAR(50) NOT NULL, "
+            +"C_JOB_TITLE   VARCHAR(100) NOT NULL, "
+            
+            +"C_SECTION     VARCHAR(50) NOT NULL, "
+            +"N_JOB_TITLE   VARCHAR(100) NOT NULL, "
+            +"N_SECTION     VARCHAR(50) NOT NULL, "
+            
+            +"START_DATE    CHAR(10) NOT NULL "
+            +")",
+            
+        "INSERT INTO promotion VALUES (?,  ?,?,?,  ?,?,?, ?)",
+        "SELECT * FROM promotion WHERE STAFFID=?",
+        "UPDATE promotion SET FIRSTNAME=?,SURNAME=?,C_JOB_TITLE=?,"
+        +"C_SECTION=?,N_JOB_TITLE=?,N_SECTION=?,START_DATE=?"
+        +"WHERE STAFFID=?",
+        
+        new String[] {"staffID","firstname","surname","current_job_title",
+            "current_section","new_job_title","new_job_section","starting-date"},
+        "staffID",
+        new String[] {"firstname","surname","current_job_title","current_section",
+            "new_job_title","new_job_section","starting-date","staffID"}
             
     );
     
@@ -153,7 +211,9 @@ public enum DB_TableHandlers
         return new DB_TableHandlers[] {
             DB_TableHandlers.annual,
             DB_TableHandlers.initial,
-            DB_TableHandlers.personal
+            DB_TableHandlers.personal,
+            DB_TableHandlers.probation,
+            DB_TableHandlers.promotion
             
         };
     }
@@ -173,6 +233,12 @@ public enum DB_TableHandlers
         }else if(type == PersonalDetailsDocument.class)
         {
             return DB_TableHandlers.personal;
+        }else if(type == ProbationDocument.class)
+        {
+            return DB_TableHandlers.probation;
+        }else if(type == PromotionDocument.class)
+        {
+            return DB_TableHandlers.promotion;
         }
         return null;
     }

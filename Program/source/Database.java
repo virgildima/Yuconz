@@ -11,7 +11,7 @@ public class Database extends DB_Core
         if(setup()){
             if(connect())
             {
-                if(!isTableCount(conn,3))
+                if(!isViable())
                 {
                     createDB();
                 }
@@ -25,11 +25,12 @@ public class Database extends DB_Core
     private void createDB()
     {
         System.out.println("Creating "+dbName+".");
-        super.createDB(new String[] {
-            DB_TableHandlers.annual.createTableStr,
-            DB_TableHandlers.initial.createTableStr,
-            DB_TableHandlers.personal.createTableStr
-        });
+        String[] tableStrs = new String[DB_TableHandlers.listTD().length];
+        for(int i=0;i<tableStrs.length;i++)
+        {
+            tableStrs[i] = DB_TableHandlers.listTD()[i].createTableStr;
+        }
+        super.createDB(tableStrs);
     }
     
     private String[] getAttributeValues(String[] attributes,Document doc)
@@ -157,12 +158,15 @@ public class Database extends DB_Core
      */
     public boolean isViable()
     {
-        return (conn!=null)&&(isTableCount(conn,3));
+        return (conn!=null)&&(isTableCount(conn,DB_TableHandlers.listTD().length));
     }
     public void deleteAll()
     {
-       deleteTables(new String[] {
-           DB_TableHandlers.annual.tableName,DB_TableHandlers.initial.tableName,DB_TableHandlers.personal.tableName
-        });
+        String[] tableNames = new String[DB_TableHandlers.listTD().length];
+        for(int i=0;i<tableNames.length;i++)
+        {
+            tableNames[i] = DB_TableHandlers.listTD()[i].tableName;
+        }
+        deleteTables(tableNames);
     }
 }

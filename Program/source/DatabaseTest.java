@@ -18,6 +18,8 @@ public class DatabaseTest
     AnnualReviewDocument arDoc = null;
     InitialEmploymentDocument ieDoc = null;
     PersonalDetailsDocument pdDoc = null;
+    ProbationDocument prDoc = null;
+    PromotionDocument pmDoc = null;
     
     /**
      * Defdblt constructor for test class DatabaseTest
@@ -49,6 +51,9 @@ public class DatabaseTest
         arDoc = TestData.defaultTestDoc(AnnualReviewDocument.class);
         ieDoc = TestData.defaultTestDoc(InitialEmploymentDocument.class);
         pdDoc = TestData.defaultTestDoc(PersonalDetailsDocument.class);
+        prDoc = TestData.defaultTestDoc(ProbationDocument.class);
+        pmDoc = TestData.defaultTestDoc(PromotionDocument.class);
+        
     }
     
     @Test
@@ -67,8 +72,6 @@ public class DatabaseTest
     {
         System.out.println("Test: addARDocument");
         assertTrue("Did not add",db.addDocument(arDoc));
-        AnnualReviewDocument fromDB = db.getDocument("123457",AnnualReviewDocument.class);
-        assertTrue("Added AR_Document did not match",fromDB.equals(arDoc));
     }
     @Test
     public void getARDocument()
@@ -97,8 +100,6 @@ public class DatabaseTest
     {
         System.out.println("Test: addIEDocument");
         assertTrue("Did not add",db.addDocument(ieDoc));
-        InitialEmploymentDocument fromDB = db.getDocument("123456",InitialEmploymentDocument.class);
-        assertTrue("Added IE_Document did not match",fromDB.equals(ieDoc));
     }
     @Test
     public void getIEDocument()
@@ -127,8 +128,6 @@ public class DatabaseTest
     {
         System.out.println("Test: addPDDocument");
         assertTrue("Did not add",db.addDocument(pdDoc));
-        PersonalDetailsDocument fromDB = db.getDocument("123456",PersonalDetailsDocument.class);
-        assertTrue("Added PD_Document did not match",fromDB.equals(pdDoc));
     }
     @Test
     public void getPDDocument()
@@ -147,6 +146,62 @@ public class DatabaseTest
         db.updateDocument(pdDoc);
         PersonalDetailsDocument fromDB = db.getDocument("123456",PersonalDetailsDocument.class);
         assertTrue("Updated PD_Document did not match",fromDB.equals(pdDoc));
+    }
+    
+    /**
+     * Probation Document
+     */
+    @Test
+    public void addPRDocument()
+    {
+        System.out.println("Test: addPRDocument");
+        assertTrue("Did not add",db.addDocument(prDoc));
+    }
+    @Test
+    public void getPRDocument()
+    {
+        System.out.println("Test: getPRDocument");
+        assertTrue("Did not add",db.addDocument(prDoc));
+        ProbationDocument fromDB = db.getDocument("123457",ProbationDocument.class);
+        assertTrue("Added PR_Document did not match",fromDB.equals(prDoc));
+    }
+    @Test
+    public void updatePRDocument()
+    {
+        System.out.println("Test: updatePRDocument");
+        assertTrue("Did not add",db.addDocument(prDoc));
+        prDoc.setValue("probation_end_date","14/03/2015");
+        db.updateDocument(prDoc);
+        ProbationDocument fromDB = db.getDocument("123457",ProbationDocument.class);
+        assertTrue("Updated PR_Document did not match",fromDB.equals(prDoc));
+    }
+    
+    /**
+     * Probation Document
+     */
+    @Test
+    public void addPMDocument()
+    {
+        System.out.println("Test: addPMDocument");
+        assertTrue("Did not add",db.addDocument(pmDoc));
+    }
+    @Test
+    public void getPMDocument()
+    {
+        System.out.println("Test: getPMDocument");
+        assertTrue("Did not add",db.addDocument(pmDoc));
+        PromotionDocument fromDB = db.getDocument("123456",PromotionDocument.class);
+        assertTrue("Added PM_Document did not match",fromDB.equals(pmDoc));
+    }
+    @Test
+    public void updatePMDocument()
+    {
+        System.out.println("Test: updatePMDocument");
+        assertTrue("Did not add",db.addDocument(pmDoc));
+        pmDoc.setValue("new_job_title","Other Manager");
+        db.updateDocument(pmDoc);
+        PromotionDocument fromDB = db.getDocument("123456",PromotionDocument.class);
+        assertTrue("Updated PM_Document did not match",fromDB.equals(pmDoc));
     }
     
     /**
