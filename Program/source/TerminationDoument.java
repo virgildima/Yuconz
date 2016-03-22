@@ -8,7 +8,7 @@ import java.util.HashMap;
  */
 public class TerminationDoument extends Document
 {
-    private String[] attributeList = {"staffID","forename","surname","termination_reason","termination_date","manager_name",
+    private String[] attributeList = {"staffID","firstname","surname","termination_reason","termination_date","manager_name",
                                         "second_manager_name","manager_comment","second_manager_comment","manager_signature","second_manager_signature"};
                                         
      /**

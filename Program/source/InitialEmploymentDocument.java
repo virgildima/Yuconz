@@ -8,9 +8,9 @@ import java.util.HashMap;
  */
 public class InitialEmploymentDocument extends Document
 {
-    private String[] attributeList = {"forename","surname","DOB","address_1","address_2","telephone","mobile","town","county","postcode",
-                                        "next_of_kin","next_of_kin_CN","section","role","initial_job_title","initial_salary","start_date","staffID"};
-                                        
+    private String[] attributeList = {"staffID","cv_filePath","interview_Notes","interviewers",
+                            "section","role","initial_job_title","initial_salary","start_date"};
+    
      /**
      * public method setValue()
      * 

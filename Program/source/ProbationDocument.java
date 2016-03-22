@@ -8,7 +8,7 @@ import java.util.HashMap;
  */
 public class ProbationDocument extends Document
 {
-    private String[] attributeList = {"staffID","forename","surname","probation_reason","probation_start_date","probation_end_date","manager_signature"};
+    private String[] attributeList = {"staffID","firstname","surname","probation_reason","probation_start_date","probation_end_date","manager_signature"};
     
      /**
      * public method setValue()

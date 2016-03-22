@@ -16,8 +16,10 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 public class AnnualReviewDocument extends Document
 {
 
-    private String[] attributeList = {"staffID", "name", "manager", "second_manager", "section", "job_title", "performance_summary", "personal_goals_achieved", "future_goals_set", 
-            "reviewer_comments", "reviewer_recommendation", "reviewer_signature", "manager_signature", "second_manager_signatue", "date_of_review"};
+    private String[] attributeList = {"staffID", "name", "manager", "second_manager", "section", "job_title",
+            "performance_summary", "personal_goals_achieved", "future_goals_set", "reviewer_comments",
+            "reviewer_recommendation", "reviewee_signature", "manager_signature", "second_manager_signatue",
+            "date_of_reviewee_signature", "date_of_manager_signature", "date_of_second_manager_signature"};
 
     /**
     * public method setValue()

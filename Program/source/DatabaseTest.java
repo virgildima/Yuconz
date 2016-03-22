@@ -15,6 +15,8 @@ public class DatabaseTest
 {
     Database db = null;
     
+    AnnualReviewDocument arDoc = null;
+    InitialEmploymentDocument ieDoc = null;
     PersonalDetailsDocument pdDoc = null;
     
     /**
@@ -44,8 +46,9 @@ public class DatabaseTest
         db = new Database();
         System.out.println("    db created");
         
+        arDoc = TestData.defaultTestDoc(AnnualReviewDocument.class);
+        ieDoc = TestData.defaultTestDoc(InitialEmploymentDocument.class);
         pdDoc = TestData.defaultTestDoc(PersonalDetailsDocument.class);
-        
     }
     
     @Test
@@ -54,16 +57,78 @@ public class DatabaseTest
         System.out.println("Test: setupCorrect");
         assertTrue("Not Viable",db.isViable());
     }
+    
+    
+    /**
+     * Annual Review Document
+     */
+    @Test
+    public void addARDocument()
+    {
+        System.out.println("Test: addARDocument");
+        assertTrue("Did not add",db.addDocument(arDoc));
+        AnnualReviewDocument fromDB = db.getDocument("123457",AnnualReviewDocument.class);
+        assertTrue("Added AR_Document did not match",fromDB.equals(arDoc));
+    }
+    @Test
+    public void getARDocument()
+    {
+        System.out.println("Test: getARDocument");
+        db.addDocument(arDoc);
+        AnnualReviewDocument fromDB = db.getDocument("123457",AnnualReviewDocument.class);
+        assertTrue("Added AR_Document did not match",fromDB.equals(arDoc));
+    }
+    @Test
+    public void updateARDocument()
+    {
+        System.out.println("Test: updateARDocument");
+        db.addDocument(arDoc);
+        arDoc.setValue("section","SomeOtherSection");
+        db.updateDocument(arDoc);
+        AnnualReviewDocument fromDB = db.getDocument("123457",AnnualReviewDocument.class);
+        assertTrue("Updated AR_Document did not match",fromDB.equals(arDoc));
+    }
+    
+    /**
+     * Initial Employment Document
+     */
+    @Test
+    public void addIEDocument()
+    {
+        System.out.println("Test: addIEDocument");
+        assertTrue("Did not add",db.addDocument(ieDoc));
+        InitialEmploymentDocument fromDB = db.getDocument("123456",InitialEmploymentDocument.class);
+        assertTrue("Added IE_Document did not match",fromDB.equals(ieDoc));
+    }
+    @Test
+    public void getIEDocument()
+    {
+        System.out.println("Test: getIEDocument");
+        db.addDocument(ieDoc);
+        InitialEmploymentDocument fromDB = db.getDocument("123456",InitialEmploymentDocument.class);
+        assertTrue("Added IE_Document did not match",fromDB.equals(ieDoc));
+    }
+    @Test
+    public void updateIEDocument()
+    {
+        System.out.println("Test: updateIEDocument");
+        db.addDocument(ieDoc);
+        ieDoc.setValue("section","SomeOtherSection");
+        db.updateDocument(ieDoc);
+        InitialEmploymentDocument fromDB = db.getDocument("123456",InitialEmploymentDocument.class);
+        assertTrue("Updated IE_Document did not match",fromDB.equals(ieDoc));
+    }
+    
+    /**
+     * Personal Details Document
+     */
     @Test
     public void addPDDocument()
     {
         System.out.println("Test: addPDDocument");
         assertTrue("Did not add",db.addDocument(pdDoc));
-        System.out.println("Test: addPDDocument 1");
         PersonalDetailsDocument fromDB = db.getDocument("123456",PersonalDetailsDocument.class);
-        System.out.println("Test: addPDDocument 2");
         assertTrue("Added PD_Document did not match",fromDB.equals(pdDoc));
-        System.out.println("Test: addPDDocument 3");
     }
     @Test
     public void getPDDocument()

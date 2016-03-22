@@ -11,7 +11,7 @@ public class Database extends DB_Core
         if(setup()){
             if(connect())
             {
-                if(!isTableCount(conn,1))
+                if(!isTableCount(conn,3))
                 {
                     createDB();
                 }
@@ -26,6 +26,8 @@ public class Database extends DB_Core
     {
         System.out.println("Creating "+dbName+".");
         super.createDB(new String[] {
+            DB_TableHandlers.annual.createTableStr,
+            DB_TableHandlers.initial.createTableStr,
             DB_TableHandlers.personal.createTableStr
         });
     }
@@ -155,10 +157,12 @@ public class Database extends DB_Core
      */
     public boolean isViable()
     {
-        return (conn!=null)&&(isTableCount(conn,1));
+        return (conn!=null)&&(isTableCount(conn,3));
     }
     public void deleteAll()
     {
-       deleteTables(new String[] {DB_TableHandlers.personal.tableName});
+       deleteTables(new String[] {
+           DB_TableHandlers.annual.tableName,DB_TableHandlers.initial.tableName,DB_TableHandlers.personal.tableName
+        });
     }
 }
