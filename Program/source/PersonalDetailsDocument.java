@@ -111,7 +111,7 @@ public class PersonalDetailsDocument extends Document
             tempRun5.setText("Address: "+ getValue("address_1"));
             tempRun5.addBreak();
             //Create Another paragraph for address 2
-            XWPFParagraph tempParagrap6h=doc.createParagraph();
+            XWPFParagraph tempParagraph6=doc.createParagraph();
             XWPFRun tempRun6 = tempParagraph2.createRun();
             tempRun6.setFontSize(14);
             tempRun6.setText( getValue("address_2"));

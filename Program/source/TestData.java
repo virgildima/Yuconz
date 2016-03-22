@@ -50,7 +50,7 @@ public abstract class TestData
                 doc.setValue("mobile","07734567890");
                 doc.setValue("next_of_kin","James Doe");
                 doc.setValue("next_of_kin_CN","01234567899");
-                doc.setValue("section","SomeSection");
+                doc.setValue("section","Some Section");
                 doc.setValue("role","Worker");
                 doc.setValue("initial_job_title","Minion");
                 doc.setValue("initial_salary","£10.00ph");
