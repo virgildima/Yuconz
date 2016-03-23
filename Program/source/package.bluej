@@ -113,12 +113,21 @@ dependency8.type=UsesDependency
 dependency9.from=InterfaceBackendTest
 dependency9.to=InterfaceBackend
 dependency9.type=UsesDependency
+<<<<<<< HEAD
+objectbench.height=76
+objectbench.width=1894
+package.editor.height=874
+package.editor.width=1796
+package.editor.x=-9
+package.editor.y=0
+=======
 objectbench.height=100
 objectbench.width=1318
 package.editor.height=571
 package.editor.width=1248
 package.editor.x=-8
 package.editor.y=-8
+>>>>>>> ca9f41821c15d9450c6d55e57761d1d969d7e5f0
 package.numDependencies=38
 package.numTargets=23
 package.showExtends=true
@@ -151,12 +160,21 @@ target10.naviview.expanded=false
 target10.showInterface=false
 target10.type=ClassTarget
 target10.typeParameters=
+<<<<<<< HEAD
+target10.width=100
+target10.x=660
+target10.y=650
+target11.editor.height=1050
+target11.editor.width=976
+target11.editor.x=-8
+=======
 target10.width=140
 target10.x=1020
 target10.y=200
 target11.editor.height=700
 target11.editor.width=900
 target11.editor.x=0
+>>>>>>> ca9f41821c15d9450c6d55e57761d1d969d7e5f0
 target11.editor.y=0
 target11.height=50
 target11.name=Department
@@ -358,12 +376,22 @@ target4.naviview.expanded=true
 target4.showInterface=false
 target4.type=ClassTarget
 target4.typeParameters=
+<<<<<<< HEAD
+target4.width=80
+target4.x=220
+target4.y=110
+target5.association=PersonalDetailsDocumentTest
+target5.editor.height=1050
+target5.editor.width=976
+target5.editor.x=-8
+=======
 target4.width=140
 target4.x=890
 target4.y=70
 target5.editor.height=860
 target5.editor.width=800
 target5.editor.x=0
+>>>>>>> ca9f41821c15d9450c6d55e57761d1d969d7e5f0
 target5.editor.y=0
 target5.height=50
 target5.name=AuthenticationTest
@@ -372,11 +400,18 @@ target5.showInterface=false
 target5.type=UnitTestTargetJunit4
 target5.typeParameters=
 target5.width=130
+<<<<<<< HEAD
+target5.x=90
+target5.y=300
+target6.editor.height=1060
+target6.editor.width=1938
+=======
 target5.x=790
 target5.y=510
 target6.association=PersonalDetailsDocumentTest
 target6.editor.height=784
 target6.editor.width=1382
+>>>>>>> ca9f41821c15d9450c6d55e57761d1d969d7e5f0
 target6.editor.x=-9
 target6.editor.y=-9
 target6.height=50

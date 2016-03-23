@@ -60,6 +60,22 @@ public class GUI
     JTextField employeeHomeAddress = new JTextField(20);
     JTextField employeeGender = new JTextField(20);
     JTextField employeePostcode = new JTextField(20);
+    JTextField promotionStartDate = new JTextField(20);
+    JTextField promotionSalary = new JTextField(20);
+    JTextField promotionNameText = new JTextField(20);
+    JTextField promotionRole = new JTextField(20);
+    JTextField employmentCV = new JTextField(20);
+    JTextField employmentInterviewer1 = new JTextField(20);
+    JTextField employmentInterviewer2 = new JTextField(20);
+    JTextField employmentInitialrole = new JTextField(20);
+    JTextField employmentAnnualSal = new JTextField(20);
+    JTextField employmentStartDate = new JTextField(20);
+    JTextField salaryStartDate = new JTextField(20);
+    JTextField salaryNewSalary = new JTextField(20);
+    JTextField salaryNameText = new JTextField(20);
+    JTextField probationNameText = new JTextField(20);
+    JTextField probationStartDate = new JTextField(20);
+    JTextField probationEndDate = new JTextField(20);
 
     //Accessrights for user
     AccessRights userRights = null;
@@ -118,7 +134,7 @@ public class GUI
         /**
          * adding the labels and fields to the panel called loggedIn
          */
-        
+
         JButton back = new JButton("Back");
 
         loggedIn.add(employeeSearch);
@@ -152,7 +168,7 @@ public class GUI
 
         loggedIn.add(employeePostcodeLabel);
         loggedIn.add(employeePostcode);
-        
+
         loggedIn.add(back);
 
         /**
@@ -174,7 +190,7 @@ public class GUI
          * Checkes the username and refuses entery to the system if it is wrong.
          * 
          */
-        
+
         back.addActionListener(new ActionListener() 
             {
 
@@ -198,13 +214,6 @@ public class GUI
         JLabel role = new JLabel("Initial Role: ");
         JLabel annualSalary = new JLabel("Annual Salary: ");
         JLabel srtDate = new JLabel("Start Date: ");
-        JTextField CV = new JTextField(20);
-        JTextField employeeInterviewer1 = new JTextField(20);
-        JTextField employeeInterviewer2 = new JTextField(20);
-
-        JTextField initialrole = new JTextField(20);
-        JTextField annualSal = new JTextField(20);
-        JTextField startDate = new JTextField(20);
 
         JButton open = new JButton("Open file");
 
@@ -212,20 +221,17 @@ public class GUI
 
         employeeSearch.setText("Replace and type to search");
         employmentD.add(employeeSearch);
-        employmentD.add(eInterviewer1);
-        employmentD.add(employeeInterviewer1);
+        employmentD.add(employmentInterviewer1);
 
-        employmentD.add(eInterviewer2);
-        employmentD.add(employeeInterviewer2);
-
+        employmentD.add(employmentInterviewer2);
         employmentD.add(role);
-        employmentD.add(initialrole);
+        employmentD.add(employmentInitialrole);
 
         employmentD.add(annualSalary);
-        employmentD.add(annualSal);
+        employmentD.add(employmentAnnualSal);
 
         employmentD.add(srtDate);
-        employmentD.add(startDate);
+        employmentD.add(employmentStartDate);
 
         employmentD.add(open);
         employmentD.add(back);
@@ -272,24 +278,17 @@ public class GUI
 
         JLabel newAnnualSalary = new JLabel("New Annual Salary: ");
 
-        JTextField startDate = new JTextField(20);
-        JTextField newSalary = new JTextField(20);
-        JTextField eNameText = new JTextField(20);
-
         JButton back = new JButton("Back");
-
         employeeSearch.setText("Replace and type to search");
-
         employmentS.add(employeeSearch);
-
         employmentS.add(eName);
-        employmentS.add(eNameText);
+        employmentS.add(salaryNameText);
 
         employmentS.add(srtDate);
-        employmentS.add(startDate);
+        employmentS.add(salaryStartDate);
 
         employmentS.add(newAnnualSalary);
-        employmentS.add(newSalary);
+        employmentS.add(salaryNewSalary);
 
         employmentS.add(back);
 
@@ -325,11 +324,6 @@ public class GUI
 
         JLabel newRole = new JLabel("New Role: ");
 
-        JTextField startDate = new JTextField(20);
-        JTextField newSalary = new JTextField(20);
-        JTextField eNameText = new JTextField(20);
-        JTextField role = new JTextField(20);
-
         JButton back = new JButton("Back");
 
         employeeSearch.setText("Replace and type to search");
@@ -337,16 +331,16 @@ public class GUI
         promotionS.add(employeeSearch);
 
         promotionS.add(eName);
-        promotionS.add(eNameText);
+        promotionS.add(promotionNameText);
 
         promotionS.add(srtDate);
-        promotionS.add(startDate);
+        promotionS.add(promotionStartDate);
 
         promotionS.add(newAnnualSalary);
-        promotionS.add(newSalary);
+        promotionS.add(promotionSalary);
 
         promotionS.add(newRole);
-        promotionS.add(role);
+        promotionS.add(promotionRole);
 
         promotionS.add(back);
 
@@ -368,6 +362,94 @@ public class GUI
 
     }
 
+    protected void Termination()
+    {
+        JFrame termination = new JFrame("Yuconz Employee System");
+        JPanel terminationP = new JPanel(new GridLayout(25,15));
+        termination.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel eName = new JLabel("Employee Name: ");
+
+        JLabel reason = new JLabel("Reason for Termination: ");
+
+        JLabel endDate = new JLabel("End Date: ");
+
+        JButton back = new JButton("Back");
+        employeeSearch.setText("Replace and type to search");
+
+        terminationP.add(employeeSearch);
+        terminationP.add(eName);
+        terminationP.add(probationNameText);
+
+        terminationP.add(reason);
+        terminationP.add(probationStartDate);
+
+        terminationP.add(endDate);
+        terminationP.add(probationEndDate);
+
+        terminationP.add(back);
+        termination.setSize(300, 700);
+        termination.setVisible(true);
+        termination.getContentPane().add(terminationP);
+        termination.setResizable(false);
+        termination.setLocationRelativeTo(null);
+
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    termination.setVisible(false);
+                }
+            });
+
+    }
+
+    protected void Probation()
+    {
+        JFrame probation = new JFrame("Yuconz Employee System");
+        JPanel probationP = new JPanel(new GridLayout(25,15));
+        probation.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel eName = new JLabel("Employee Name: ");
+
+        JLabel srtDate = new JLabel("Start Date: ");
+
+        JLabel endDate = new JLabel("End Date: ");
+
+        JButton back = new JButton("Back");
+        employeeSearch.setText("Replace and type to search");
+
+        probationP.add(employeeSearch);
+        probationP.add(eName);
+        probationP.add(probationNameText);
+
+        probationP.add(srtDate);
+        probationP.add(probationStartDate);
+
+        probationP.add(endDate);
+        probationP.add(probationEndDate);
+
+        probationP.add(back);
+        probation.setSize(300, 700);
+        probation.setVisible(true);
+        probation.getContentPane().add(probationP);
+        probation.setResizable(false);
+        probation.setLocationRelativeTo(null);
+
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    probation.setVisible(false);
+                }
+            });
+
+    }
+
     protected void chooseFrame(){                      
         JFrame chooseFrame = new JFrame("Yuconz Employee System");
         JPanel chooseLoggedIn = new JPanel(new GridLayout(25,15));
@@ -377,11 +459,15 @@ public class GUI
         JButton employmenDetails = new JButton("Employment Details");
         JButton salaryIncrease = new JButton("Salary increase records");
         JButton promotionRecords = new JButton("Promotion Records");
+        JButton probationRecords = new JButton("Probation Records");
+        JButton terminationRecords = new JButton("Termination Records");
 
         chooseLoggedIn.add(personalButton);
         chooseLoggedIn.add(employmenDetails);
         chooseLoggedIn.add(salaryIncrease);
         chooseLoggedIn.add(promotionRecords);
+        chooseLoggedIn.add(probationRecords);
+        chooseLoggedIn.add(terminationRecords);
 
         chooseFrame.setSize(300, 700);;
         chooseFrame.setVisible(true);
@@ -431,26 +517,28 @@ public class GUI
                     chooseFrame.setVisible(false);
                 }
             });
-        //             ProbationRecords.addActionListener(new ActionListener() 
-        //             {
-        // 
-        //                 public void actionPerformed(ActionEvent e) 
-        //                 { 
-        // 
-        //                     promotion();
-        //                     chooseFrame.setVisible(false);
-        //                 }
-        //             });
-        //             TerminationRecords.addActionListener(new ActionListener() 
-        //             {
-        // 
-        //                 public void actionPerformed(ActionEvent e) 
-        //                 { 
-        // 
-        //                     promotion();
-        //                     chooseFrame.setVisible(false);
-        //                 }
-        //             });
+
+        probationRecords.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+
+                    Probation();
+                    chooseFrame.setVisible(false);
+                }
+            });
+
+        terminationRecords.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+
+                    Termination();
+                    chooseFrame.setVisible(false);
+                }
+            });
         //             
         //              reviews.addActionListener(new ActionListener() 
         //             {
@@ -555,12 +643,19 @@ public class GUI
                             isEditable();
 
                         }
+                        else if(userRights == AccessRights.Director)
+                        {
+                            successfulLogin();
+                            chooseFrame();
+                            notEditable();
+
+                        }
                         else 
                         {
                             successfulLogin();
                             afterLoginFrame();
 
-                            isEditable();
+                            notEditable();
                         }
                     }
 
@@ -601,6 +696,26 @@ public class GUI
         employeeHomeAddress.setEditable(false);
         employeeGender.setEditable(false);
         employeePostcode.setEditable(false);
+        promotionStartDate.setEditable(false);
+        promotionSalary.setEditable(false);
+        promotionNameText.setEditable(false);
+        promotionRole.setEditable(false);
+        employmentCV.setEditable(false);
+        employmentInterviewer1.setEditable(false);
+        employmentInterviewer2.setEditable(false);
+        employmentInitialrole.setEditable(false);
+        employmentAnnualSal.setEditable(false);
+        employmentStartDate.setEditable(false);
+        salaryStartDate.setEditable(false);
+        salaryNewSalary.setEditable(false);
+        salaryNameText.setEditable(false);
+        promotionStartDate.setEditable(false);
+        promotionSalary.setEditable(false);
+        promotionNameText.setEditable(false);
+        promotionRole.setEditable(false);
+        probationNameText.setEditable(false);
+        probationStartDate.setEditable(false);
+        probationEndDate.setEditable(false);
     }
 
     public void isEditable()
@@ -615,6 +730,27 @@ public class GUI
         employeeHomeAddress.setEditable(true);
         employeeGender.setEditable(true);
         employeePostcode.setEditable(true);
+        promotionStartDate.setEditable(true);
+        promotionSalary.setEditable(true);
+        promotionNameText.setEditable(true);
+        promotionRole.setEditable(true);
+        employmentCV.setEditable(true);
+        employmentInterviewer1.setEditable(true);
+        employmentInterviewer2.setEditable(true);
+        employmentInitialrole.setEditable(true);
+        employmentAnnualSal.setEditable(true);
+        employmentStartDate.setEditable(true);
+        salaryStartDate.setEditable(true);
+        salaryNewSalary.setEditable(true);
+        salaryNameText.setEditable(true);
+        promotionStartDate.setEditable(true);
+        promotionSalary.setEditable(true);
+        promotionNameText.setEditable(true);
+        promotionRole.setEditable(true);
+        probationNameText.setEditable(true);
+        probationStartDate.setEditable(true);
+        probationEndDate.setEditable(true);
+
     }
 
     /**
@@ -656,4 +792,4 @@ public class GUI
     }
 }
 
-                                                                                        
+                                                                                                                                
