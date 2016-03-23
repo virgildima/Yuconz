@@ -177,6 +177,67 @@ public enum DB_TableHandlers
         new String[] {"firstname","surname","current_job_title","current_section",
             "new_job_title","new_job_section","starting-date","staffID"}
             
+    ),
+    salary
+    (
+        "salary",
+        "CREATE TABLE salary ("
+            +"STAFFID       CHAR(6) NOT NULL PRIMARY KEY, "
+            
+            +"FIRSTNAME     VARCHAR(50) NOT NULL, "
+            +"SURNAME       VARCHAR(50) NOT NULL, "
+            +"C_SALLARY     VARCHAR(50) NOT NULL, "
+            
+            +"N_SALLARY     VARCHAR(50) NOT NULL, "
+            +"START_DATE    CHAR(10) NOT NULL "
+            +")",
+            
+        "INSERT INTO salary VALUES (?,  ?,?,?,  ?,?)",
+        "SELECT * FROM salary WHERE STAFFID=?",
+        "UPDATE salary SET FIRSTNAME=?,SURNAME=?,C_SALLARY=?,"
+        +"N_SALLARY=?,START_DATE=?"
+        +"WHERE STAFFID=?",
+        
+        new String[] {"staffID","firstname","surname","current_salary","new_salary","start_date"},
+        "staffID",
+        new String[] {"firstname","surname","current_salary","new_salary","start_date","staffID"}
+            
+    ),
+    termination
+    (
+        "termination",
+        "CREATE TABLE termination ("
+            +"STAFFID           CHAR(6) NOT NULL PRIMARY KEY, "
+            
+            +"NAME      VARCHAR(100) NOT NULL, "
+            +"T_REASON  VARCHAR(255) NOT NULL, "
+            +"T_DATE    CHAR(10) NOT NULL, "
+            
+            +"MANAGER           VARCHAR(100) NOT NULL, "
+            +"SECOND_MANAGER    VARCHAR(100) NOT NULL, "
+            +"MANAGER_COMMENT   VARCHAR(100) NOT NULL, "
+            
+            +"SECOND_MANAGER_COMMENT    VARCHAR(100) NOT NULL, "
+            +"MANAGER_SIG       VARCHAR(50) NOT NULL, "
+            +"SEC_MANAGER_SIG   VARCHAR(50) NOT NULL "
+            +")",
+            
+        "INSERT INTO termination VALUES (?,  ?,?,?,  ?,?,?,  ?,?,?)",
+        "SELECT * FROM termination WHERE STAFFID=?",
+        "UPDATE termination SET NAME=?,"
+        +"T_REASON=?,       T_DATE=?,           MANAGER=?,"
+        +"SECOND_MANAGER=?, MANAGER_COMMENT=?,  SECOND_MANAGER_COMMENT=?,"
+        +"MANAGER_SIG=?,    SEC_MANAGER_SIG=?"
+        +"WHERE STAFFID=?",
+        
+        new String[] {"staffID","firstname","surname","termination_reason","termination_date",
+                "manager_name","second_manager_name","manager_comment","second_manager_comment",
+                "manager_signature","second_manager_signature"},
+        "staffID",
+        new String[] {"firstname","surname","termination_reason","termination_date",
+                "manager_name","second_manager_name","manager_comment","second_manager_comment",
+                "manager_signature","second_manager_signature","staffID"}
+            
     );
     
     public final String tableName;
@@ -213,8 +274,9 @@ public enum DB_TableHandlers
             DB_TableHandlers.initial,
             DB_TableHandlers.personal,
             DB_TableHandlers.probation,
-            DB_TableHandlers.promotion
-            
+            DB_TableHandlers.promotion,
+            DB_TableHandlers.salary,
+            DB_TableHandlers.termination
         };
     }
     
@@ -239,6 +301,12 @@ public enum DB_TableHandlers
         }else if(type == PromotionDocument.class)
         {
             return DB_TableHandlers.promotion;
+        }else if(type == SalaryIncreaseDocument.class)
+        {
+            return DB_TableHandlers.salary;
+        }else if(type == TerminationDoument.class)
+        {
+            return DB_TableHandlers.termination;
         }
         return null;
     }

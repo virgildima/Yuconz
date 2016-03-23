@@ -81,7 +81,7 @@ public abstract class TestData
                 doc.setValue("current_section","Sales");
                 doc.setValue("new_job_title","Middle Manager");
                 doc.setValue("new_job_section","Sales");
-                doc.setValue("starting-date","01/04/2016");
+                doc.setValue("starting_date","01/04/2016");
             } else if(type == SalaryIncreaseDocument.class)
             {
                 doc.setValue("staffID","123456");
@@ -89,6 +89,7 @@ public abstract class TestData
                 doc.setValue("surname","Doe");
                 doc.setValue("current_salary","£10.00ph");
                 doc.setValue("new_salary","£16.00ph");
+                doc.setValue("start_date","01/04/2016");
             } else if(type == TerminationDoument.class)
             {
                 doc.setValue("staffID","123457");

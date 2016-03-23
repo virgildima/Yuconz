@@ -27,7 +27,7 @@ public class TerminationDoument extends Document
         setValue(attributeList, attributeName, newValue);
     }
     
-     /**
+     /** 
      * public method setValue()
      * 
      * Method gets the value to a documents attribute.

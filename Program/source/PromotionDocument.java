@@ -8,7 +8,7 @@ import java.util.HashMap;
  */
 public class PromotionDocument extends Document
 {
-    private String[] attributeList = {"staffID","firstname","surname","current_job_title","current_section","new_job_title","new_job_section","starting-date"};
+    private String[] attributeList = {"staffID","firstname","surname","current_job_title","current_section","new_job_title","new_job_section","starting_date"};
     
     
      /**
