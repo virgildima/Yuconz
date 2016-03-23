@@ -24,7 +24,7 @@ public abstract class TestData
                 doc.setValue("name","James Doe");
                 doc.setValue("manager","John Doe");
                 doc.setValue("second_manager","Jeff Doe");
-                doc.setValue("section","SomeSection");
+                doc.setValue("section","Some Section");
                 doc.setValue("job_title","Minion");
                 doc.setValue("performance_summary","Could do much better.");
                 doc.setValue("personal_goals_achieved","None.");
@@ -43,7 +43,7 @@ public abstract class TestData
                 doc.setValue("cv_filePath","../CVs/123456.docx");
                 doc.setValue("interview_Notes","Cool Guy");
                 doc.setValue("interviewers","Jeff Doe");
-                doc.setValue("section","SomeSection");
+                doc.setValue("section","Some Section");
                 doc.setValue("role","Worker");
                 doc.setValue("initial_job_title","Minion");
                 doc.setValue("initial_salary","£10.00ph");

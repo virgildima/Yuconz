@@ -1,6 +1,7 @@
 import java.util.HashMap;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
+import java.io.FileOutputStream;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -55,11 +56,12 @@ public abstract class Document
      * Sets the value of an attribute for a document
      */
     abstract public void setValue(String attributeName,String newValue);
+
     /**
      * Gets the value of an attribute for a document
      */
     abstract public String getValue(String attributeName);
-    
+
     private int getIndex(String[] attributeList, String attributeName)
     {
         for(int i = 0; i < attributeList.length; i++){
@@ -90,5 +92,14 @@ public abstract class Document
         return documentData;
     }
 
-    
+    /**
+     * Method that takes the class HashMap content and creates a .docx file from it
+     */
+    abstract public void saveToFile(String filePath);
+
+    public void createDoc(String filePath, XWPFDocument doc)throws IOException{
+        FileOutputStream fos = new FileOutputStream(new File(filePath).getAbsolutePath());
+        doc.write(fos);
+        fos.close();
+    }
 }

@@ -65,6 +65,7 @@ public class TestDataTest
         assertTrue("Could not create Termination Document",null != TestData.defaultTestDoc(TerminationDoument.class));
     }
     
+    
     /**
      * Tears down the test fixture.
      *

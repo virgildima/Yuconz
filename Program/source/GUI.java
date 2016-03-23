@@ -49,7 +49,7 @@ public class GUI
      */
 
     JTextField employeeSearch = new JTextField(20);
-    JTextField employeeForename = new JTextField(20);
+    JTextField employeeFirstname = new JTextField(20);
     JTextField employeeSurname = new JTextField(20);
     JTextField employeeLastReview = new JTextField(20);
     JTextField employeeRaiseRecommendation = new JTextField(20);
@@ -60,6 +60,34 @@ public class GUI
     JTextField employeeHomeAddress = new JTextField(20);
     JTextField employeeGender = new JTextField(20);
     JTextField employeePostcode = new JTextField(20);
+
+    JTextField promotionStartDate = new JTextField(20);
+    JTextField promotionSalary = new JTextField(20);
+    JTextField promotionNameText = new JTextField(20);
+    JTextField promotionRole = new JTextField(20);
+    JTextField employmentCV = new JTextField(20);
+
+    JTextField employmentInterviewer1 = new JTextField(20);
+    JTextField employmentInterviewer2 = new JTextField(20);
+    JTextField employmentInitialrole = new JTextField(20);
+    JTextField employmentAnnualSal = new JTextField(20);
+    JTextField employmentStartDate = new JTextField(20);
+
+    JTextField salaryStartDate = new JTextField(20);
+    JTextField salaryNewSalary = new JTextField(20);
+    JTextField salaryNameText = new JTextField(20);
+    JTextField probationNameText = new JTextField(20);
+    JTextField probationStartDate = new JTextField(20);
+
+    JTextField reviewName = new JTextField(20);
+    JTextField probationEndDate = new JTextField(20);
+    JTextField dateReview = new JTextField(20);
+    JTextField newSalaryReview = new JTextField(20);
+    JTextField promotionReview = new JTextField(20);
+    JTextField ProbationReview = new JTextField(20);
+    JTextField terminationReview = new JTextField(20);
+    JTextField signedBy1 = new JTextField(20);
+    JTextField signedBy2 = new JTextField(20);
 
     //Accessrights for user
     AccessRights userRights = null;
@@ -86,12 +114,12 @@ public class GUI
          */
 
         JFrame afterLoginFrame = new JFrame("Yuconz Employee System");
-        JPanel loggedIn = new JPanel(new GridLayout(25,15));
+        JPanel loggedIn = new JPanel(new GridLayout(25,30));
 
         /**
          * The layout of the frame
          */
-        afterLoginFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
+        afterLoginFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         /**
          * Labels for the text fields
@@ -119,10 +147,12 @@ public class GUI
          * adding the labels and fields to the panel called loggedIn
          */
 
+        JButton back = new JButton("Back");
+
         loggedIn.add(employeeSearch);
 
         loggedIn.add(forenameLabel);
-        loggedIn.add(employeeForename);
+        loggedIn.add(employeeFirstname);
 
         loggedIn.add(surnameLabel);
         loggedIn.add(employeeSurname);
@@ -151,6 +181,8 @@ public class GUI
         loggedIn.add(employeePostcodeLabel);
         loggedIn.add(employeePostcode);
 
+        loggedIn.add(back);
+
         /**
          * Disabling editing on some of the textfields
          */
@@ -161,14 +193,25 @@ public class GUI
          * Setting the size and postion of the frame
          */
 
-        afterLoginFrame.setSize(1000, 500);
+        afterLoginFrame.setSize(300, 700);
         afterLoginFrame.setVisible(true);
         afterLoginFrame.getContentPane().add(loggedIn);
         afterLoginFrame.setResizable(false);
         afterLoginFrame.setLocationRelativeTo(null);
         /**
          * Checkes the username and refuses entery to the system if it is wrong.
+         * 
          */
+
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    afterLoginFrame.setVisible(false);
+                }
+            });
 
     }
 
@@ -176,58 +219,342 @@ public class GUI
     {
         JFrame employmentDetails = new JFrame("Yuconz Employee System");
         JPanel employmentD = new JPanel(new GridLayout(25,15));
-        employmentDetails.setLayout(new FlowLayout(FlowLayout.LEFT));
+        employmentDetails.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        JTextField CV = new JTextField(20);
-        JTextField employeeGender = new JTextField(20);
-        JTextField employeePostcode = new JTextField(20);
-        
-        
+        JLabel eInterviewer1 = new JLabel("Employee Interviewer1: ");
+        JLabel eInterviewer2 = new JLabel("Employee Interviewer2: ");
+        JLabel role = new JLabel("Initial Role: ");
+        JLabel annualSalary = new JLabel("Annual Salary: ");
+        JLabel srtDate = new JLabel("Start Date: ");
+
         JButton open = new JButton("Open file");
-        
+
+        JButton back = new JButton("Back");
+
+        employeeSearch.setText("Replace and type to search");
+        employmentD.add(employeeSearch);
+        employmentD.add(employmentInterviewer1);
+
+        employmentD.add(employmentInterviewer2);
+        employmentD.add(role);
+        employmentD.add(employmentInitialrole);
+
+        employmentD.add(annualSalary);
+        employmentD.add(employmentAnnualSal);
+
+        employmentD.add(srtDate);
+        employmentD.add(employmentStartDate);
+
         employmentD.add(open);
-   
-        employmentDetails.setSize(1000, 500);
+        employmentD.add(back);
+        employmentDetails.setSize(300, 700);
         employmentDetails.setVisible(true);
         employmentDetails.getContentPane().add(employmentD);
         employmentDetails.setResizable(false);
         employmentDetails.setLocationRelativeTo(null);
-        
-        
 
         open.addActionListener(new ActionListener() 
             {
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-
-                   
                     try {
                         Runtime.getRuntime().exec("explorer.exe C:\\Users");
                     } catch(IOException a) {
                         a.printStackTrace();
-
                     }
                 }
             });
 
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    employmentDetails.setVisible(false);
+                }
+            });
+
     }
+
+    protected void salaryIncrease()
+    {
+        JFrame employmentSalary = new JFrame("Yuconz Employee System");
+        JPanel employmentS = new JPanel(new GridLayout(25,15));
+        employmentSalary.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel eName = new JLabel("Employee Name: ");
+
+        JLabel srtDate = new JLabel("Start Date: ");
+
+        JLabel newAnnualSalary = new JLabel("New Annual Salary: ");
+
+        JButton back = new JButton("Back");
+        employeeSearch.setText("Replace and type to search");
+        employmentS.add(employeeSearch);
+        employmentS.add(eName);
+        employmentS.add(salaryNameText);
+
+        employmentS.add(srtDate);
+        employmentS.add(salaryStartDate);
+
+        employmentS.add(newAnnualSalary);
+        employmentS.add(salaryNewSalary);
+
+        employmentS.add(back);
+
+        employmentSalary.setSize(300, 700);
+        employmentSalary.setVisible(true);
+        employmentSalary.getContentPane().add(employmentS);
+        employmentSalary.setResizable(false);
+        employmentSalary.setLocationRelativeTo(null);
+
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    employmentSalary.setVisible(false);
+                }
+            });
+
+    }
+
+    protected void annualreviews()
+    {
+        JFrame annualReviews = new JFrame("Yuconz Employee System");
+        JPanel annualReviewsp = new JPanel(new GridLayout(25,15));
+        annualReviews.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel eName = new JLabel("Employee Name: ");
+
+        JLabel signed = new JLabel("Signed by: ");
+
+        JLabel date = new JLabel("Date: ");
+
+        JLabel startDate = new JLabel("Start Date: ");
+
+        JLabel newAnnualSalaryReview = new JLabel("New Annual Salary: ");
+
+        JLabel newPromotionReview = new JLabel("Promotion: ");
+
+        JLabel newProbationReview = new JLabel("Probation: ");
+
+        JLabel newTerminationReview = new JLabel("Termination: ");
+
+        JButton back = new JButton("Back");
+        employeeSearch.setText("Replace and type to search");
+
+        annualReviewsp.add(employeeSearch);
+
+        annualReviewsp.add(eName);
+        annualReviewsp.add(reviewName);
+
+        annualReviewsp.add(date);
+        annualReviewsp.add(dateReview);
+
+        annualReviewsp.add(newAnnualSalaryReview);
+        annualReviewsp.add(salaryNewSalary);
+
+        annualReviewsp.add(newPromotionReview);
+        annualReviewsp.add(promotionReview);
+
+        annualReviewsp.add(newProbationReview);
+        annualReviewsp.add(ProbationReview);
+
+        annualReviewsp.add(newTerminationReview);
+        annualReviewsp.add(terminationReview);
+
+        annualReviewsp.add(date);
+        annualReviewsp.add(dateReview);
+
+        annualReviewsp.add(signed);
+        annualReviewsp.add(signedBy1);
+        annualReviewsp.add(signedBy2);
+
+        annualReviewsp.add(back);
+        annualReviews.setSize(300, 700);
+        annualReviews.setVisible(true);
+        annualReviews.getContentPane().add(annualReviewsp);
+        annualReviews.setResizable(false);
+        annualReviews.setLocationRelativeTo(null);
+
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    annualReviews.setVisible(false);
+                }
+            });
+
+    }
+
+    protected void promotion()
+    {
+        JFrame promotion = new JFrame("Yuconz Employee System");
+        JPanel promotionS = new JPanel(new GridLayout(25,15));
+        promotion.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel eName = new JLabel("Employee Name: ");
+
+        JLabel srtDate = new JLabel("Start Date: ");
+
+        JLabel newAnnualSalary = new JLabel("New Annual Salary: ");
+
+        JLabel newRole = new JLabel("New Role: ");
+
+        JButton back = new JButton("Back");
+
+        employeeSearch.setText("Replace and type to search");
+
+        promotionS.add(employeeSearch);
+
+        promotionS.add(eName);
+        promotionS.add(promotionNameText);
+
+        promotionS.add(srtDate);
+        promotionS.add(promotionStartDate);
+
+        promotionS.add(newAnnualSalary);
+        promotionS.add(promotionSalary);
+
+        promotionS.add(newRole);
+        promotionS.add(promotionRole);
+
+        promotionS.add(back);
+
+        promotion.setSize(300, 700);
+        promotion.setVisible(true);
+        promotion.getContentPane().add(promotionS);
+        promotion.setResizable(false);
+        promotion.setLocationRelativeTo(null);
+
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    promotion.setVisible(false);
+                }
+            });
+
+    }
+
+    protected void Termination()
+    {
+        JFrame termination = new JFrame("Yuconz Employee System");
+        JPanel terminationP = new JPanel(new GridLayout(25,15));
+        termination.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel eName = new JLabel("Employee Name: ");
+
+        JLabel reason = new JLabel("Reason for Termination: ");
+
+        JLabel endDate = new JLabel("End Date: ");
+
+        JButton back = new JButton("Back");
+        employeeSearch.setText("Replace and type to search");
+
+        terminationP.add(employeeSearch);
+        terminationP.add(eName);
+        terminationP.add(probationNameText);
+
+        terminationP.add(reason);
+        terminationP.add(probationStartDate);
+
+        terminationP.add(endDate);
+        terminationP.add(probationEndDate);
+
+        terminationP.add(back);
+        termination.setSize(300, 700);
+        termination.setVisible(true);
+        termination.getContentPane().add(terminationP);
+        termination.setResizable(false);
+        termination.setLocationRelativeTo(null);
+
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    termination.setVisible(false);
+                }
+            });
+
+    }
+
+    protected void Probation()
+    {
+        JFrame probation = new JFrame("Yuconz Employee System");
+        JPanel probationP = new JPanel(new GridLayout(25,15));
+        probation.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel eName = new JLabel("Employee Name: ");
+
+        JLabel srtDate = new JLabel("Start Date: ");
+
+        JLabel endDate = new JLabel("End Date: ");
+
+        JButton back = new JButton("Back");
+        employeeSearch.setText("Replace and type to search");
+
+        probationP.add(employeeSearch);
+        probationP.add(eName);
+        probationP.add(probationNameText);
+
+        probationP.add(srtDate);
+        probationP.add(probationStartDate);
+
+        probationP.add(endDate);
+        probationP.add(probationEndDate);
+
+        probationP.add(back);
+        probation.setSize(300, 700);
+        probation.setVisible(true);
+        probation.getContentPane().add(probationP);
+        probation.setResizable(false);
+        probation.setLocationRelativeTo(null);
+
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    probation.setVisible(false);
+                }
+            });
+
+    }
+
     protected void chooseFrame(){                      
         JFrame chooseFrame = new JFrame("Yuconz Employee System");
         JPanel chooseLoggedIn = new JPanel(new GridLayout(25,15));
-        chooseFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
+        chooseFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton personalButton = new JButton("Personal Details");
-        JButton employmenDetails = new JButton("Employment details");
+        JButton employmenDetails = new JButton("Employment Details");
         JButton salaryIncrease = new JButton("Salary increase records");
-        JButton promotionRecords = new JButton("Personal Details");
+        JButton promotionRecords = new JButton("Promotion Records");
+        JButton probationRecords = new JButton("Probation Records");
+        JButton terminationRecords = new JButton("Termination Records");
+        JButton annualReviewRecords = new JButton("Annual Review Records");
 
         chooseLoggedIn.add(personalButton);
         chooseLoggedIn.add(employmenDetails);
-        chooseLoggedIn.add(personalButton);
-        chooseLoggedIn.add(personalButton);
+        chooseLoggedIn.add(salaryIncrease);
+        chooseLoggedIn.add(promotionRecords);
+        chooseLoggedIn.add(probationRecords);
+        chooseLoggedIn.add(terminationRecords);
+        chooseLoggedIn.add(annualReviewRecords);
 
-        chooseFrame.setSize(1000, 500);
+        chooseFrame.setSize(300, 700);;
         chooseFrame.setVisible(true);
         chooseFrame.getContentPane().add(chooseLoggedIn);
         chooseFrame.setResizable(false);
@@ -252,7 +579,7 @@ public class GUI
 
                     employmentDetails();
                     chooseFrame.setVisible(false);
-                    
+
                 }
             });
         salaryIncrease.addActionListener(new ActionListener() 
@@ -261,7 +588,7 @@ public class GUI
                 public void actionPerformed(ActionEvent e) 
                 { 
 
-                    afterLoginFrame();
+                    salaryIncrease();
                     chooseFrame.setVisible(false);
                 }
             });
@@ -271,7 +598,40 @@ public class GUI
                 public void actionPerformed(ActionEvent e) 
                 { 
 
-                    afterLoginFrame();
+                    promotion();
+                    chooseFrame.setVisible(false);
+                }
+            });
+
+        probationRecords.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+
+                    Probation();
+                    chooseFrame.setVisible(false);
+                }
+            });
+
+        terminationRecords.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+
+                    Termination();
+                    chooseFrame.setVisible(false);
+                }
+            });
+
+        annualReviewRecords.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+
+                    annualreviews();
                     chooseFrame.setVisible(false);
                 }
             });
@@ -368,12 +728,35 @@ public class GUI
                             isEditable();
 
                         }
+                        else if(userRights == AccessRights.Director)
+                        {
+                            successfulLogin();
+                            chooseFrame();
+                            notEditable();
+
+                        }
+                        
+                          else if(userRights == AccessRights.Manager)
+                        {
+                            successfulLogin();
+                            chooseFrame();
+                            notEditable();
+
+                        }
+                        
+                           else if(userRights == AccessRights.SeniorManager)
+                        {
+                            successfulLogin();
+                            chooseFrame();
+                            notEditable();
+
+                        }
                         else 
                         {
                             successfulLogin();
                             afterLoginFrame();
 
-                            isEditable();
+                            notEditable();
                         }
                     }
 
@@ -404,7 +787,7 @@ public class GUI
 
     public void notEditable()
     {
-        employeeForename.setEditable(false);
+        employeeFirstname.setEditable(false);
         employeeSurname.setEditable(false);  
         employeeBirthDate.setEditable(false);
         employeeLastReview.setEditable(false);
@@ -414,11 +797,46 @@ public class GUI
         employeeHomeAddress.setEditable(false);
         employeeGender.setEditable(false);
         employeePostcode.setEditable(false);
+
+        promotionStartDate.setEditable(false);
+        promotionSalary.setEditable(false);
+        promotionNameText.setEditable(false);
+        promotionRole.setEditable(false);
+
+        employmentCV.setEditable(false);
+        employmentInterviewer1.setEditable(false);
+        employmentInterviewer2.setEditable(false);
+        employmentInitialrole.setEditable(false);
+        employmentAnnualSal.setEditable(false);
+        employmentStartDate.setEditable(false);
+
+        salaryStartDate.setEditable(false);
+        salaryNewSalary.setEditable(false);
+        salaryNameText.setEditable(false);
+
+        promotionStartDate.setEditable(false);
+        promotionSalary.setEditable(false);
+        promotionNameText.setEditable(false);
+        promotionRole.setEditable(false);
+
+        probationNameText.setEditable(false);
+        probationStartDate.setEditable(false);
+        probationEndDate.setEditable(false);
+
+        probationEndDate.setEditable(false);
+        dateReview.setEditable(false);
+        salaryNewSalary.setEditable(false);
+        promotionReview.setEditable(false);
+        ProbationReview.setEditable(false);
+        terminationReview.setEditable(false);
+        signedBy1.setEditable(false);
+        signedBy2.setEditable(false);
+
     }
 
     public void isEditable()
     {
-        employeeForename.setEditable(true);
+        employeeFirstname.setEditable(true);
         employeeSurname.setEditable(true);  
         employeeBirthDate.setEditable(true);
         employeeLastReview.setEditable(true);
@@ -428,6 +846,41 @@ public class GUI
         employeeHomeAddress.setEditable(true);
         employeeGender.setEditable(true);
         employeePostcode.setEditable(true);
+
+        promotionStartDate.setEditable(true);
+        promotionSalary.setEditable(true);
+        promotionNameText.setEditable(true);
+        promotionRole.setEditable(true);
+
+        employmentCV.setEditable(true);
+        employmentInterviewer1.setEditable(true);
+        employmentInterviewer2.setEditable(true);
+        employmentInitialrole.setEditable(true);
+        employmentAnnualSal.setEditable(true);
+        employmentStartDate.setEditable(true);
+
+        salaryStartDate.setEditable(true);
+        salaryNewSalary.setEditable(true);
+        salaryNameText.setEditable(true);
+
+        promotionStartDate.setEditable(true);
+        promotionSalary.setEditable(true);
+        promotionNameText.setEditable(true);
+        promotionRole.setEditable(true);
+
+        probationNameText.setEditable(true);
+        probationStartDate.setEditable(true);
+        probationEndDate.setEditable(true);
+
+        probationEndDate.setEditable(true);
+        dateReview.setEditable(true);
+        salaryNewSalary.setEditable(true);
+        promotionReview.setEditable(true);
+        ProbationReview.setEditable(true);
+        terminationReview.setEditable(true);
+        signedBy1.setEditable(true);
+        signedBy2.setEditable(true);
+
     }
 
     /**
@@ -469,4 +922,4 @@ public class GUI
     }
 }
 
-                                                                    
+                                                                                                                                

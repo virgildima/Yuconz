@@ -172,10 +172,10 @@ public enum DB_TableHandlers
         +"WHERE STAFFID=?",
         
         new String[] {"staffID","firstname","surname","current_job_title",
-            "current_section","new_job_title","new_job_section","starting-date"},
+            "current_section","new_job_title","new_job_section","starting_date"},
         "staffID",
         new String[] {"firstname","surname","current_job_title","current_section",
-            "new_job_title","new_job_section","starting-date","staffID"}
+            "new_job_title","new_job_section","starting_date","staffID"}
             
     ),
     salary
@@ -209,22 +209,24 @@ public enum DB_TableHandlers
         "CREATE TABLE termination ("
             +"STAFFID           CHAR(6) NOT NULL PRIMARY KEY, "
             
-            +"NAME      VARCHAR(100) NOT NULL, "
+            +"FIRSTNAME     VARCHAR(50) NOT NULL, "
+            +"SURNAME       VARCHAR(50) NOT NULL, "
             +"T_REASON  VARCHAR(255) NOT NULL, "
-            +"T_DATE    CHAR(10) NOT NULL, "
             
+            +"T_DATE    CHAR(10) NOT NULL, "
             +"MANAGER           VARCHAR(100) NOT NULL, "
             +"SECOND_MANAGER    VARCHAR(100) NOT NULL, "
-            +"MANAGER_COMMENT   VARCHAR(100) NOT NULL, "
             
+            +"MANAGER_COMMENT   VARCHAR(100) NOT NULL, "
             +"SECOND_MANAGER_COMMENT    VARCHAR(100) NOT NULL, "
             +"MANAGER_SIG       VARCHAR(50) NOT NULL, "
+            
             +"SEC_MANAGER_SIG   VARCHAR(50) NOT NULL "
             +")",
             
-        "INSERT INTO termination VALUES (?,  ?,?,?,  ?,?,?,  ?,?,?)",
+        "INSERT INTO termination VALUES (?,  ?,?,?,  ?,?,?,  ?,?,?,  ?)",
         "SELECT * FROM termination WHERE STAFFID=?",
-        "UPDATE termination SET NAME=?,"
+        "UPDATE termination SET FIRSTNAME=?,SURNAME=?,"
         +"T_REASON=?,       T_DATE=?,           MANAGER=?,"
         +"SECOND_MANAGER=?, MANAGER_COMMENT=?,  SECOND_MANAGER_COMMENT=?,"
         +"MANAGER_SIG=?,    SEC_MANAGER_SIG=?"

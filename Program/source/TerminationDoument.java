@@ -8,8 +8,9 @@ import java.util.HashMap;
  */
 public class TerminationDoument extends Document
 {
-    private String[] attributeList = {"staffID","firstname","surname","termination_reason","termination_date","manager_name",
-                                        "second_manager_name","manager_comment","second_manager_comment","manager_signature","second_manager_signature"};
+    private String[] attributeList = {"staffID","firstname","surname","termination_reason","termination_date",
+                "manager_name","second_manager_name","manager_comment","second_manager_comment",
+                "manager_signature","second_manager_signature"};
                                         
      /**
      * public method setValue()
@@ -59,5 +60,11 @@ public class TerminationDoument extends Document
     @Override public boolean equals(Object doc)
     {
         return super.equals((Document)doc);
+    }
+    
+    /**
+     * Method that takes the class HashMap content and creates a .docx file from it
+     */
+    public void saveToFile(String filePath){
     }
 }
