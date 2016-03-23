@@ -86,12 +86,12 @@ public class GUI
          */
 
         JFrame afterLoginFrame = new JFrame("Yuconz Employee System");
-        JPanel loggedIn = new JPanel(new GridLayout(25,15));
+        JPanel loggedIn = new JPanel(new GridLayout(25,30));
 
         /**
          * The layout of the frame
          */
-        afterLoginFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
+        afterLoginFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         /**
          * Labels for the text fields
@@ -118,6 +118,8 @@ public class GUI
         /**
          * adding the labels and fields to the panel called loggedIn
          */
+        
+        JButton back = new JButton("Back");
 
         loggedIn.add(employeeSearch);
 
@@ -150,6 +152,8 @@ public class GUI
 
         loggedIn.add(employeePostcodeLabel);
         loggedIn.add(employeePostcode);
+        
+        loggedIn.add(back);
 
         /**
          * Disabling editing on some of the textfields
@@ -161,14 +165,25 @@ public class GUI
          * Setting the size and postion of the frame
          */
 
-        afterLoginFrame.setSize(1000, 500);
+        afterLoginFrame.setSize(300, 700);
         afterLoginFrame.setVisible(true);
         afterLoginFrame.getContentPane().add(loggedIn);
         afterLoginFrame.setResizable(false);
         afterLoginFrame.setLocationRelativeTo(null);
         /**
          * Checkes the username and refuses entery to the system if it is wrong.
+         * 
          */
+        
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    afterLoginFrame.setVisible(false);
+                }
+            });
 
     }
 
@@ -176,58 +191,199 @@ public class GUI
     {
         JFrame employmentDetails = new JFrame("Yuconz Employee System");
         JPanel employmentD = new JPanel(new GridLayout(25,15));
-        employmentDetails.setLayout(new FlowLayout(FlowLayout.LEFT));
+        employmentDetails.setLayout(new FlowLayout(FlowLayout.CENTER));
 
+        JLabel eInterviewer1 = new JLabel("Employee Interviewer1: ");
+        JLabel eInterviewer2 = new JLabel("Employee Interviewer2: ");
+        JLabel role = new JLabel("Initial Role: ");
+        JLabel annualSalary = new JLabel("Annual Salary: ");
+        JLabel srtDate = new JLabel("Start Date: ");
         JTextField CV = new JTextField(20);
-        JTextField employeeGender = new JTextField(20);
-        JTextField employeePostcode = new JTextField(20);
-        
-        
+        JTextField employeeInterviewer1 = new JTextField(20);
+        JTextField employeeInterviewer2 = new JTextField(20);
+
+        JTextField initialrole = new JTextField(20);
+        JTextField annualSal = new JTextField(20);
+        JTextField startDate = new JTextField(20);
+
         JButton open = new JButton("Open file");
-        
+
+        JButton back = new JButton("Back");
+
+        employeeSearch.setText("Replace and type to search");
+        employmentD.add(employeeSearch);
+        employmentD.add(eInterviewer1);
+        employmentD.add(employeeInterviewer1);
+
+        employmentD.add(eInterviewer2);
+        employmentD.add(employeeInterviewer2);
+
+        employmentD.add(role);
+        employmentD.add(initialrole);
+
+        employmentD.add(annualSalary);
+        employmentD.add(annualSal);
+
+        employmentD.add(srtDate);
+        employmentD.add(startDate);
+
         employmentD.add(open);
-   
-        employmentDetails.setSize(1000, 500);
+        employmentD.add(back);
+        employmentDetails.setSize(300, 700);
         employmentDetails.setVisible(true);
         employmentDetails.getContentPane().add(employmentD);
         employmentDetails.setResizable(false);
         employmentDetails.setLocationRelativeTo(null);
-        
-        
 
         open.addActionListener(new ActionListener() 
             {
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-
-                   
                     try {
                         Runtime.getRuntime().exec("explorer.exe C:\\Users");
                     } catch(IOException a) {
                         a.printStackTrace();
-
                     }
                 }
             });
 
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    employmentDetails.setVisible(false);
+                }
+            });
+
     }
+
+    protected void salaryIncrease()
+    {
+        JFrame employmentSalary = new JFrame("Yuconz Employee System");
+        JPanel employmentS = new JPanel(new GridLayout(25,15));
+        employmentSalary.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel eName = new JLabel("Employee Name: ");
+
+        JLabel srtDate = new JLabel("Start Date: ");
+
+        JLabel newAnnualSalary = new JLabel("New Annual Salary: ");
+
+        JTextField startDate = new JTextField(20);
+        JTextField newSalary = new JTextField(20);
+        JTextField eNameText = new JTextField(20);
+
+        JButton back = new JButton("Back");
+
+        employeeSearch.setText("Replace and type to search");
+
+        employmentS.add(employeeSearch);
+
+        employmentS.add(eName);
+        employmentS.add(eNameText);
+
+        employmentS.add(srtDate);
+        employmentS.add(startDate);
+
+        employmentS.add(newAnnualSalary);
+        employmentS.add(newSalary);
+
+        employmentS.add(back);
+
+        employmentSalary.setSize(300, 700);
+        employmentSalary.setVisible(true);
+        employmentSalary.getContentPane().add(employmentS);
+        employmentSalary.setResizable(false);
+        employmentSalary.setLocationRelativeTo(null);
+
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    employmentSalary.setVisible(false);
+                }
+            });
+
+    }
+
+    protected void promotion()
+    {
+        JFrame promotion = new JFrame("Yuconz Employee System");
+        JPanel promotionS = new JPanel(new GridLayout(25,15));
+        promotion.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        JLabel eName = new JLabel("Employee Name: ");
+
+        JLabel srtDate = new JLabel("Start Date: ");
+
+        JLabel newAnnualSalary = new JLabel("New Annual Salary: ");
+
+        JLabel newRole = new JLabel("New Role: ");
+
+        JTextField startDate = new JTextField(20);
+        JTextField newSalary = new JTextField(20);
+        JTextField eNameText = new JTextField(20);
+        JTextField role = new JTextField(20);
+
+        JButton back = new JButton("Back");
+
+        employeeSearch.setText("Replace and type to search");
+
+        promotionS.add(employeeSearch);
+
+        promotionS.add(eName);
+        promotionS.add(eNameText);
+
+        promotionS.add(srtDate);
+        promotionS.add(startDate);
+
+        promotionS.add(newAnnualSalary);
+        promotionS.add(newSalary);
+
+        promotionS.add(newRole);
+        promotionS.add(role);
+
+        promotionS.add(back);
+
+        promotion.setSize(300, 700);
+        promotion.setVisible(true);
+        promotion.getContentPane().add(promotionS);
+        promotion.setResizable(false);
+        promotion.setLocationRelativeTo(null);
+
+        back.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    chooseFrame();
+                    promotion.setVisible(false);
+                }
+            });
+
+    }
+
     protected void chooseFrame(){                      
         JFrame chooseFrame = new JFrame("Yuconz Employee System");
         JPanel chooseLoggedIn = new JPanel(new GridLayout(25,15));
-        chooseFrame.setLayout(new FlowLayout(FlowLayout.LEFT));
+        chooseFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton personalButton = new JButton("Personal Details");
-        JButton employmenDetails = new JButton("Employment details");
+        JButton employmenDetails = new JButton("Employment Details");
         JButton salaryIncrease = new JButton("Salary increase records");
-        JButton promotionRecords = new JButton("Personal Details");
+        JButton promotionRecords = new JButton("Promotion Records");
 
         chooseLoggedIn.add(personalButton);
         chooseLoggedIn.add(employmenDetails);
-        chooseLoggedIn.add(personalButton);
-        chooseLoggedIn.add(personalButton);
+        chooseLoggedIn.add(salaryIncrease);
+        chooseLoggedIn.add(promotionRecords);
 
-        chooseFrame.setSize(1000, 500);
+        chooseFrame.setSize(300, 700);;
         chooseFrame.setVisible(true);
         chooseFrame.getContentPane().add(chooseLoggedIn);
         chooseFrame.setResizable(false);
@@ -252,7 +408,7 @@ public class GUI
 
                     employmentDetails();
                     chooseFrame.setVisible(false);
-                    
+
                 }
             });
         salaryIncrease.addActionListener(new ActionListener() 
@@ -261,7 +417,7 @@ public class GUI
                 public void actionPerformed(ActionEvent e) 
                 { 
 
-                    afterLoginFrame();
+                    salaryIncrease();
                     chooseFrame.setVisible(false);
                 }
             });
@@ -271,10 +427,41 @@ public class GUI
                 public void actionPerformed(ActionEvent e) 
                 { 
 
-                    afterLoginFrame();
+                    promotion();
                     chooseFrame.setVisible(false);
                 }
             });
+        //             ProbationRecords.addActionListener(new ActionListener() 
+        //             {
+        // 
+        //                 public void actionPerformed(ActionEvent e) 
+        //                 { 
+        // 
+        //                     promotion();
+        //                     chooseFrame.setVisible(false);
+        //                 }
+        //             });
+        //             TerminationRecords.addActionListener(new ActionListener() 
+        //             {
+        // 
+        //                 public void actionPerformed(ActionEvent e) 
+        //                 { 
+        // 
+        //                     promotion();
+        //                     chooseFrame.setVisible(false);
+        //                 }
+        //             });
+        //             
+        //              reviews.addActionListener(new ActionListener() 
+        //             {
+        // 
+        //                 public void actionPerformed(ActionEvent e) 
+        //                 { 
+        // 
+        //                     promotion();
+        //                     chooseFrame.setVisible(false);
+        //                 }
+        //             });
     }
 
     /**
@@ -469,4 +656,4 @@ public class GUI
     }
 }
 
-                                                                    
+                                                                                        

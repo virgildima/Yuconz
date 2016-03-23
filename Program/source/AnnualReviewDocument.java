@@ -96,79 +96,68 @@ public class AnnualReviewDocument extends Document
             //Create Another paragraph for Manager
             XWPFParagraph tempParagraph4=doc.createParagraph();
             XWPFRun tempRun4 = tempParagraph4.createRun();
-            tempRun4.setFontSize(14);
+            tempRun4.setFontSize(12);
             tempRun4.setText("Manager/Director: "+ getValue("manager"));
-            tempRun4.addBreak();
             //Create Another paragraph for second manager
             XWPFParagraph tempParagraph5=doc.createParagraph();
             XWPFRun tempRun5 = tempParagraph5.createRun();
-            tempRun5.setFontSize(14);
+            tempRun5.setFontSize(12);
             tempRun5.setText("Second Manager/Director: "+ getValue("second_manager"));
-            tempRun5.addBreak();
             //Create Another paragraph for section
             XWPFParagraph tempParagraph6=doc.createParagraph();
             XWPFRun tempRun6 = tempParagraph6.createRun();
-            tempRun6.setFontSize(14);
+            tempRun6.setFontSize(12);
             tempRun6.setText( "Section: " + getValue("section"));
-            tempRun6.addBreak();
             //Create Another paragraph for job title
             XWPFParagraph tempParagraph7=doc.createParagraph();
             XWPFRun tempRun7 = tempParagraph7.createRun();
-            tempRun7.setFontSize(14);
+            tempRun7.setFontSize(12);
             tempRun7.setText("Job Title: "+ getValue("job_title"));
             tempRun7.addBreak();
-            //             //Create Another paragraph for review
-            //             tempParagraph=doc.createParagraph();
-            //             tempRun.setText("A review of the annual past performance: achievements and outcomes");
-            //             //create table paragraph for the review
-            //             XWPFRun paragraphOneRunThree2 = tempParagraph.createRun();
-            //             tempParagraph.setAlignment(ParagraphAlignment.CENTER);
-            //             //create table
-            //             XWPFTable table = doc.createTable();
-            //             //create first row
-            //             XWPFTableRow tableRowOne = table.getRow(0);
-            //             table.setRowBandSize(1);
-            //             table.setWidth(1);
-            //             table.setColBandSize(1);
-            //             table.setCellMargins(1, 1, 100, 30);
-            //             tableRowOne.getCell(0).setText("No:");
-            //             tableRowOne.addNewTableCell().setText("Objectives");
-            //             tableRowOne.addNewTableCell().setText("Achievement"+ getValue("personal_goals_achieved"));
-            // 
-            //             //create table paragraph
-            //             XWPFRun paragraphOneRunThree = tempParagraph.createRun();
-            //             tempParagraph.setAlignment(ParagraphAlignment.CENTER);
-            //             //create table
-            //             XWPFTable table2 = doc.createTable();
-            //             //create first row
-            //             XWPFTableRow tableRowOne2 = table2.getRow(0);
-            //             table2.setRowBandSize(1);
-            //             table2.setWidth(1);
-            //             table2.setColBandSize(1);
-            //             table2.setCellMargins(1, 1, 100, 30);
-            //             tableRowOne2.getCell(0).setText("Performance summary"+ getValue("performance_summary"));
-            // 
-            //             //paragraph for preview of future performances
-            //             XWPFRun paragraphOneRunThree1 = tempParagraph.createRun();
-            //             tempParagraph.setAlignment(ParagraphAlignment.LEFT);
-            //             paragraphOneRunThree1 = tempParagraph.createRun();
-            //             tempRun = tempParagraph.createRun();
-            //             paragraphOneRunThree.setFontSize(12);
-            //             tempRun.setText("A preview of future performance :  goals/planned outcomes");
-            //             //create table paragraph
-            //             XWPFRun paragraphOneRunFour = tempParagraph.createRun();
-            //             tempParagraph.setAlignment(ParagraphAlignment.CENTER);
-            //             //create table
-            //             XWPFTable table3 = doc.createTable();
-            //             //create first row
-            //             XWPFTableRow tableRowOne3 = table3.getRow(0);
-            //             table3.setRowBandSize(1);
-            //             table3.setWidth(1);
-            //             table3.setColBandSize(1);
-            //             table3.setCellMargins(1, 1, 100, 30);
-            //             tableRowOne3.getCell(0).setText("No.");
-            //             tableRowOne3.getCell(1).setText(getValue("future_goals_set")); 
-            //             table.setWidth(120);        // width of table
+            //Create Another paragraph for review
+            XWPFParagraph tempParagraph8=doc.createParagraph();
+            tempParagraph8.setAlignment(ParagraphAlignment.LEFT);
+            XWPFRun tempRun8 = tempParagraph8.createRun();
+            tempRun8.setText("A review of the annual past performance: achievements and outcomes");
+            //create table
+            XWPFTable table = doc.createTable();
+            //create first row
+            XWPFTableRow tableRowOne = table.getRow(0);
+            table.setRowBandSize(1);
+            table.setWidth(1);
+            table.setColBandSize(1); 
+            table.setCellMargins(200, 200, 2500, 1700);
+            tableRowOne.getCell(0).setText("No:");
+            tableRowOne.addNewTableCell().setText("Objectives");
+            tableRowOne.addNewTableCell().setText("Achievement: "+ getValue("personal_goals_achieved"));
+            // Add a break between the tables
+            doc.createParagraph().createRun().addBreak();
+            //Create another table for performance sumary
+            XWPFTable table2 = doc.createTable();
+            //create first row
+            XWPFTableRow tableRowOne2 = table2.getRow(0);
+            table2.setRowBandSize(1);
+            table2.setWidth(1);
+            table2.setColBandSize(1); 
+            table2.setCellMargins(200, 200, 3500, 1700);
+            tableRowOne2.getCell(0).setText("Performance summary:"+ getValue("performance_summary"));
+            // Add a break between the tables
+            doc.createParagraph().createRun().addBreak();
+            //paragraph for preview of future performances
+            XWPFParagraph tempParagraph9=doc.createParagraph();
+            tempParagraph9.setAlignment(ParagraphAlignment.LEFT);
+            XWPFRun tempRun9 = tempParagraph9.createRun();
+            tempRun8.setText("A preview of future performance :  goals/planned outcomes");
+            //create table
+            XWPFTable table9 = doc.createTable();
+            //create first row
+            XWPFTableRow tableRowOne9 = table9.getRow(0);
+            table9.setRowBandSize(1);
+            table9.setWidth(1);
+            table9.setColBandSize(1); 
+            table9.setCellMargins(200, 200, 2500, 1700);
+            tableRowOne9.getCell(0).setText("No.");
+            tableRowOne9.getCell(1).setText(getValue("future_goals_set")); 
             // 
             //             //create table paragraph for reviewer_comments
             //             XWPFRun paragraphOneRunFour1 = tempParagraph.createRun();
@@ -231,4 +220,5 @@ public class AnnualReviewDocument extends Document
 
         }
     }
+
 }
