@@ -140,37 +140,36 @@ public class AnnualReviewDocument extends Document
             table2.setWidth(1);
             table2.setColBandSize(1); 
             table2.setCellMargins(200, 200, 3500, 1700);
-            tableRowOne2.getCell(0).setText("Performance summary:"+ getValue("performance_summary"));
+            tableRowOne2.getCell(0).setText("Performance summary: "+ getValue("performance_summary"));
             // Add a break between the tables
             doc.createParagraph().createRun().addBreak();
             //paragraph for preview of future performances
-            XWPFParagraph tempParagraph9=doc.createParagraph();
-            tempParagraph9.setAlignment(ParagraphAlignment.LEFT);
-            XWPFRun tempRun9 = tempParagraph9.createRun();
-            tempRun8.setText("A preview of future performance :  goals/planned outcomes");
+            XWPFParagraph tempParagraph10=doc.createParagraph();
+            tempParagraph10.setPageBreak(true);
+            tempParagraph10.setAlignment(ParagraphAlignment.LEFT);
+            XWPFRun tempRun10 = tempParagraph10.createRun();
+            tempRun10.setText("A preview of future performance:  goals/planned outcomes");
             //create table
-            XWPFTable table9 = doc.createTable();
+            XWPFTable table10 = doc.createTable();
             //create first row
-            XWPFTableRow tableRowOne9 = table9.getRow(0);
-            table9.setRowBandSize(1);
-            table9.setWidth(1);
-            table9.setColBandSize(1); 
-            table9.setCellMargins(200, 200, 2500, 1700);
-            tableRowOne9.getCell(0).setText("No.");
-            tableRowOne9.getCell(1).setText(getValue("future_goals_set")); 
-            // 
-            //             //create table paragraph for reviewer_comments
-            //             XWPFRun paragraphOneRunFour1 = tempParagraph.createRun();
-            //             tempParagraph.setAlignment(ParagraphAlignment.CENTER);
-            //             //create table
-            //             XWPFTable table4 = doc.createTable();
-            //             //create first row
-            //             XWPFTableRow tableRowOne4 = table4.getRow(0);
-            //             table4.setRowBandSize(1);
-            //             table4.setWidth(1);  
-            //             table4.setColBandSize(1);
-            //             table4.setCellMargins(1, 1, 100, 30);
-            //             tableRowOne4.getCell(0).setText("Reviewer comments"+ getValue("reviewer_comments"));
+            XWPFTableRow tableRowOne10 = table10.getRow(0);
+            table10.setRowBandSize(1);
+            table10.setWidth(1);
+            table10.setColBandSize(1); 
+            table10.setCellMargins(200, 200, 2500, 1700);
+            tableRowOne10.getCell(0).setText("No.");
+            tableRowOne10.addNewTableCell().setText(getValue("future_goals_set"));
+            // Add a break between the tables
+            doc.createParagraph().createRun().addBreak();
+            //Create another table for reviewer comments
+            XWPFTable table4 = doc.createTable();
+            //create first row
+            XWPFTableRow tableRowOne4 = table4.getRow(0);
+            table4.setRowBandSize(1);
+            table4.setWidth(1);
+            table4.setColBandSize(1); 
+            table4.setCellMargins(200, 200, 3500, 1700);
+            tableRowOne4.getCell(0).setText("Reviewer comments: "+ getValue("reviewer_comments"));
             // 
             //             //paragraph for preview of future Recommandation
             //             XWPFRun paragraphOneRunFive = tempParagraph.createRun();
