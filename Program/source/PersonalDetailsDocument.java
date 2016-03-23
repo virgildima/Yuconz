@@ -66,11 +66,8 @@ public class PersonalDetailsDocument extends Document
     /**
      * Method that takes the class HashMap content and creates a .docx file from it
      */
-    public void SaveToFile(String filePath){
+    public void saveToFile(String filePath){
         try {
-            File file = new File(filePath);
-            //Write the Document in file system
-            FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
             //Blank Document
             XWPFDocument doc = new XWPFDocument();
             //create paragraph for Personal Details
@@ -114,7 +111,7 @@ public class PersonalDetailsDocument extends Document
             tempRun5.setText("Address: "+ getValue("address_1"));
             tempRun5.addBreak();
             //Create Another paragraph for address 2
-            XWPFParagraph tempParagrap6h=doc.createParagraph();
+            XWPFParagraph tempParagraph6=doc.createParagraph();
             XWPFRun tempRun6 = tempParagraph2.createRun();
             tempRun6.setFontSize(14);
             tempRun6.setText( getValue("address_2"));
@@ -161,19 +158,12 @@ public class PersonalDetailsDocument extends Document
             tempRun13.setFontSize(14);
             tempRun13.setText("Next of Kin contact number: "+ getValue("next_of_kin_CN"));
             tempRun13.addBreak();
-
-            doc.write(fos);
-            fos.close();
+            
+            createDoc(filePath,doc);
 
         } catch (Exception e) {
 
         }
     }
 
-    public  void main(String[] args) {
-
-        //create docx file
-        SaveToFile("C:\\DocxFile.docx");
-
-    }
 }
