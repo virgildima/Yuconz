@@ -52,6 +52,8 @@ public class GUI
      * 
      */
     JButton submitDocument = new JButton("Submit Document");
+    
+        JButton updateDocument = new JButton("Update Document");
 
     JTextField employeeSearch = new JTextField(20);
     JTextField employeeFirstname = new JTextField(20);
@@ -337,34 +339,6 @@ public class GUI
     String usrInput = employeeSearch.getText();
     String usrInput2 = usernameField.getText();
 
-    String[] searchResults = new String[] {"123456"}; 
-
-    /**
-     * Search for users documents
-     */
-
-    public static void searchDocuments(String[] searchResults,  String targetValue) {
-        for(String s: searchResults){
-            if(s.equals(targetValue))
-            {
-
-            }
-
-        }
-    }
-
-    /**
-     * Search for users documents for user who has just logged in
-     */
-    public static void loginUserDetailsSearch(String[] searchResults,  String targetValue) {
-        for(String s: searchResults){
-            if(s.equals(targetValue))
-            {
-
-            }
-
-        }
-    }
 
     /**
      * The creation of all textfields and labels.
@@ -378,7 +352,7 @@ public class GUI
          */
 
         JFrame afterLoginFrame = new JFrame("Yuconz Employee System");
-        JPanel loggedIn = new JPanel(new GridLayout(50,30));
+        JPanel loggedIn = new JPanel(new GridLayout(20,2));
 
         /**
          * The layout of the frame
@@ -409,7 +383,7 @@ public class GUI
          */
 
         JButton back = new JButton("Back");
-        loggedIn.add(employeeSearch);
+
         loggedIn.add(forenameLabel);
         loggedIn.add(employeeFirstname);
 
@@ -449,21 +423,19 @@ public class GUI
         loggedIn.add(employeeNumberLabel);
         loggedIn.add(staffID);
 
+        
         loggedIn.add(submitDocument);
+        loggedIn.add(updateDocument);
 
         loggedIn.add(back);
 
-        /**
-         * Disabling editing on some of the textfields
-         */
-
-        employeeSearch.setText("Replace and type to search");
+     
 
         /**
          * Setting the size and postion of the frame
          */
 
-        afterLoginFrame.setSize(300, 1000);
+        afterLoginFrame.setSize(500, 500);
         afterLoginFrame.setVisible(true);
         afterLoginFrame.getContentPane().add(loggedIn);
         afterLoginFrame.setResizable(false);
@@ -472,6 +444,19 @@ public class GUI
          * Checkes the username and refuses entery to the system if it is wrong.
          * 
          */
+        
+         updateDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    updateDocPDD();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have updated the document",
+                        "Update.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         submitDocument.addActionListener(new ActionListener() 
             {
@@ -505,7 +490,7 @@ public class GUI
     protected void employmentDetails()
     {
         JFrame employmentDetails = new JFrame("Yuconz Employee System");
-        JPanel employmentD = new JPanel(new GridLayout(25,15));
+        JPanel employmentD = new JPanel(new GridLayout(20,2));
         employmentDetails.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JLabel eInterviewer1 = new JLabel("Employee Interviewer: ");
@@ -552,14 +537,28 @@ public class GUI
         employmentD.add(cvPath);
 
         employmentD.add(submitDocument);
+        employmentD.add(updateDocument);
 
         employmentD.add(open);
         employmentD.add(back);
-        employmentDetails.setSize(300, 700);
+        employmentDetails.setSize(500, 500);
         employmentDetails.setVisible(true);
         employmentDetails.getContentPane().add(employmentD);
         employmentDetails.setResizable(false);
         employmentDetails.setLocationRelativeTo(null);
+        
+         updateDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                     updateDocIED();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have updated the document",
+                        "Update.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         submitDocument.addActionListener(new ActionListener() 
             {
@@ -607,7 +606,7 @@ public class GUI
     protected void salaryIncrease()
     {
         JFrame employmentSalary = new JFrame("Yuconz Employee System");
-        JPanel employmentS = new JPanel(new GridLayout(25,15));
+        JPanel employmentS = new JPanel(new GridLayout(20,2));
         employmentSalary.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JLabel eName = new JLabel("Employee Name: ");
@@ -621,7 +620,7 @@ public class GUI
         JLabel staffIDL = new JLabel("Staff ID: ");
 
         JButton back = new JButton("Back");
-        employeeSearch.setText("Replace and type to search");
+
 
         employmentS.add(eName);
         employmentS.add(employeeFirstname);
@@ -641,13 +640,27 @@ public class GUI
         employmentS.add(salaryNewSalary);
 
         employmentS.add(submitDocument);
+        employmentS.add(updateDocument);
         employmentS.add(back);
 
-        employmentSalary.setSize(300, 700);
+        employmentSalary.setSize(500, 500);
         employmentSalary.setVisible(true);
         employmentSalary.getContentPane().add(employmentS);
         employmentSalary.setResizable(false);
         employmentSalary.setLocationRelativeTo(null);
+        
+         updateDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    updateDocSID();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have updated the document",
+                        "Update.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         submitDocument.addActionListener(new ActionListener() 
             {
@@ -680,7 +693,7 @@ public class GUI
     protected void annualreviews()
     {
         JFrame annualReviews = new JFrame("Yuconz Employee System");
-        JPanel annualReviewsp = new JPanel(new GridLayout(40,15));
+        JPanel annualReviewsp = new JPanel(new GridLayout(20,2));
         annualReviews.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JLabel sectn = new JLabel("Section: ");
@@ -704,9 +717,7 @@ public class GUI
         JLabel datesmSign = new JLabel("Date of Second Manager Signature: ");
 
         JButton back = new JButton("Back");
-        employeeSearch.setText("Replace and type to search");
 
-        annualReviewsp.add(employeeSearch);
         annualReviewsp.add(staffIDL);
         annualReviewsp.add(staffID);
 
@@ -758,13 +769,27 @@ public class GUI
         annualReviewsp.add(datesmSign);
         annualReviewsp.add(dsmSingature);
         annualReviewsp.add(submitDocument);
+        annualReviewsp.add(updateDocument);
 
         annualReviewsp.add(back);
-        annualReviews.setSize(300, 1000);
+        annualReviews.setSize(500, 600);
         annualReviews.setVisible(true);
         annualReviews.getContentPane().add(annualReviewsp);
         annualReviews.setResizable(false);
         annualReviews.setLocationRelativeTo(null);
+        
+        updateDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    updateDocARD();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have updated the document",
+                        "Update.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         submitDocument.addActionListener(new ActionListener() 
             {
@@ -798,7 +823,7 @@ public class GUI
     protected void promotion()
     {
         JFrame promotion = new JFrame("Yuconz Employee System");
-        JPanel promotionS = new JPanel(new GridLayout(25,15));
+        JPanel promotionS = new JPanel(new GridLayout(20,2));
         promotion.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JLabel eName = new JLabel("Employee Name: ");
@@ -815,9 +840,6 @@ public class GUI
 
         JButton back = new JButton("Back");
 
-        employeeSearch.setText("Replace and type to search");
-
-        promotionS.add(employeeSearch);
 
         promotionS.add(eName);
         promotionS.add(employeeFirstname);
@@ -841,12 +863,26 @@ public class GUI
         promotionS.add(srtDateTxt);
 
         promotionS.add(submitDocument);
+        promotionS.add(updateDocument);
         promotionS.add(back);
-        promotion.setSize(300, 700);
+        promotion.setSize(500, 700);
         promotion.setVisible(true);
         promotion.getContentPane().add(promotionS);
         promotion.setResizable(false);
         promotion.setLocationRelativeTo(null);
+        
+         updateDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    updateDocPD1();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have updated the document",
+                        "Update.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         submitDocument.addActionListener(new ActionListener() 
             {
@@ -882,7 +918,7 @@ public class GUI
     protected void Termination()
     {
         JFrame termination = new JFrame("Yuconz Employee System");
-        JPanel terminationP = new JPanel(new GridLayout(25,15));
+        JPanel terminationP = new JPanel(new GridLayout(20,2));
         termination.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JLabel id = new JLabel("Staff ID: ");
@@ -896,13 +932,12 @@ public class GUI
         JLabel sign2 = new JLabel("Second Manager Signature: ");
 
         JButton back = new JButton("Back");
-        employeeSearch.setText("Replace and type to search");
+       
 
         JLabel managerNamel = new JLabel("Manager Name: ");
         JLabel managerName2l = new JLabel("Second Manager Name: ");
         JLabel managerCommentl = new JLabel("Manager Comment: ");
 
-        terminationP.add(employeeSearch);
         terminationP.add(id);
         terminationP.add(staffID);
 
@@ -930,13 +965,27 @@ public class GUI
         terminationP.add(smSignature);
 
         terminationP.add(submitDocument);
+        terminationP.add(updateDocument);
 
         terminationP.add(back);
-        termination.setSize(300, 700);
+        termination.setSize(600, 700);
         termination.setVisible(true);
         termination.getContentPane().add(terminationP);
         termination.setResizable(false);
         termination.setLocationRelativeTo(null);
+        
+         updateDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    createDocTD();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have updated the document",
+                        "Update.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         submitDocument.addActionListener(new ActionListener() 
             {
@@ -970,7 +1019,7 @@ public class GUI
     protected void Probation()
     {
         JFrame probation = new JFrame("Yuconz Employee System");
-        JPanel probationP = new JPanel(new GridLayout(25,15));
+        JPanel probationP = new JPanel(new GridLayout(20,2));
         probation.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JLabel id = new JLabel("Staff ID: ");
@@ -986,9 +1035,6 @@ public class GUI
         JLabel sign = new JLabel("Manager Signature: ");
 
         JButton back = new JButton("Back");
-        employeeSearch.setText("Replace and type to search");
-
-        probationP.add(employeeSearch);
 
         probationP.add(id);
         probationP.add(staffID);
@@ -1008,13 +1054,27 @@ public class GUI
         probationP.add(mSignature);
 
         probationP.add(submitDocument);
+         probationP.add(updateDocument);
 
         probationP.add(back);
-        probation.setSize(300, 700);
+        probation.setSize(500, 700);
         probation.setVisible(true);
         probation.getContentPane().add(probationP);
         probation.setResizable(false);
         probation.setLocationRelativeTo(null);
+        
+         updateDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    createDocPD();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have updated the document",
+                        "Update.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         submitDocument.addActionListener(new ActionListener() 
             {
@@ -1047,7 +1107,7 @@ public class GUI
      */
     protected void chooseFrame(){                      
         JFrame chooseFrame = new JFrame("Yuconz Employee System");
-        JPanel chooseLoggedIn = new JPanel(new GridLayout(25,15));
+        JPanel chooseLoggedIn = new JPanel(new GridLayout(20,2));
         chooseFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JButton personalButton = new JButton("Personal Details");
@@ -1066,7 +1126,7 @@ public class GUI
         chooseLoggedIn.add(terminationRecords);
         chooseLoggedIn.add(annualReviewRecords);
 
-        chooseFrame.setSize(300, 700);;
+        chooseFrame.setSize(500, 400);;
         chooseFrame.setVisible(true);
         chooseFrame.getContentPane().add(chooseLoggedIn);
         chooseFrame.setResizable(false);
@@ -1421,6 +1481,8 @@ public class GUI
                 public void actionPerformed(ActionEvent e) { ib.quit(); }
             });
         menu.add(item);
+        
+  
 
     }
 }

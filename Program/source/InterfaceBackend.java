@@ -87,6 +87,8 @@ public class InterfaceBackend
     {
         return this.encryptPass = encryptPass;
     }
+    
+ 
 
     /**
      * Method which closes the program
@@ -95,6 +97,8 @@ public class InterfaceBackend
     public void quit()
     {
         System.exit(0);
+        
+       
     }
 
     /**
@@ -121,6 +125,9 @@ public class InterfaceBackend
             "Help.", 
             JOptionPane.INFORMATION_MESSAGE);
     }
+    
+
+    
 
     
 
