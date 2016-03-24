@@ -53,6 +53,14 @@ public class DatabaseTest
         assertTrue("Not Viable",db.isViable());
     }
     
+    @Test
+    public void getAll()
+    {
+        System.out.println("Test: getAll");
+        String[] results = db.search(null,null,AnnualReviewDocument.class);
+        assertTrue("Not Viable",results.length==1 && results[0].equals("123457"));
+    }
+    
     
     /**
      * Annual Review Document
