@@ -36,6 +36,7 @@ public enum DB_TableHandlers
             +")",
             
         "INSERT INTO annual VALUES (?,?,?,?,?,  ?,?,?,?,?,  ?,?,?,?,?,  ?,?)",
+        "SELECT STAFFID FROM annual",
         "SELECT * FROM annual WHERE STAFFID=?",
         "UPDATE annual SET NAME=?,"
         +"MANAGER=?,        SECOND_MANAGER=?,   SECTION=?,"
@@ -73,6 +74,7 @@ public enum DB_TableHandlers
             +")",
             
         "INSERT INTO initial VALUES (?,?,   ?,?,?,  ?,?,?)",
+        "SELECT STAFFID FROM initial",
         "SELECT * FROM initial WHERE STAFFID=?",
         "UPDATE initial SET CV_PATH=?,"
         +"INTERVIEW_NOTES=?,INTERVIEWERS=?,     SECTION=?,"
@@ -106,6 +108,7 @@ public enum DB_TableHandlers
             +")",
             
         "INSERT INTO personal VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        "SELECT STAFFID FROM personal",
         "SELECT * FROM personal WHERE STAFFID=?",
         "UPDATE personal SET FIRSTNAME=?,SURNAME=?,DOB=?,ADDRESS1=?,"
         +"ADDRESS2=?,TOWN=?,COUNTY=?,POSTCODE=?,PHONE=?,MOBILE=?,"
@@ -136,6 +139,7 @@ public enum DB_TableHandlers
             +")",
             
         "INSERT INTO probation VALUES (?,  ?,?,?,  ?,?,?)",
+        "SELECT STAFFID FROM probation",
         "SELECT * FROM probation WHERE STAFFID=?",
         "UPDATE probation SET FIRSTNAME=?,SURNAME=?,PROB_REASON=?,"
         +"START_DATE=?,END_DATE=?,MANAGER_SIG=?"
@@ -166,6 +170,7 @@ public enum DB_TableHandlers
             +")",
             
         "INSERT INTO promotion VALUES (?,  ?,?,?,  ?,?,?, ?)",
+        "SELECT STAFFID FROM promotion",
         "SELECT * FROM promotion WHERE STAFFID=?",
         "UPDATE promotion SET FIRSTNAME=?,SURNAME=?,C_JOB_TITLE=?,"
         +"C_SECTION=?,N_JOB_TITLE=?,N_SECTION=?,START_DATE=?"
@@ -193,6 +198,7 @@ public enum DB_TableHandlers
             +")",
             
         "INSERT INTO salary VALUES (?,  ?,?,?,  ?,?)",
+        "SELECT STAFFID FROM salary",
         "SELECT * FROM salary WHERE STAFFID=?",
         "UPDATE salary SET FIRSTNAME=?,SURNAME=?,C_SALLARY=?,"
         +"N_SALLARY=?,START_DATE=?"
@@ -225,6 +231,7 @@ public enum DB_TableHandlers
             +")",
             
         "INSERT INTO termination VALUES (?,  ?,?,?,  ?,?,?,  ?,?,?,  ?)",
+        "SELECT STAFFID FROM termination",
         "SELECT * FROM termination WHERE STAFFID=?",
         "UPDATE termination SET FIRSTNAME=?,SURNAME=?,"
         +"T_REASON=?,       T_DATE=?,           MANAGER=?,"
@@ -246,6 +253,7 @@ public enum DB_TableHandlers
     public final String createTableStr;
     
     public final String addDocStr;
+    public final String getAllStr;
     public final String getDocStr;
     public final String updateDocStr;
     
@@ -254,13 +262,14 @@ public enum DB_TableHandlers
     public final String[] updateDocAttributes;
     
     private DB_TableHandlers(String tableName,String createTableStr,
-            String addDocStr,String getDocStr,String updateDocStr,
+            String addDocStr,String getAllStr,String getDocStr,String updateDocStr,
             String[] columnOrder,String key,String[] updateDocAttributes)
     {
         this.tableName = tableName;
         this.createTableStr = createTableStr;
         
         this.addDocStr = addDocStr;
+        this.getAllStr = getAllStr;
         this.getDocStr = getDocStr;
         this.updateDocStr = updateDocStr;
         

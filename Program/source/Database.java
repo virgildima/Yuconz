@@ -76,7 +76,8 @@ public class Database extends DB_Core
     /**
      * Returns a document from the database.
      * 
-     * @param staffID The staff ID on the personal Details document to get.
+     * @param staffID The staff ID on the document to get.
+     * @param type The type of document to get.
      * @return The document requested or null.
      */
     public <T extends Document> T getDocument(String staffID,Class<T> type)
@@ -107,6 +108,39 @@ public class Database extends DB_Core
             //Document not found
         }
         return null;
+    }
+    
+    /**
+     * Returns an array of staffIDs from the database.
+     * 
+     * @param type The type of document to list.
+     * @return An array of staffIDs for the requested document type.
+     */
+    public <T extends Document> String[] search(String attribute,String value,Class<T> type)
+    {
+        DB_TableHandlers handler = DB_TableHandlers.forDocType(type);
+        prepStmt = prepStmt(handler.getAllStr,new String[] {} );
+        rs = getData(prepStmt);
+        ArrayList<String> al = new ArrayList<String>();
+        String[] results = new String[0];
+        try
+        {
+            while(rs.next())
+            {
+                al.add(rs.getString(1));
+            }
+            results = new String[al.size()];
+            for(int i=0;i<al.size();i++)
+            {
+                results[i] = al.get(i);
+            }
+        }catch(SQLException e)
+        {
+           System.out.println("Prepare Statement encountered an error.");
+           e.printStackTrace();
+           return null;
+        }
+        return results;
     }
     
     private PreparedStatement prepStmt(String str,String[] vals)

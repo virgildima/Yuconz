@@ -53,6 +53,34 @@ public class DatabaseTest
         assertTrue("Not Viable",db.isViable());
     }
     
+    @Test
+    public void getAll()
+    {
+        System.out.println("Test: getAll");
+        String[] results;
+        assertTrue("Did not add AR",db.addDocument(TestData.defaultTestDoc(AnnualReviewDocument.class)));
+        results = db.search(null,null,AnnualReviewDocument.class);
+        assertTrue("AR_Document not listed",results.length==1 && results[0].equals("123457"));
+        assertTrue("Did not add IE",db.addDocument(TestData.defaultTestDoc(InitialEmploymentDocument.class)));
+        results = db.search(null,null,InitialEmploymentDocument.class);
+        assertTrue("IE_Document not listed",results.length==1 && results[0].equals("123456"));
+        assertTrue("Did not add PD",db.addDocument(TestData.defaultTestDoc(PersonalDetailsDocument.class)));
+        results = db.search(null,null,PersonalDetailsDocument.class);
+        assertTrue("PD_Document not listed",results.length==1 && results[0].equals("123456"));
+        assertTrue("Did not add PB",db.addDocument(TestData.defaultTestDoc(ProbationDocument.class)));
+        results = db.search(null,null,ProbationDocument.class);
+        assertTrue("PB_Document not listed",results.length==1 && results[0].equals("123457"));
+        assertTrue("Did not add PM",db.addDocument(TestData.defaultTestDoc(PromotionDocument.class)));
+        results = db.search(null,null,PromotionDocument.class);
+        assertTrue("PM_Document not listed",results.length==1 && results[0].equals("123456"));
+        assertTrue("Did not add SI",db.addDocument(TestData.defaultTestDoc(SalaryIncreaseDocument.class)));
+        results = db.search(null,null,SalaryIncreaseDocument.class);
+        assertTrue("SI_Document not listed",results.length==1 && results[0].equals("123456"));
+        assertTrue("Did not add TD",db.addDocument(TestData.defaultTestDoc(TerminationDoument.class)));
+        results = db.search(null,null,TerminationDoument.class);
+        assertTrue("TD_Document not listed",results.length==1 && results[0].equals("123457"));
+    }
+    
     
     /**
      * Annual Review Document
