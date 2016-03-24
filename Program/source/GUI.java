@@ -326,7 +326,7 @@ public class GUI
          */
 
         JFrame afterLoginFrame = new JFrame("Yuconz Employee System");
-        JPanel loggedIn = new JPanel(new GridLayout(25,30));
+        JPanel loggedIn = new JPanel(new GridLayout(50,30));
 
         /**
          * The layout of the frame
@@ -408,7 +408,7 @@ public class GUI
          * Setting the size and postion of the frame
          */
 
-        afterLoginFrame.setSize(300, 700);
+        afterLoginFrame.setSize(300, 1000);
         afterLoginFrame.setVisible(true);
         afterLoginFrame.getContentPane().add(loggedIn);
         afterLoginFrame.setResizable(false);
