@@ -54,9 +54,9 @@ public class GUITest
     {
         
         InterfaceBackend interfac2 = new InterfaceBackend();
-        java.lang.String string2 = interfac2.passwordSHA512("123456");
+        java.lang.String string2 = interfac2.passwordSHA512("password");
         gui.passwordField.setText(string2);
-        gui.usernameField.setText("1234567");
+        gui.usernameField.setText("123456");
  
         InterfaceBackend ib = new InterfaceBackend();
         AccessRights access = AccessRights.Basic_User;
@@ -86,28 +86,6 @@ public class GUITest
         }
     }
 
-    @Test
-    /**
-     * Tests using a password which is less than a length of 6 or more than.
-     */
-    public void passwordNullIfNotLength6()
-    {
-        InterfaceBackend interfac1 = new InterfaceBackend();
-        assertEquals(null, interfac1.passwordSHA512("1"));
-        assertEquals(null, interfac1.passwordSHA512("1234567"));
-    }
-
-    @Test
-    /**
-     * Test a password which is 6 in length and see if it is accepted.
-     * and its not null
-     */
-    public void passwordAcceptedIfLength6()
-    {
-        InterfaceBackend interfac1 = new InterfaceBackend();
-        java.lang.String string1 = interfac1.passwordSHA512("123456");
-        assertNotNull(string1);
-
-    }
+   
 }
 
