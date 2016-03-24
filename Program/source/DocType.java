@@ -195,7 +195,27 @@ public enum DocType
             return true;
         } else if(this == DocType.InitialEmployment)
         {
-            return false;
+            try {
+                XWPFRun tempRun = null;
+                XWPFDocument doc = new XWPFDocument();
+                
+                writeParagraph(doc,ParagraphAlignment.CENTER, true,   18,"Initial Employment.",true);
+                writeParagraph(doc,ParagraphAlignment.CENTER, true,   18,"Staff No: "+  docC.getValue("staffID"),true);
+                
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"The CV is located at: "+  docC.getValue("cv_filePath"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Interview Notes: "+ docC.getValue("interview_Notes"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Interviewers: "+ docC.getValue("interviewers"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Section: "+ docC.getValue("section"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Role: "+ docC.getValue("role"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Initial Job Title: "+ docC.getValue("initial_job_title"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Initial Salary: "+ docC.getValue("initial_salary"),false);
+                 writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Starting Date: "+ docC.getValue("start_date"),false);
+                
+                createDoc(filePath,doc);
+            } catch (Exception e) {
+                return false;
+            }
+            return true;
         } else if(this == DocType.PersonalDetails)
         {
             try {
