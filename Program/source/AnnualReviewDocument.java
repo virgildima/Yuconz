@@ -171,49 +171,45 @@ public class AnnualReviewDocument extends Document
             table4.setWidth(1);
             table4.setColBandSize(1); 
             table4.setCellMargins(200, 200, 3500, 1700);
-            tableRowOne4.getCell(0).setText("Reviewer comments: "+ getValue("reviewer_comments"));
-            // 
-            //             //paragraph for preview of future Recommandation
-            //             XWPFRun paragraphOneRunFive = tempParagraph.createRun();
-            //             tempParagraph.setAlignment(ParagraphAlignment.LEFT);
-            //             paragraphOneRunFour = tempParagraph.createRun();
-            //             tempRun = tempParagraph.createRun();
-            //             paragraphOneRunFour.setFontSize(12);
-            //             tempRun.setText("Recommendation: stay in post / salary increase / promotion / probation / termination."+ getValue("reviewer_recommendation"));
-            // 
-            //             //create table paragraph for reviewee signature
-            //             XWPFRun paragraphOneRunSix = tempParagraph.createRun();
-            //             tempParagraph.setAlignment(ParagraphAlignment.CENTER);
-            //             //create table
-            //             XWPFTable table5 = doc.createTable();
-            //             //create first row
-            //             XWPFTableRow tableRowOne5 = table5.getRow(0);
-            //             table5.setRowBandSize(1);
-            //             table5.setWidth(1);
-            //             table5.setColBandSize(1);
-            //             table5.setCellMargins(1, 1, 100, 30);
-            //             tableRowOne5.getCell(0).setText("Reviewee signature");
-            //             tableRowOne5.addNewTableCell().setText("");
-            //             tableRowOne5.addNewTableCell().setText("Date"+ getValue("date_of_review"));
-            //             //create second row
-            //             XWPFTableRow tableRowOne6 = table5.getRow(1);
-            //             table5.setRowBandSize(1);
-            //             table5.setWidth(1);
-            //             table5.setColBandSize(1);
-            //             table5.setCellMargins(1, 1, 100, 30);
-            //             tableRowOne6.getCell(0).setText("Manager/Director signature"+ getValue("manager_signature"));
-            //             tableRowOne6.addNewTableCell().setText("");
-            //             tableRowOne6.addNewTableCell().setText("Date"+ getValue("date_of_review"));
-            // 
-            //             //create third row
-            //             XWPFTableRow tableRowOne7 = table5.getRow(1);
-            //             table5.setRowBandSize(1);
-            //             table5.setWidth(1);
-            //             table5.setColBandSize(1);
-            //             table5.setCellMargins(1, 1, 100, 30);
-            //             tableRowOne7.getCell(0).setText("Second reviewer signature"+ getValue("second_manager_signatue"));
-            //             tableRowOne7.addNewTableCell().setText("");
-            //             tableRowOne7.addNewTableCell().setText("Date"+ getValue("date_of_review"));
+            tableRowOne4.getCell(0).setText("Reviewer comments: " + getValue("reviewer_comments"));
+            // Add a break between the tables
+            doc.createParagraph().createRun().addBreak();
+            //paragraph for preview of future Recommandation
+            XWPFParagraph tempParagraph11=doc.createParagraph();
+            tempParagraph11.setAlignment(ParagraphAlignment.LEFT);
+            XWPFRun tempRun11 = tempParagraph11.createRun();
+            tempRun11.setText("Recommendation: stay in post / salary increase / promotion / probation / termination.");
+
+            //create table
+            XWPFTable table5 = doc.createTable();
+            //create first row
+            XWPFTableRow tableRowOne5 = table5.getRow(0);
+            table5.setRowBandSize(1);
+            table5.setWidth(1);
+            table5.setColBandSize(1);
+            table5.setCellMargins(100, 100, 800, 1200);
+            tableRowOne5.getCell(0).setText("Reviewee signature  ");
+            tableRowOne5.addNewTableCell().setText("                 ");
+            tableRowOne5.addNewTableCell().setText("Date  "+ getValue("date_of_review"));
+            //create second row
+            XWPFTableRow tableRowOne6 = table5.createRow();
+            table5.setRowBandSize(1);
+            table5.setWidth(1);
+            table5.setColBandSize(1);
+            table5.setCellMargins(100, 100, 800, 1200);
+            tableRowOne6.getCell(0).setText("Manager/Director signature     "+ getValue("manager_signature"));
+            tableRowOne6.getCell(1).setText("                 ");
+            tableRowOne6.getCell(2).setText("Date  "+ getValue("date_of_review"));
+
+            //create third row
+            XWPFTableRow tableRowOne7 = table5.createRow();
+            table5.setRowBandSize(1);
+            table5.setWidth(1);
+            table5.setColBandSize(1);
+            table5.setCellMargins(100, 100, 800, 1200);
+            tableRowOne7.getCell(0).setText("Second reviewer signature     "+ getValue("second_manager_signatue"));
+            tableRowOne7.getCell(1).setText("                 ");
+            tableRowOne7.getCell(2).setText("Date  "+ getValue("date_of_review"));
 
             createDoc(filePath,doc);
 
