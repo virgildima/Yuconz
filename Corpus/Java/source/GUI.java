@@ -51,9 +51,9 @@ public class GUI
      * The username field and the password field to login the system.
      * 
      */
-    JButton submitDocument = new JButton("Submit Document");
+    JButton submitDocument = new JButton("Create Document");
     
-        JButton updateDocument = new JButton("Update Document");
+    JButton updateDocument = new JButton("Update Document");
 
     JTextField employeeSearch = new JTextField(20);
     JTextField employeeFirstname = new JTextField(20);
@@ -114,28 +114,17 @@ public class GUI
     JTextField manager = new JTextField(20);
     JTextField sManager = new JTextField(20);  
     JTextField summary = new JTextField(20);
-
+    
     JTextField managerComment = new JTextField(20);
-
     JTextField managerName = new JTextField(20);
     JTextField managerName2 = new JTextField(20);
     JTextField managerComment2 = new JTextField(20);
-
     JTextField termExplaination = new JTextField();
     JTextField termDate = new JTextField();
 
     //Accessrights for user
     AccessRights userRights = null;
 
-    Database DB = new Database();
-
-    Document ARD    = new Document(DocType.AnnualReview);
-    Document IED    = new Document(DocType.InitialEmployment);
-    Document PDD    = new Document(DocType.PersonalDetails);
-    Document PD     = new Document(DocType.Probation);
-    Document PD1    = new Document(DocType.Promotion);
-    Document SID    = new Document(DocType.SalaryIncrease);
-    Document TD     = new Document(DocType.Termination);
 
     /**
      * Create the frame for the GUI.
@@ -146,195 +135,6 @@ public class GUI
         makeFrame();
 
     }   
-
-    /**
-     * Create documents
-     */
-
-    public void createDocPD()
-    {
-        DB.addDocument(PD);
-    }
-
-    public void createDocPD1()
-    {
-        DB.addDocument(PD1);
-    }
-
-    public void createDocSID()
-    {
-        DB.addDocument(SID);
-    }
-
-    public void createDocPDD()
-    {
-        DB.addDocument(PDD);
-    }
-
-    public void createDocTD()
-    {
-        DB.addDocument(TD);
-    }
-
-    public void createDocARD()
-    {
-        DB.addDocument(ARD);
-    }
-
-    public void createDocIED()
-    {
-        DB.addDocument(IED);
-    }
-
-    /**
-     * Update existing documents
-     */
-
-    public void updateDocPD()
-    {
-        DB.updateDocument(PD);
-    }
-
-    public void updateDocPD1()
-    {
-        DB.updateDocument(PD1);
-    }
-
-    public void updateDocSID()
-    {
-        DB.updateDocument(SID);
-    }
-
-    public void updateDocPDD()
-    {
-        DB.updateDocument(PDD);
-    }
-
-    public void updateDocTD()
-    {
-        DB.updateDocument(TD);
-    }
-
-    public void updateDocARD()
-    {
-        DB.updateDocument(ARD);
-    }
-
-    public void updateDocIED()
-    {
-        DB.updateDocument(IED);
-    }
-
-    public void setProbationDocument()
-    {
-
-        PD.setValue("staffID", staffID.getText());
-        PD.setValue("firstname", employeeFirstname.getText());
-        PD.setValue("surname", employeeSurname.getText());
-        PD.setValue("probation_reason", probationReason.getText());
-        PD.setValue("probation_start_date", probationStartDate.getText());
-        PD.setValue("probation_end_date", probationEndDate.getText());
-        PD.setValue("manager_signature", mSignature.getText());
-
-    }
-    public void setPromotionDocument()
-    {
-
-        PD1.setValue("firstname", employeeFirstname.getText());
-        PD1.setValue("surname", employeeSurname.getText());
-        PD1.setValue("current_job_title", currentJobTitleTxt.getText());
-        PD1.setValue("current_section", currentSectionTxt.getText());
-        PD1.setValue("new_job_title", newJobTitleTxt.getText());
-        PD1.setValue("new_job_section", newJobSectionTxt.getText());
-        PD1.setValue("starting_date", srtDateTxt.getText());
-        PD1.setValue("staffID", staffID.getText());
-
-    }
-
-    public void setSalaryIncreaseDocument()
-    { 
-
-        SID.setValue("firstname", employeeFirstname.getText());
-        SID.setValue("surname", employeeSurname.getText());
-        SID.setValue("current_salary", currentSalary.getText());
-        SID.setValue("new_salary", salaryNewSalary.getText());
-        SID.setValue("start_date", salaryStartDate.getText());
-
-    }
-
-    public void setTerminationDocument()
-    {
-
-        TD.setValue("firstname", employeeFirstname.getText());
-        TD.setValue("surname", employeeSurname.getText());
-        TD.setValue("staffID", staffID.getText());
-        TD.setValue("termination_reason", termExplaination.getText());
-        TD.setValue("termination_date", termDate.getText());
-        TD.setValue("manager_name", managerName.getText());
-        TD.setValue("second_manager_name", managerName2.getText());
-        TD.setValue("manager_comment", managerComment.getText());
-        TD.setValue("second_manager_comment", managerComment2.getText());
-        TD.setValue("manager_signature", mSignature.getText());
-        TD.setValue("second_manager_signature", smSignature.getText());
-
-    }
-
-    public void setPersonalDetails()
-    {
-
-        PDD.setValue("firstname",  employeeFirstname.getText());
-        PDD.setValue("surname", employeeSurname.getText());
-        PDD.setValue("DOB", employeeBirthDate.getText());
-        PDD.setValue("address_1", employeeAddress.getText());
-        PDD.setValue("address_2", employeeAddress2.getText());
-        PDD.setValue("town", employeeTown.getText());
-        PDD.setValue("county", employeeCounty.getText());
-        PDD.setValue("postcode", employeePostcode.getText());
-        PDD.setValue("telephone", employeeHomephone.getText());
-        PDD.setValue("mobile", employeeMobile.getText());
-        PDD.setValue("next_of_kin", employeeKin1.getText());
-        PDD.setValue("next_of_kin_CN", employeeKin2.getText());
-        PDD.setValue("staffID", staffID.getText());
-
-    }
-
-    public void setAnnualReview()
-    {
-
-        ARD.setValue("staffID", staffID.getText());
-        ARD.setValue("name", reviewName.getText());
-        ARD.setValue("manager", manager.getText());
-        ARD.setValue("second_manager", sManager.getText());
-        ARD.setValue("section", section.getText());
-        ARD.setValue("job_title", jobTitle.getText());
-        ARD.setValue("performance_summary", summary.getText());
-        ARD.setValue("personal_goals_achieved", pGoalAch.getText());
-        ARD.setValue("future_goals_set", fGoalS.getText());
-        ARD.setValue("reviewer_comments", rComments.getText());
-        ARD.setValue("reviewer_recommendation", rRecommendation.getText());
-        ARD.setValue("reviewee_signature", rSignature.getText());
-        ARD.setValue("manager_signature", mSignature.getText());
-        ARD.setValue("second_manager_signatue", smSignature.getText());
-        ARD.setValue("date_of_reviewee_signature", drSignature.getText());
-        ARD.setValue("date_of_manager_signature", dmSignature.getText());
-        ARD.setValue("date_of_second_manager_signature", dsmSingature.getText());
-
-    }
-
-    public void setEmploymentDetails()
-    {
-
-        IED.setValue("staffID", staffID.getText());
-        IED.setValue("cv_filePath", cvPath.getText());
-        IED.setValue("interview_Notes", interviewNotes.getText());
-        IED.setValue("interviewers", employmentInterviewer1.getText());
-        IED.setValue("section", section.getText());
-        //TAGGED IED.setValue("role", employmentInitialrole.getText());
-        IED.setValue("initial_job_title", jobTitle.getText());
-        IED.setValue("initial_salary", employmentAnnualSal.getText());
-        IED.setValue("start_date", employmentStartDate.getText());
-
-    }
 
     String usrInput = employeeSearch.getText();
     String usrInput2 = usernameField.getText();
@@ -450,7 +250,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    updateDocPDD();
+                    ib.updateDocPDD();
                     JOptionPane.showMessageDialog(frame,
                         "You have updated the document",
                         "Update.", 
@@ -463,7 +263,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    createDocPDD();
+                    ib.createDocPDD();
                     JOptionPane.showMessageDialog(frame,
                         "You have submitted the document",
                         "Submit.", 
@@ -541,7 +341,7 @@ public class GUI
 
         employmentD.add(open);
         employmentD.add(back);
-        employmentDetails.setSize(500, 500);
+        employmentDetails.setSize(500, 700);
         employmentDetails.setVisible(true);
         employmentDetails.getContentPane().add(employmentD);
         employmentDetails.setResizable(false);
@@ -552,7 +352,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                     updateDocIED();
+                     ib.updateDocIED();
                     JOptionPane.showMessageDialog(frame,
                         "You have updated the document",
                         "Update.", 
@@ -565,7 +365,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    createDocIED();
+                    ib.createDocIED();
 
                     JOptionPane.showMessageDialog(frame,
                         "You have submitted the document",
@@ -654,7 +454,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    updateDocSID();
+                    ib.updateDocSID();
                     JOptionPane.showMessageDialog(frame,
                         "You have updated the document",
                         "Update.", 
@@ -667,7 +467,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                   createDocSID();
+                   ib.createDocSID();
                     JOptionPane.showMessageDialog(frame,
                         "You have submitted the document",
                         "Submit.", 
@@ -783,7 +583,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    updateDocARD();
+                    ib.updateDocARD();
                     JOptionPane.showMessageDialog(frame,
                         "You have updated the document",
                         "Update.", 
@@ -796,7 +596,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    createDocARD();
+                    ib.createDocARD();
                     JOptionPane.showMessageDialog(frame,
                         "You have submitted the document",
                         "Submit.", 
@@ -876,7 +676,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    updateDocPD1();
+                    ib.updateDocPD1();
                     JOptionPane.showMessageDialog(frame,
                         "You have updated the document",
                         "Update.", 
@@ -890,8 +690,8 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                     createDocPD1();
-                    setPromotionDocument();
+                     ib.createDocPD1();
+                    ib.setPromotionDocument();
                     JOptionPane.showMessageDialog(frame,
                         "You have submitted the document",
                         "Submit.",
@@ -979,7 +779,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    createDocTD();
+                    ib.createDocTD();
                     JOptionPane.showMessageDialog(frame,
                         "You have updated the document",
                         "Update.", 
@@ -992,7 +792,7 @@ public class GUI
                 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                     createDocTD();
+                     ib.createDocTD();
                     JOptionPane.showMessageDialog(frame,
                         "You have submitted the document",
                         "Submit.",
@@ -1068,7 +868,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                    createDocPD();
+                    ib.createDocPD();
                     JOptionPane.showMessageDialog(frame,
                         "You have updated the document",
                         "Update.", 
@@ -1081,7 +881,7 @@ public class GUI
 
                 public void actionPerformed(ActionEvent e) 
                 { 
-                     createDocPD();
+                     ib.createDocPD();
                     JOptionPane.showMessageDialog(frame,
                         "You have submitted the document",
                         "Submit.",
@@ -1126,7 +926,7 @@ public class GUI
         chooseLoggedIn.add(terminationRecords);
         chooseLoggedIn.add(annualReviewRecords);
 
-        chooseFrame.setSize(500, 400);;
+        chooseFrame.setSize(500,700);;
         chooseFrame.setVisible(true);
         chooseFrame.getContentPane().add(chooseLoggedIn);
         chooseFrame.setResizable(false);
