@@ -14,8 +14,7 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
  */
 public class SalaryIncreaseDocument extends Document
 {
-    private String[] attributeList = {"staffID","firstname","surname","current_salary","new_salary"};
-
+    private String[] attributeList = {"staffID","firstname","surname","current_salary","new_salary","start_date"};
     /**
     * public method setValue()
     * 

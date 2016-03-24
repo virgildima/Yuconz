@@ -1,16 +1,17 @@
 import java.util.HashMap;
 
 /**
- * InitialEmploymentDocument implementation document.
+ * TerminationDoument implementation document.
  * 
- * @author Chris Wing
+ * @author Chris Wing 
  * @version 0.1
  */
-public class InitialEmploymentDocument extends Document
+public class TerminationDoument extends Document
 {
-    private String[] attributeList = {"staffID","cv_filePath","interview_Notes","interviewers",
-                            "section","role","initial_job_title","initial_salary","start_date"};
-    
+    private String[] attributeList = {"staffID","firstname","surname","termination_reason","termination_date",
+                "manager_name","second_manager_name","manager_comment","second_manager_comment",
+                "manager_signature","second_manager_signature"};
+                                        
      /**
      * public method setValue()
      * 
@@ -27,7 +28,7 @@ public class InitialEmploymentDocument extends Document
         setValue(attributeList, attributeName, newValue);
     }
     
-     /**
+     /** 
      * public method setValue()
      * 
      * Method gets the value to a documents attribute.
@@ -60,7 +61,7 @@ public class InitialEmploymentDocument extends Document
     {
         return super.equals((Document)doc);
     }
-
+    
     /**
      * Method that takes the class HashMap content and creates a .docx file from it
      */
