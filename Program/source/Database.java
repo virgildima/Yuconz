@@ -123,7 +123,7 @@ public class Database extends DB_Core
         rs = getData(prepStmt);
         ArrayList<String> al = new ArrayList<String>();
         String[] results = new String[0];
-       try
+        try
         {
             while(rs.next())
             {
@@ -136,7 +136,9 @@ public class Database extends DB_Core
             }
         }catch(SQLException e)
         {
-            //Document not found
+           System.out.println("Prepare Statement encountered an error.");
+           e.printStackTrace();
+           return null;
         }
         return results;
     }
