@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Authentication()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Authentication\r\n
+comment1.params=
+comment1.target=void\ createDB()
+comment10.params=
+comment10.target=void\ deleteAll()
+comment2.params=userID\ passhash\ accessRights\ department\ surname\ firstname
+comment2.target=boolean\ addNewUser(java.lang.String,\ java.lang.String,\ AccessRights,\ Department,\ java.lang.String,\ java.lang.String)
+comment3.params=userID\ passhash\ accessRights
+comment3.target=boolean\ login(java.lang.String,\ java.lang.String,\ AccessRights)
+comment3.text=\r\n\ Returns\ true\ if\ the\ user\ logged\ in\ successfuly.\r\n\ Returns\ false\ if\ they\ did\ not.\r\n
+comment4.params=
+comment4.target=boolean\ logout()
+comment5.params=userID\ documentID
+comment5.target=boolean\ givePermission(java.lang.String,\ int)
+comment6.params=userID\ documentID
+comment6.target=boolean\ removePermission(java.lang.String,\ int)
+comment7.params=userID
+comment7.target=boolean\ lockAccount(java.lang.String)
+comment8.params=userID
+comment8.target=boolean\ unlockAccount(java.lang.String)
+comment9.params=
+comment9.target=boolean\ isViable()
+numComments=11

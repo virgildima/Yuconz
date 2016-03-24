@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=attributeList
+comment0.target=DocType(java.lang.String[])
+comment1.params=attributeName
+comment1.target=int\ getIndex(java.lang.String)
+comment2.params=filePath\ doc
+comment2.target=void\ createDoc(java.lang.String,\ org.apache.poi.xwpf.usermodel.XWPFDocument)
+comment3.params=filePath\ docC
+comment3.target=boolean\ saveToFile(java.lang.String,\ Document)
+comment3.text=\r\n\ Method\ that\ creates\ a\ Microsoft\ .docx\ from\ the\ document\ data\ at\ \r\n
+comment4.params=doc\ alignment\ bold\ fontSize\ text\ breakAtEnd
+comment4.target=void\ writeParagraph(org.apache.poi.xwpf.usermodel.XWPFDocument,\ org.apache.poi.xwpf.usermodel.ParagraphAlignment,\ boolean,\ int,\ java.lang.String,\ boolean)
+numComments=5

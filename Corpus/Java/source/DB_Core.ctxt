@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=
+comment0.target=boolean\ setup()
+comment1.params=
+comment1.target=boolean\ connect()
+comment2.params=strs
+comment2.target=void\ createDB(java.lang.String[])
+comment3.params=
+comment3.target=boolean\ isViable()
+comment4.params=conn\ expected
+comment4.target=boolean\ isTableCount(java.sql.Connection,\ int)
+comment5.params=table
+comment5.target=void\ printMetaData(java.lang.String)
+comment6.params=
+comment6.target=void\ printTables()
+comment7.params=path
+comment7.target=boolean\ deleteDirectory(java.io.File)
+comment8.params=
+comment8.target=void\ close()
+comment9.params=tables
+comment9.target=boolean\ deleteTables(java.lang.String[])
+numComments=10

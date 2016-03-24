@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=value
+comment0.target=Department(int)
+comment1.params=
+comment1.target=int\ toInt()
+comment2.params=value
+comment2.target=Department\ fromInt(int)
+numComments=3

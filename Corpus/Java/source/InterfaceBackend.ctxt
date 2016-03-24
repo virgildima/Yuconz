@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=
+comment0.target=InterfaceBackend()
+comment0.text=\r\n\ These\ refer\ to\ instance\ varibles\ or\ fields\ thus\ this\ allows\ me\ to\ use\ some\ in\ this\ class.\r\n
+comment1.params=password
+comment1.target=java.lang.String\ passwordSHA512(java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getEncrypted()
+comment3.params=
+comment3.target=void\ quit()
+comment3.text=\r\n\ Method\ which\ closes\ the\ program\r\n
+comment4.params=
+comment4.target=void\ about()
+comment4.text=\r\n\ Tells\ the\ user\ informatiob\ about\ the\ login\ page\r\n
+comment5.params=
+comment5.target=void\ help()
+comment5.text=\r\n\ Tells\ the\ user\ what\ they\ need\ to\ do.\r\n
+numComments=6
