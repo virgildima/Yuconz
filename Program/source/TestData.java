@@ -82,7 +82,7 @@ public abstract class TestData
             } else if(type == PromotionDocument.class)
             {
                 doc.setValue("staffID","123456");
-                doc.setValue("forename","John");
+                doc.setValue("firstname","John");
                 doc.setValue("surname","Doe");
                 doc.setValue("current_job_title","Lower Manager");
                 doc.setValue("current_section","Sales");
@@ -96,7 +96,7 @@ public abstract class TestData
                 doc.setValue("surname","Doe");
                 doc.setValue("current_salary","£10.00ph");
                 doc.setValue("new_salary","£16.00ph");
-            } else if(type == TerminationDoument.class)
+            } else if(type == TerminationDocument.class)
             {
                 doc.setValue("staffID","123457");
                 doc.setValue("firstname","James");
