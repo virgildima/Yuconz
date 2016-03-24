@@ -51,6 +51,7 @@ public class GUI
      * The username field and the password field to login the system.
      * 
      */
+    JButton submitDocument = new JButton("Submit Document");
 
     JTextField employeeSearch = new JTextField(20);
     JTextField employeeFirstname = new JTextField(20);
@@ -67,6 +68,7 @@ public class GUI
     JTextField employeeKin1 = new JTextField(20);
     JTextField employeeKin2 = new JTextField(20);
 
+    JTextField currentSalary = new JTextField(20);
     JTextField usernameField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
 
@@ -111,8 +113,27 @@ public class GUI
     JTextField sManager = new JTextField(20);  
     JTextField summary = new JTextField(20);
 
+    JTextField managerComment = new JTextField(20);
+
+    JTextField managerName = new JTextField(20);
+    JTextField managerName2 = new JTextField(20);
+    JTextField managerComment2 = new JTextField(20);
+
+    JTextField termExplaination = new JTextField();
+    JTextField termDate = new JTextField();
+
     //Accessrights for user
     AccessRights userRights = null;
+
+    Database DB = new Database();
+
+    ProbationDocument PD = new ProbationDocument();
+    PromotionDocument PD1 = new PromotionDocument();
+    SalaryIncreaseDocument  SID = new SalaryIncreaseDocument();
+    PersonalDetailsDocument PDD = new PersonalDetailsDocument();
+    TerminationDoument TD = new TerminationDoument();
+    AnnualReviewDocument ARD = new AnnualReviewDocument();
+    InitialEmploymentDocument IED = new InitialEmploymentDocument();
 
     /**
      * Create the frame for the GUI.
@@ -124,161 +145,192 @@ public class GUI
 
     }   
 
+    /**
+     * Create documents
+     */
+
+    public void createDocPD()
+    {
+        DB.addDocument(PD);
+    }
+
+    public void createDocPD1()
+    {
+        DB.addDocument(PD1);
+    }
+
+    public void createDocSID()
+    {
+        DB.addDocument(SID);
+    }
+
+    public void createDocPDD()
+    {
+        DB.addDocument(PDD);
+    }
+
+    public void createDocTD()
+    {
+        DB.addDocument(TD);
+    }
+
+    public void createDocARD()
+    {
+        DB.addDocument(ARD);
+    }
+
+    public void createDocIED()
+    {
+        DB.addDocument(IED);
+    }
+
+    /**
+     * Update existing documents
+     */
+
+    public void updateDocPD()
+    {
+        DB.updateDocument(PD);
+    }
+
+    public void updateDocPD1()
+    {
+        DB.updateDocument(PD1);
+    }
+
+    public void updateDocSID()
+    {
+        DB.updateDocument(SID);
+    }
+
+    public void updateDocPDD()
+    {
+        DB.updateDocument(PDD);
+    }
+
+    public void updateDocTD()
+    {
+        DB.updateDocument(TD);
+    }
+
+    public void updateDocARD()
+    {
+        DB.updateDocument(ARD);
+    }
+
+    public void updateDocIED()
+    {
+        DB.updateDocument(IED);
+    }
+
     public void setProbationDocument()
     {
-        ProbationDocument PD = new ProbationDocument();
 
-        String stringMSignature = mSignature.getText();
-        String stringStaffID = staffID.getText();
-        String stringEmployeeFirstname = employeeFirstname.getText();
-        String stringEmployeeSurname = employeeSurname.getText();
-        String stringProbationReason = probationReason.getText();
-        String stringProbationStartDate = probationStartDate.getText();
-        String stringProbationEndDate= probationEndDate.getText();
-
-        PD.setValue("staffID", stringStaffID);
-        PD.setValue("firstname", stringEmployeeFirstname);
-        PD.setValue("surname", stringEmployeeSurname);
-        PD.setValue("probation_reason", stringProbationReason);
-        PD.setValue("probation_start_date", stringProbationStartDate);
-        PD.setValue("probation_end_date", stringProbationEndDate);
-        PD.setValue("manager_signature", stringMSignature);
+        PD.setValue("staffID", staffID.getText());
+        PD.setValue("firstname", employeeFirstname.getText());
+        PD.setValue("surname", employeeSurname.getText());
+        PD.setValue("probation_reason", probationReason.getText());
+        PD.setValue("probation_start_date", probationStartDate.getText());
+        PD.setValue("probation_end_date", probationEndDate.getText());
+        PD.setValue("manager_signature", mSignature.getText());
 
     }
-
     public void setPromotionDocument()
     {
-        PromotionDocument PD1 = new PromotionDocument();
 
-        String stringStaffID = staffID.getText();
-        String stringEmployeeFirstname = employeeFirstname.getText();
-        String stringEmployeeSurname = employeeSurname.getText();
-        String stringJobTitleTxt = currentJobTitleTxt.getText();
-        String stringSectionTxt = currentSectionTxt.getText();
-        String stringnewJobTitleTxt= newJobTitleTxt.getText();
-        String stringJobSectionTxt= newJobSectionTxt.getText();
-        String stringsrtDateTxte= srtDateTxt.getText();
-        
-        PD1.setValue("firstname", stringEmployeeFirstname);
-        PD1.setValue("surname", stringEmployeeSurname);
-        PD1.setValue("current_job_title", stringJobTitleTxt);
-        PD1.setValue("current_section", stringSectionTxt);
-        PD1.setValue("new_job_title", stringnewJobTitleTxt);
-        PD1.setValue("new_job_section", stringJobSectionTxt);
-        PD1.setValue("starting_date", stringsrtDateTxte);
-        PD1.setValue("staffID", stringStaffID);
+        PD1.setValue("firstname", employeeFirstname.getText());
+        PD1.setValue("surname", employeeSurname.getText());
+        PD1.setValue("current_job_title", currentJobTitleTxt.getText());
+        PD1.setValue("current_section", currentSectionTxt.getText());
+        PD1.setValue("new_job_title", newJobTitleTxt.getText());
+        PD1.setValue("new_job_section", newJobSectionTxt.getText());
+        PD1.setValue("starting_date", srtDateTxt.getText());
+        PD1.setValue("staffID", staffID.getText());
 
     }
+
     public void setSalaryIncreaseDocument()
-    {
+    { 
+
+        SID.setValue("firstname", employeeFirstname.getText());
+        SID.setValue("surname", employeeSurname.getText());
+        SID.setValue("current_salary", currentSalary.getText());
+        SID.setValue("new_salary", salaryNewSalary.getText());
+        SID.setValue("start_date", salaryStartDate.getText());
 
     }
 
     public void setTerminationDocument()
     {
 
+        TD.setValue("firstname", employeeFirstname.getText());
+        TD.setValue("surname", employeeSurname.getText());
+        TD.setValue("staffID", staffID.getText());
+        TD.setValue("termination_reason", termExplaination.getText());
+        TD.setValue("termination_date", termDate.getText());
+        TD.setValue("manager_name", managerName.getText());
+        TD.setValue("second_manager_name", managerName2.getText());
+        TD.setValue("manager_comment", managerComment.getText());
+        TD.setValue("second_manager_comment", managerComment2.getText());
+        TD.setValue("manager_signature", mSignature.getText());
+        TD.setValue("second_manager_signature", smSignature.getText());
+
     }
 
     public void setPersonalDetails()
     {
-        PersonalDetailsDocument PDD = new PersonalDetailsDocument();
 
-        String stringEmployeeFirstname = employeeFirstname.getText();
-        String stringEmployeeSurname = employeeSurname.getText();
-        String stringEmployeeAddress = employeeAddress.getText();
-        String stringEmployeeAddress2 = employeeAddress2.getText();
-        String stringEmployeeTown = employeeTown.getText();
-        String stringEmployeeCounty = employeeCounty.getText();
-        String stringEmployeeMobile = employeeMobile.getText();
-        String stringEmployeeBirthDate = employeeBirthDate.getText();
-        String stringEmployeeHomephone = employeeHomephone.getText();
-        String stringEmployeePostcode = employeePostcode.getText();
-        String stringEmployeeKin1 = employeeKin1.getText();
-        String stringEmployeeKin2 = employeeKin2.getText();
-        String stringStaffID = staffID.getText();
-
-        PDD.setValue("firstname", stringEmployeeFirstname);
-        PDD.setValue("surname", stringEmployeeSurname);
-        PDD.setValue("DOB", stringEmployeeBirthDate);
-        PDD.setValue("address_1", stringEmployeeAddress);
-        PDD.setValue("address_2", stringEmployeeAddress2);
-        PDD.setValue("town", stringEmployeeTown);
-        PDD.setValue("county", stringEmployeeCounty);
-        PDD.setValue("postcode", stringEmployeePostcode);
-        PDD.setValue("telephone", stringEmployeeHomephone);
-        PDD.setValue("mobile", stringEmployeeMobile);
-        PDD.setValue("next_of_kin", stringEmployeeKin1);
-        PDD.setValue("next_of_kin_CN", stringEmployeeKin2);
-        PDD.setValue("staffID", stringStaffID);
+        PDD.setValue("firstname",  employeeFirstname.getText());
+        PDD.setValue("surname", employeeSurname.getText());
+        PDD.setValue("DOB", employeeBirthDate.getText());
+        PDD.setValue("address_1", employeeAddress.getText());
+        PDD.setValue("address_2", employeeAddress2.getText());
+        PDD.setValue("town", employeeTown.getText());
+        PDD.setValue("county", employeeCounty.getText());
+        PDD.setValue("postcode", employeePostcode.getText());
+        PDD.setValue("telephone", employeeHomephone.getText());
+        PDD.setValue("mobile", employeeMobile.getText());
+        PDD.setValue("next_of_kin", employeeKin1.getText());
+        PDD.setValue("next_of_kin_CN", employeeKin2.getText());
+        PDD.setValue("staffID", staffID.getText());
 
     }
 
     public void setAnnualReview()
     {
-        AnnualReviewDocument ARD = new AnnualReviewDocument();
 
-        String stringJobTitle = jobTitle.getText();
-        String stringSummary = summary.getText();
-        String stringStaffID = staffID.getText();
-        String stringReviewName = reviewName.getText();
-        String stringdateReview = dateReview.getText();
-        String stringPGoalAch = pGoalAch.getText();
-        String stringFGoalS = fGoalS.getText();
-        String stringRComments = rComments.getText();
-        String stringRRecommendation = rRecommendation.getText();
-        String stringRSignature = rSignature.getText();
-        String stringMSignature = mSignature.getText();
-        String stringSmSignature = smSignature.getText();
-        String stringDrSignature = drSignature.getText();
-        String stringDmSignature = dmSignature.getText();
-        String stringDsmSingature = dsmSingature.getText();
-        String stringManager = manager.getText();
-        String stringSManager = sManager.getText();
-        String stringSection = section.getText();
-
-        ARD.setValue("staffID", stringStaffID);
-        ARD.setValue("name", stringReviewName);
-        ARD.setValue("manager", stringManager);
-        ARD.setValue("second_manager", stringSManager);
-        ARD.setValue("section", stringSection);
-        ARD.setValue("job_title", stringJobTitle);
-        ARD.setValue("performance_summary", stringSummary);
-        ARD.setValue("personal_goals_achieved", stringPGoalAch);
-        ARD.setValue("future_goals_set", stringFGoalS);
-        ARD.setValue("reviewer_comments", stringRComments);
-        ARD.setValue("reviewer_recommendation", stringRRecommendation);
-        ARD.setValue("reviewee_signature", stringRSignature);
-        ARD.setValue("manager_signature", stringMSignature);
-        ARD.setValue("second_manager_signatue", stringSmSignature);
-        ARD.setValue("date_of_reviewee_signature", stringDrSignature);
-        ARD.setValue("date_of_manager_signature", stringDmSignature);
-        ARD.setValue("date_of_second_manager_signature", stringDsmSingature);
+        ARD.setValue("staffID", staffID.getText());
+        ARD.setValue("name", reviewName.getText());
+        ARD.setValue("manager", manager.getText());
+        ARD.setValue("second_manager", sManager.getText());
+        ARD.setValue("section", section.getText());
+        ARD.setValue("job_title", jobTitle.getText());
+        ARD.setValue("performance_summary", summary.getText());
+        ARD.setValue("personal_goals_achieved", pGoalAch.getText());
+        ARD.setValue("future_goals_set", fGoalS.getText());
+        ARD.setValue("reviewer_comments", rComments.getText());
+        ARD.setValue("reviewer_recommendation", rRecommendation.getText());
+        ARD.setValue("reviewee_signature", rSignature.getText());
+        ARD.setValue("manager_signature", mSignature.getText());
+        ARD.setValue("second_manager_signatue", smSignature.getText());
+        ARD.setValue("date_of_reviewee_signature", drSignature.getText());
+        ARD.setValue("date_of_manager_signature", dmSignature.getText());
+        ARD.setValue("date_of_second_manager_signature", dsmSingature.getText());
 
     }
 
     public void setEmploymentDetails()
     {
-        InitialEmploymentDocument IED = new InitialEmploymentDocument();
 
-        String stringStaffID = staffID.getText();
-        String stringcvPath = cvPath.getText();
-        String stringInterviewNotes = interviewNotes.getText();
-        String stringInterviewer = employmentInterviewer1.getText();
-        String stringInitialRole = employmentInitialrole.getText();
-        String stringEmploymentAnnualSal = employmentAnnualSal.getText();
-        String stringStartDate = employmentStartDate.getText();
-        String stringJobTitle = jobTitle.getText();
-        String stringSection = section.getText();
-
-        IED.setValue("staffID", stringStaffID);
-        IED.setValue("cv_filePath", stringcvPath);
-        IED.setValue("interview_Notes", stringInterviewNotes);
-        IED.setValue("interviewers", stringInterviewer);
-        IED.setValue("section", stringSection);
-        IED.setValue("role", stringInitialRole);
-        IED.setValue("initial_job_title", stringJobTitle);
-        IED.setValue("initial_salary", stringEmploymentAnnualSal);
-        IED.setValue("start_date", stringStartDate);
+        IED.setValue("staffID", staffID.getText());
+        IED.setValue("cv_filePath", cvPath.getText());
+        IED.setValue("interview_Notes", interviewNotes.getText());
+        IED.setValue("interviewers", employmentInterviewer1.getText());
+        IED.setValue("section", section.getText());
+        IED.setValue("role", employmentInitialrole.getText());
+        IED.setValue("initial_job_title", jobTitle.getText());
+        IED.setValue("initial_salary", employmentAnnualSal.getText());
+        IED.setValue("start_date", employmentStartDate.getText());
 
     }
 
@@ -383,7 +435,7 @@ public class GUI
         loggedIn.add(employeePostcode);
 
         loggedIn.add(employeeHomeLabel);
-        loggedIn.add(employeePostcode);
+        loggedIn.add(employeeHomephone);
 
         loggedIn.add(mobileLabel);
         loggedIn.add(employeeMobile);
@@ -397,7 +449,10 @@ public class GUI
         loggedIn.add(employeeNumberLabel);
         loggedIn.add(staffID);
 
+        loggedIn.add(submitDocument);
+
         loggedIn.add(back);
+
         /**
          * Disabling editing on some of the textfields
          */
@@ -417,6 +472,19 @@ public class GUI
          * Checkes the username and refuses entery to the system if it is wrong.
          * 
          */
+
+        submitDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    createDocPDD();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have submitted the document",
+                        "Submit.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         back.addActionListener(new ActionListener() 
             {
@@ -455,9 +523,6 @@ public class GUI
 
         JButton back = new JButton("Back");
 
-        employeeSearch.setText("Replace and type to search");
-        employmentD.add(employeeSearch);
-
         employmentD.add(ID);
         employmentD.add(staffID);
 
@@ -486,6 +551,8 @@ public class GUI
         employmentD.add(cv);
         employmentD.add(cvPath);
 
+        employmentD.add(submitDocument);
+
         employmentD.add(open);
         employmentD.add(back);
         employmentDetails.setSize(300, 700);
@@ -494,13 +561,27 @@ public class GUI
         employmentDetails.setResizable(false);
         employmentDetails.setLocationRelativeTo(null);
 
+        submitDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    createDocIED();
+
+                    JOptionPane.showMessageDialog(frame,
+                        "You have submitted the document",
+                        "Submit.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
+
         open.addActionListener(new ActionListener() 
             {
 
                 public void actionPerformed(ActionEvent e) 
                 { 
                     try {
-                        Runtime.getRuntime().exec("explorer.exe C:\\Users");
+                        Runtime.getRuntime().exec("explorer.exe C:\\..\\..\\..\\..\\..\\..\\..\\EmployDetails");
                     } catch(IOException a) {
                         a.printStackTrace();
                     }
@@ -530,16 +611,28 @@ public class GUI
         employmentSalary.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         JLabel eName = new JLabel("Employee Name: ");
+        JLabel eName2 = new JLabel("Surname Name: ");
+        JLabel currentSal = new JLabel("Current Salary: ");
 
         JLabel srtDate = new JLabel("Start Date: ");
 
         JLabel newAnnualSalary = new JLabel("New Annual Salary: ");
 
+        JLabel staffIDL = new JLabel("Staff ID: ");
+
         JButton back = new JButton("Back");
         employeeSearch.setText("Replace and type to search");
-        employmentS.add(employeeSearch);
+
         employmentS.add(eName);
-        employmentS.add(salaryNameText);
+        employmentS.add(employeeFirstname);
+        employmentS.add(eName2);
+        employmentS.add(employeeSurname);
+
+        employmentS.add(staffIDL);
+        employmentS.add(staffID);
+
+        employmentS.add(currentSal);
+        employmentS.add(currentSalary);
 
         employmentS.add(srtDate);
         employmentS.add(salaryStartDate);
@@ -547,6 +640,7 @@ public class GUI
         employmentS.add(newAnnualSalary);
         employmentS.add(salaryNewSalary);
 
+        employmentS.add(submitDocument);
         employmentS.add(back);
 
         employmentSalary.setSize(300, 700);
@@ -554,6 +648,19 @@ public class GUI
         employmentSalary.getContentPane().add(employmentS);
         employmentSalary.setResizable(false);
         employmentSalary.setLocationRelativeTo(null);
+
+        submitDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                   createDocSID();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have submitted the document",
+                        "Submit.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         back.addActionListener(new ActionListener() 
             {
@@ -650,6 +757,7 @@ public class GUI
 
         annualReviewsp.add(datesmSign);
         annualReviewsp.add(dsmSingature);
+        annualReviewsp.add(submitDocument);
 
         annualReviewsp.add(back);
         annualReviews.setSize(300, 1000);
@@ -657,6 +765,19 @@ public class GUI
         annualReviews.getContentPane().add(annualReviewsp);
         annualReviews.setResizable(false);
         annualReviews.setLocationRelativeTo(null);
+
+        submitDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                    createDocARD();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have submitted the document",
+                        "Submit.", 
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         back.addActionListener(new ActionListener() 
             {
@@ -719,12 +840,28 @@ public class GUI
         promotionS.add(srtDate);
         promotionS.add(srtDateTxt);
 
+        promotionS.add(submitDocument);
         promotionS.add(back);
         promotion.setSize(300, 700);
         promotion.setVisible(true);
         promotion.getContentPane().add(promotionS);
         promotion.setResizable(false);
         promotion.setLocationRelativeTo(null);
+
+        submitDocument.addActionListener(new ActionListener() 
+            {
+               
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                     createDocPD1();
+                    setPromotionDocument();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have submitted the document",
+                        "Submit.",
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         back.addActionListener(new ActionListener() 
             {
@@ -754,16 +891,18 @@ public class GUI
         JLabel eName2 = new JLabel("Employee Surname: ");
 
         JLabel reason = new JLabel("Reason for Termination: ");
-
-        JLabel endDate = new JLabel("End Date: ");
-
+        JLabel date = new JLabel("End Date: ");
         JLabel sign = new JLabel("Manager Signature: ");
+        JLabel sign2 = new JLabel("Second Manager Signature: ");
 
         JButton back = new JButton("Back");
         employeeSearch.setText("Replace and type to search");
 
-        terminationP.add(employeeSearch);
+        JLabel managerNamel = new JLabel("Manager Name: ");
+        JLabel managerName2l = new JLabel("Second Manager Name: ");
+        JLabel managerCommentl = new JLabel("Manager Comment: ");
 
+        terminationP.add(employeeSearch);
         terminationP.add(id);
         terminationP.add(staffID);
 
@@ -772,14 +911,25 @@ public class GUI
         terminationP.add(eName2);
         terminationP.add(employeeSurname);
 
-        terminationP.add(reason);
-        terminationP.add(probationStartDate);
+        terminationP.add(managerNamel);
+        terminationP.add(managerName);
 
-        terminationP.add(endDate);
-        terminationP.add(probationEndDate);
+        terminationP.add(managerName2l);
+        terminationP.add(managerName2);
+
+        terminationP.add(reason);
+        terminationP.add(termExplaination);
+
+        terminationP.add(managerCommentl);
+        terminationP.add(managerComment);
 
         terminationP.add(sign);
         terminationP.add(mSignature);
+
+        terminationP.add(sign2);
+        terminationP.add(smSignature);
+
+        terminationP.add(submitDocument);
 
         terminationP.add(back);
         termination.setSize(300, 700);
@@ -787,6 +937,19 @@ public class GUI
         termination.getContentPane().add(terminationP);
         termination.setResizable(false);
         termination.setLocationRelativeTo(null);
+
+        submitDocument.addActionListener(new ActionListener() 
+            {
+                
+                public void actionPerformed(ActionEvent e) 
+                { 
+                     createDocTD();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have submitted the document",
+                        "Submit.",
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         back.addActionListener(new ActionListener() 
             {
@@ -844,12 +1007,27 @@ public class GUI
         probationP.add(sign);
         probationP.add(mSignature);
 
+        probationP.add(submitDocument);
+
         probationP.add(back);
         probation.setSize(300, 700);
         probation.setVisible(true);
         probation.getContentPane().add(probationP);
         probation.setResizable(false);
         probation.setLocationRelativeTo(null);
+
+        submitDocument.addActionListener(new ActionListener() 
+            {
+
+                public void actionPerformed(ActionEvent e) 
+                { 
+                     createDocPD();
+                    JOptionPane.showMessageDialog(frame,
+                        "You have submitted the document",
+                        "Submit.",
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
         back.addActionListener(new ActionListener() 
             {
@@ -1068,7 +1246,6 @@ public class GUI
                         {
                             successfulLogin();
                             chooseFrame();
-                            isEditable();
 
                         }
                         else if(userRights == AccessRights.Director)
@@ -1184,60 +1361,29 @@ public class GUI
         dsmSingature.setEditable(false);
         manager.setEditable(false);
         sManager.setEditable(false);
+        employeeCounty.setEditable(false);
 
-    }
+        jobTitle.setEditable(false);
+        currentSalary.setEditable(false);
 
-    public void isEditable()
-    {
-        employeeFirstname.setEditable(true);
-        employeeSurname.setEditable(true);  
-        employeeBirthDate.setEditable(true);
-        employeeTown.setEditable(true);
-        employeeAddress.setEditable(true);  
-        employeeAddress2.setEditable(true); 
-        employeeKin1.setEditable(true); 
-        employeeKin2.setEditable(true);
-        employeeMobile.setEditable(true);
-        employeeHomephone.setEditable(true);
-        employeeHomeAddress.setEditable(true);
-        employeePostcode.setEditable(true);
+        section.setEditable(false);
+        currentJobTitleTxt.setEditable(false);
 
-        srtDateTxt.setEditable(true);
+        currentSectionTxt.setEditable(false);
 
-        employmentCV.setEditable(true);
-        employmentInterviewer1.setEditable(true);
-        interviewNotes.setEditable(true);
-        employmentInitialrole.setEditable(true);
-        employmentAnnualSal.setEditable(true);
-        employmentStartDate.setEditable(true);
+        newJobTitleTxt.setEditable(false);
 
-        salaryStartDate.setEditable(true);
-        salaryNewSalary.setEditable(true);
-        salaryNameText.setEditable(true);
+        newJobSectionTxt.setEditable(false);
 
-        srtDateTxt.setEditable(true);
+        managerName.setEditable(false);
 
-        employeeFirstname.setEditable(true);
-        employeeSurname.setEditable(true);
-        probationReason.setEditable(true);
-        probationStartDate.setEditable(true);
-        probationEndDate.setEditable(true);
+        managerName2.setEditable(false);
 
-        reviewName.setEditable(true);
-        probationEndDate.setEditable(true);
-        dateReview.setEditable(true);
-        pGoalAch.setEditable(true);
-        fGoalS.setEditable(true);
-        rComments.setEditable(true);
-        rRecommendation.setEditable(true);
-        rSignature.setEditable(true);
-        mSignature.setEditable(true);
-        smSignature.setEditable(true);
-        drSignature.setEditable(true);
-        dmSignature.setEditable(true);
-        dsmSingature.setEditable(true);
-        manager.setEditable(true);
-        sManager.setEditable(true);
+        termExplaination.setEditable(false);
+
+        managerComment.setEditable(false);
+
+        summary.setEditable(false);
     }
 
     /**
