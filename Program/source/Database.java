@@ -109,6 +109,34 @@ public class Database extends DB_Core
         }
         return null;
     }
+    /**
+     * Returns a document from the database.
+     * 
+     * @param staffID The staff ID on the document to get.
+     * @param type The type of document to get.
+     * @return The document requested or null.
+     */
+    public DocumentC getDocument(String staffID,DocType type)
+    {
+        DB_TableHandlers handler = DB_TableHandlers.forDocType(type);
+        prepStmt = prepStmt(handler.getDocStr,new String[] {staffID} );
+        rs = getData(prepStmt);
+        try
+        {
+            rs.next();
+            DocumentC doc = new DocumentC(type);
+            
+            for(int i=0;i<handler.columnOrder.length;i++)
+            {
+                doc.setValue(handler.columnOrder[i],rs.getString(i+1));
+            }
+            return doc;
+        }catch(SQLException e)
+        {
+            //Document not found
+        }
+        return null;
+    }
     
     /**
      * Returns an array of staffIDs from the database.
@@ -117,6 +145,38 @@ public class Database extends DB_Core
      * @return An array of staffIDs for the requested document type.
      */
     public <T extends Document> String[] search(String attribute,String value,Class<T> type)
+    {
+        DB_TableHandlers handler = DB_TableHandlers.forDocType(type);
+        prepStmt = prepStmt(handler.getAllStr,new String[] {} );
+        rs = getData(prepStmt);
+        ArrayList<String> al = new ArrayList<String>();
+        String[] results = new String[0];
+        try
+        {
+            while(rs.next())
+            {
+                al.add(rs.getString(1));
+            }
+            results = new String[al.size()];
+            for(int i=0;i<al.size();i++)
+            {
+                results[i] = al.get(i);
+            }
+        }catch(SQLException e)
+        {
+           System.out.println("Prepare Statement encountered an error.");
+           e.printStackTrace();
+           return null;
+        }
+        return results;
+    }
+    /**
+     * Returns an array of staffIDs from the database.
+     * 
+     * @param type The type of document to list.
+     * @return An array of staffIDs for the requested document type.
+     */
+    public String[] search(String attribute,String value,DocType type)
     {
         DB_TableHandlers handler = DB_TableHandlers.forDocType(type);
         prepStmt = prepStmt(handler.getAllStr,new String[] {} );

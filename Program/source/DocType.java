@@ -269,7 +269,29 @@ public enum DocType
             return true;
         } else if(this == DocType.Termination)
         {
-            return false;
+            try {
+                XWPFRun tempRun = null;
+                XWPFDocument doc = new XWPFDocument();
+                
+                writeParagraph(doc,ParagraphAlignment.CENTER, true,   18,"Termination Document.",true);
+                writeParagraph(doc,ParagraphAlignment.CENTER, true,   18,"Staff No: "+  docC.getValue("staffID"),true);
+                
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Surname: "+  docC.getValue("surname"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"First Name: "+ docC.getValue("firstname"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Termination reason: "+ docC.getValue("termination_reason"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Termination Date: "+ docC.getValue("termination_date"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Manager: "+ docC.getValue("manager_name"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  12,"Comment: "+ docC.getValue("manager_comment"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  12,"Manager Signature: "+ docC.getValue("manager_signature"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Second Manager: "+ docC.getValue("second_manager_name"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  12,"Second Comment: "+ docC.getValue("second_manager_comment"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  12,"Second Manager Signature: "+ docC.getValue("second_manager_signature"),true);
+                
+                createDoc(filePath,doc);
+            } catch (Exception e) {
+                return false;
+            }
+            return true;
         }
         return false;
     }
