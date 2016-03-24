@@ -293,37 +293,7 @@ public enum DB_TableHandlers
     
     public static DB_TableHandlers forDocType(Document doc)
     {
-        return forDocType(doc.getClass());
-    }
-    public static DB_TableHandlers forDocType(DocumentC doc)
-    {
         return forDocType(doc.type());
-    }
-    public static DB_TableHandlers forDocType(Class type)
-    {
-        if(type == AnnualReviewDocument.class)
-        {
-            return DB_TableHandlers.annual;
-        }else if(type == InitialEmploymentDocument.class)
-        {
-            return DB_TableHandlers.initial;
-        }else if(type == PersonalDetailsDocument.class)
-        {
-            return DB_TableHandlers.personal;
-        }else if(type == ProbationDocument.class)
-        {
-            return DB_TableHandlers.probation;
-        }else if(type == PromotionDocument.class)
-        {
-            return DB_TableHandlers.promotion;
-        }else if(type == SalaryIncreaseDocument.class)
-        {
-            return DB_TableHandlers.salary;
-        }else if(type == TerminationDoument.class)
-        {
-            return DB_TableHandlers.termination;
-        }
-        return null;
     }
     public static DB_TableHandlers forDocType(DocType type)
     {

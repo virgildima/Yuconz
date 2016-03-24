@@ -79,7 +79,7 @@ public class GUI
     JTextField staffID = new JTextField(20);
     JTextField employmentInterviewer1 = new JTextField(20);
     JTextField interviewNotes = new JTextField(20);
-    JTextField employmentInitialrole = new JTextField(20);
+    // TAGGED JTextField employmentInitialrole = new JTextField(20);
     JTextField employmentAnnualSal = new JTextField(20);
     JTextField employmentStartDate = new JTextField(20);
     JTextField cvPath = new JTextField(20);
@@ -129,13 +129,13 @@ public class GUI
 
     Database DB = new Database();
 
-    ProbationDocument PD = new ProbationDocument();
-    PromotionDocument PD1 = new PromotionDocument();
-    SalaryIncreaseDocument  SID = new SalaryIncreaseDocument();
-    PersonalDetailsDocument PDD = new PersonalDetailsDocument();
-    TerminationDoument TD = new TerminationDoument();
-    AnnualReviewDocument ARD = new AnnualReviewDocument();
-    InitialEmploymentDocument IED = new InitialEmploymentDocument();
+    Document ARD    = new Document(DocType.AnnualReview);
+    Document IED    = new Document(DocType.InitialEmployment);
+    Document PDD    = new Document(DocType.PersonalDetails);
+    Document PD     = new Document(DocType.Probation);
+    Document PD1    = new Document(DocType.Promotion);
+    Document SID    = new Document(DocType.SalaryIncrease);
+    Document TD     = new Document(DocType.Termination);
 
     /**
      * Create the frame for the GUI.
@@ -329,7 +329,7 @@ public class GUI
         IED.setValue("interview_Notes", interviewNotes.getText());
         IED.setValue("interviewers", employmentInterviewer1.getText());
         IED.setValue("section", section.getText());
-        IED.setValue("role", employmentInitialrole.getText());
+        //TAGGED IED.setValue("role", employmentInitialrole.getText());
         IED.setValue("initial_job_title", jobTitle.getText());
         IED.setValue("initial_salary", employmentAnnualSal.getText());
         IED.setValue("start_date", employmentStartDate.getText());
@@ -495,7 +495,7 @@ public class GUI
 
         JLabel eInterviewer1 = new JLabel("Employee Interviewer: ");
         JLabel interviewNotepad = new JLabel("Notes: ");
-        JLabel role = new JLabel("Initial Role: ");
+        // TAGGED JLabel role = new JLabel("Initial Role: ");
         JLabel annualSalary = new JLabel("Annual Salary: ");
         JLabel srtDate = new JLabel("Start Date: ");
 
@@ -518,8 +518,8 @@ public class GUI
         employmentD.add(interviewNotepad);
         employmentD.add(interviewNotes);
 
-        employmentD.add(role);
-        employmentD.add(employmentInitialrole);
+        // TAGGED employmentD.add(role);
+        // TAGGED employmentD.add(employmentInitialrole);
 
         employmentD.add(jobTitleL);
         employmentD.add(jobTitle);
@@ -1388,7 +1388,7 @@ public class GUI
         employmentCV.setEditable(false);
         employmentInterviewer1.setEditable(false);
         interviewNotes.setEditable(false);
-        employmentInitialrole.setEditable(false);
+        // TAGGED employmentInitialrole.setEditable(false);
         employmentAnnualSal.setEditable(false);
         employmentStartDate.setEditable(false);
 

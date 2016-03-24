@@ -27,7 +27,7 @@ public enum DocType
     InitialEmployment
     (
         new String[]{"staffID","cv_filePath","interview_Notes","interviewers",
-            "section","role","initial_job_title","initial_salary","start_date"}
+            "section","initial_job_title","initial_salary","start_date"}
     ),
     PersonalDetails
     (
@@ -83,7 +83,7 @@ public enum DocType
     /**
      * Method that creates a Microsoft .docx from the document data at 
      */
-    public boolean saveToFile(String filePath,DocumentC docC)
+    public boolean saveToFile(String filePath,Document docC)
     {
         if(this == DocType.AnnualReview)
         {

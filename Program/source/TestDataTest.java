@@ -32,37 +32,37 @@ public class TestDataTest
     @Test
     public void annualReview()
     {
-        assertTrue("Could not create Annual Review Document",null != TestData.defaultTestDoc(AnnualReviewDocument.class));
+        assertTrue("Could not create Annual Review Document",null != TestData.defaultTestDoc(DocType.AnnualReview));
     }
     @Test
     public void initialEmployment()
     {
-        assertTrue("Could not create Initial Employment Document",null != TestData.defaultTestDoc(InitialEmploymentDocument.class));
+        assertTrue("Could not create Initial Employment Document",null != TestData.defaultTestDoc(DocType.InitialEmployment));
     }
     @Test
     public void personal()
     {
-        assertTrue("Could not create Personal Details Document",null != TestData.defaultTestDoc(PersonalDetailsDocument.class));
+        assertTrue("Could not create Personal Details Document",null != TestData.defaultTestDoc(DocType.PersonalDetails));
     }
     @Test
     public void probation()
     {
-        assertTrue("Could not create Probation Document",null != TestData.defaultTestDoc(ProbationDocument.class));
+        assertTrue("Could not create Probation Document",null != TestData.defaultTestDoc(DocType.Probation));
     }
     @Test
     public void promotion()
     {
-        assertTrue("Could not create Promotion Document",null != TestData.defaultTestDoc(PromotionDocument.class));
+        assertTrue("Could not create Promotion Document",null != TestData.defaultTestDoc(DocType.Promotion));
     }
     @Test
     public void salaryIncrease()
     {
-        assertTrue("Could not create Salary Increase Document",null != TestData.defaultTestDoc(SalaryIncreaseDocument.class));
+        assertTrue("Could not create Salary Increase Document",null != TestData.defaultTestDoc(DocType.SalaryIncrease));
     }
     @Test
     public void termination()
     {
-        assertTrue("Could not create Termination Document",null != TestData.defaultTestDoc(TerminationDoument.class));
+        assertTrue("Could not create Termination Document",null != TestData.defaultTestDoc(DocType.Termination));
     }
     
     

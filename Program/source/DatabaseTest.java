@@ -14,15 +14,7 @@ import org.junit.Test;
 public class DatabaseTest
 {
     Database db = null;
-    
-    AnnualReviewDocument arDoc = null;
-    InitialEmploymentDocument ieDoc = null;
-    PersonalDetailsDocument pdDoc = null;
-    ProbationDocument prDoc = null;
-    PromotionDocument pmDoc = null;
-    SalaryIncreaseDocument siDoc = null;
-    TerminationDoument tmDoc = null;
-    
+    Document doc = null;
     /**
      * Defdblt constructor for test class DatabaseTest
      */
@@ -58,26 +50,26 @@ public class DatabaseTest
     {
         System.out.println("Test: getAll");
         String[] results;
-        assertTrue("Did not add AR",db.addDocument(TestData.defaultTestDoc(AnnualReviewDocument.class)));
-        results = db.search(null,null,AnnualReviewDocument.class);
+        assertTrue("Did not add AR",db.addDocument(TestData.defaultTestDoc(DocType.AnnualReview)));
+        results = db.search(null,null,DocType.AnnualReview);
         assertTrue("AR_Document not listed",results.length==1 && results[0].equals("123457"));
-        assertTrue("Did not add IE",db.addDocument(TestData.defaultTestDoc(InitialEmploymentDocument.class)));
-        results = db.search(null,null,InitialEmploymentDocument.class);
+        assertTrue("Did not add IE",db.addDocument(TestData.defaultTestDoc(DocType.InitialEmployment)));
+        results = db.search(null,null,DocType.InitialEmployment);
         assertTrue("IE_Document not listed",results.length==1 && results[0].equals("123456"));
-        assertTrue("Did not add PD",db.addDocument(TestData.defaultTestDoc(PersonalDetailsDocument.class)));
-        results = db.search(null,null,PersonalDetailsDocument.class);
+        assertTrue("Did not add PD",db.addDocument(TestData.defaultTestDoc(DocType.PersonalDetails)));
+        results = db.search(null,null,DocType.PersonalDetails);
         assertTrue("PD_Document not listed",results.length==1 && results[0].equals("123456"));
-        assertTrue("Did not add PB",db.addDocument(TestData.defaultTestDoc(ProbationDocument.class)));
-        results = db.search(null,null,ProbationDocument.class);
+        assertTrue("Did not add PB",db.addDocument(TestData.defaultTestDoc(DocType.Probation)));
+        results = db.search(null,null,DocType.Probation);
         assertTrue("PB_Document not listed",results.length==1 && results[0].equals("123457"));
-        assertTrue("Did not add PM",db.addDocument(TestData.defaultTestDoc(PromotionDocument.class)));
-        results = db.search(null,null,PromotionDocument.class);
+        assertTrue("Did not add PM",db.addDocument(TestData.defaultTestDoc(DocType.Promotion)));
+        results = db.search(null,null,DocType.Promotion);
         assertTrue("PM_Document not listed",results.length==1 && results[0].equals("123456"));
-        assertTrue("Did not add SI",db.addDocument(TestData.defaultTestDoc(SalaryIncreaseDocument.class)));
-        results = db.search(null,null,SalaryIncreaseDocument.class);
+        assertTrue("Did not add SI",db.addDocument(TestData.defaultTestDoc(DocType.SalaryIncrease)));
+        results = db.search(null,null,DocType.SalaryIncrease);
         assertTrue("SI_Document not listed",results.length==1 && results[0].equals("123456"));
-        assertTrue("Did not add TD",db.addDocument(TestData.defaultTestDoc(TerminationDoument.class)));
-        results = db.search(null,null,TerminationDoument.class);
+        assertTrue("Did not add TD",db.addDocument(TestData.defaultTestDoc(DocType.Termination)));
+        results = db.search(null,null,DocType.Termination);
         assertTrue("TD_Document not listed",results.length==1 && results[0].equals("123457"));
     }
     
@@ -86,220 +78,59 @@ public class DatabaseTest
      * Annual Review Document
      */
     @Test
-    public void addARDocument()
+    public void addDocument()
     {
-        arDoc = TestData.defaultTestDoc(AnnualReviewDocument.class);
-        System.out.println("Test: addARDocument");
-        assertTrue("Did not add",db.addDocument(arDoc));
+        System.out.println("Test: addDocument");
+        assertTrue("Did not add AnnualReview",db.addDocument(TestData.defaultTestDoc(DocType.AnnualReview)));
+        assertTrue("Did not add InitialEmployment",db.addDocument(TestData.defaultTestDoc(DocType.InitialEmployment)));
+        assertTrue("Did not add PersonalDetails",db.addDocument(TestData.defaultTestDoc(DocType.PersonalDetails)));
+        assertTrue("Did not add Probation",db.addDocument(TestData.defaultTestDoc(DocType.Probation)));
+        assertTrue("Did not add Promotion",db.addDocument(TestData.defaultTestDoc(DocType.Promotion)));
+        assertTrue("Did not add SalaryIncrease",db.addDocument(TestData.defaultTestDoc(DocType.SalaryIncrease)));
+        assertTrue("Did not add Termination",db.addDocument(TestData.defaultTestDoc(DocType.Termination)));
+    }
+    
+    private boolean testGet(String staffID,DocType type)
+    {
+        doc = TestData.defaultTestDoc(type);
+        db.addDocument(doc);
+        Document fromDB = db.getDocument(staffID,type);
+        return doc.equals(fromDB);
     }
     @Test
-    public void getARDocument()
+    public void getDocument()
     {
-        arDoc = TestData.defaultTestDoc(AnnualReviewDocument.class);
-        System.out.println("Test: getARDocument");
-        db.addDocument(arDoc);
-        AnnualReviewDocument fromDB = db.getDocument("123457",AnnualReviewDocument.class);
-        assertTrue("Added AR_Document did not match",fromDB.equals(arDoc));
+        System.out.println("Test: getDocument");
+        assertTrue("Added AnnualReview Document did not match",testGet("123457",DocType.AnnualReview));
+        assertTrue("Added InitialEmployment Document did not match",testGet("123456",DocType.InitialEmployment));
+        assertTrue("Added PersonalDetails Document did not match",testGet("123456",DocType.PersonalDetails));
+        assertTrue("Added Probation Document did not match",testGet("123457",DocType.Probation));
+        assertTrue("Added Promotion Document did not match",testGet("123456",DocType.Promotion));
+        assertTrue("Added SalaryIncrease Document did not match",testGet("123456",DocType.SalaryIncrease));
+        assertTrue("Added Termination Document did not match",testGet("123457",DocType.Termination));
+    }
+    
+    private boolean testUpdate(String staffID,String attribute,String value,DocType type)
+    {
+        doc = TestData.defaultTestDoc(type);
+        db.addDocument(doc);
+        doc.setValue(attribute,value);
+        db.updateDocument(doc);
+        Document fromDB = db.getDocument(staffID,type);
+        return doc.equals(fromDB);
     }
     @Test
     public void updateARDocument()
     {
-        arDoc = TestData.defaultTestDoc(AnnualReviewDocument.class);
         System.out.println("Test: updateARDocument");
-        db.addDocument(arDoc);
-        arDoc.setValue("section","SomeOtherSection");
-        db.updateDocument(arDoc);
-        AnnualReviewDocument fromDB = db.getDocument("123457",AnnualReviewDocument.class);
-        assertTrue("Updated AR_Document did not match",fromDB.equals(arDoc));
+        assertTrue("Updated AnnualReview        Document did not match",testUpdate("123457","section","SomeOtherSection",DocType.AnnualReview));
+        assertTrue("Updated InitialEmployment   Document did not match",testUpdate("123456","section","SomeOtherSection",DocType.InitialEmployment));
+        assertTrue("Updated PersonalDetails     Document did not match",testUpdate("123456","mobile","07734567895"      ,DocType.PersonalDetails));
+        assertTrue("Updated Probation           Document did not match",testUpdate("123457","probation_end_date","14/03/2015",DocType.Probation));
+        assertTrue("Updated Promotion           Document did not match",testUpdate("123456","new_job_title","Other Manager",DocType.Promotion));
+        assertTrue("Updated SalaryIncrease      Document did not match",testUpdate("123456","new_salary","£20.00ph",DocType.SalaryIncrease));
+        assertTrue("Updated Termination         Document did not match",testUpdate("123457","termination_date","01/02/2015",DocType.Termination));
     }
-    
-    /**
-     * Initial Employment Document
-     */
-    @Test
-    public void addIEDocument()
-    {
-        ieDoc = TestData.defaultTestDoc(InitialEmploymentDocument.class);
-        System.out.println("Test: addIEDocument");
-        assertTrue("Did not add",db.addDocument(ieDoc));
-    }
-    @Test
-    public void getIEDocument()
-    {
-        ieDoc = TestData.defaultTestDoc(InitialEmploymentDocument.class);
-        System.out.println("Test: getIEDocument");
-        db.addDocument(ieDoc);
-        InitialEmploymentDocument fromDB = db.getDocument("123456",InitialEmploymentDocument.class);
-        assertTrue("Added IE_Document did not match",fromDB.equals(ieDoc));
-    }
-    @Test
-    public void updateIEDocument()
-    {
-        ieDoc = TestData.defaultTestDoc(InitialEmploymentDocument.class);
-        System.out.println("Test: updateIEDocument");
-        db.addDocument(ieDoc);
-        ieDoc.setValue("section","SomeOtherSection");
-        db.updateDocument(ieDoc);
-        InitialEmploymentDocument fromDB = db.getDocument("123456",InitialEmploymentDocument.class);
-        assertTrue("Updated IE_Document did not match",fromDB.equals(ieDoc));
-    }
-    
-    /**
-     * Personal Details Document
-     */
-    @Test
-    public void addPDDocument()
-    {
-        pdDoc = TestData.defaultTestDoc(PersonalDetailsDocument.class);
-        System.out.println("Test: addPDDocument");
-        assertTrue("Did not add",db.addDocument(pdDoc));
-    }
-    @Test
-    public void getPDDocument()
-    {
-        pdDoc = TestData.defaultTestDoc(PersonalDetailsDocument.class);
-        System.out.println("Test: getPDDocument");
-        db.addDocument(pdDoc);
-        PersonalDetailsDocument fromDB = db.getDocument("123456",PersonalDetailsDocument.class);
-        assertTrue("Added PD_Document did not match",fromDB.equals(pdDoc));
-    }
-    @Test
-    public void updatePDDocument()
-    {
-        pdDoc = TestData.defaultTestDoc(PersonalDetailsDocument.class);
-        System.out.println("Test: updatePDDocument");
-        db.addDocument(pdDoc);
-        pdDoc.setValue("mobile","07734567895");
-        db.updateDocument(pdDoc);
-        PersonalDetailsDocument fromDB = db.getDocument("123456",PersonalDetailsDocument.class);
-        assertTrue("Updated PD_Document did not match",fromDB.equals(pdDoc));
-    }
-    
-    /**
-     * Probation Document
-     */
-    @Test
-    public void addPRDocument()
-    {
-        prDoc = TestData.defaultTestDoc(ProbationDocument.class);
-        System.out.println("Test: addPRDocument");
-        assertTrue("Did not add",db.addDocument(prDoc));
-    }
-    @Test
-    public void getPRDocument()
-    {
-        prDoc = TestData.defaultTestDoc(ProbationDocument.class);
-        System.out.println("Test: getPRDocument");
-        assertTrue("Did not add",db.addDocument(prDoc));
-        ProbationDocument fromDB = db.getDocument("123457",ProbationDocument.class);
-        assertTrue("Added PR_Document did not match",fromDB.equals(prDoc));
-    }
-    @Test
-    public void updatePRDocument()
-    {
-        prDoc = TestData.defaultTestDoc(ProbationDocument.class);
-        System.out.println("Test: updatePRDocument");
-        assertTrue("Did not add",db.addDocument(prDoc));
-        prDoc.setValue("probation_end_date","14/03/2015");
-        db.updateDocument(prDoc);
-        ProbationDocument fromDB = db.getDocument("123457",ProbationDocument.class);
-        assertTrue("Updated PR_Document did not match",fromDB.equals(prDoc));
-    }
-    
-    /**
-     * Promotion Document
-     */
-    @Test
-    public void addPMDocument()
-    {
-        pmDoc = TestData.defaultTestDoc(PromotionDocument.class);
-        System.out.println("Test: addPMDocument");
-        assertTrue("Did not add",db.addDocument(pmDoc));
-    }
-    @Test
-    public void getPMDocument()
-    {
-        pmDoc = TestData.defaultTestDoc(PromotionDocument.class);
-        System.out.println("Test: getPMDocument");
-        assertTrue("Did not add",db.addDocument(pmDoc));
-        PromotionDocument fromDB = db.getDocument("123456",PromotionDocument.class);
-        assertTrue("Added PM_Document did not match",fromDB.equals(pmDoc));
-    }
-    @Test
-    public void updatePMDocument()
-    {
-        pmDoc = TestData.defaultTestDoc(PromotionDocument.class);
-        System.out.println("Test: updatePMDocument");
-        assertTrue("Did not add",db.addDocument(pmDoc));
-        pmDoc.setValue("new_job_title","Other Manager");
-        db.updateDocument(pmDoc);
-        PromotionDocument fromDB = db.getDocument("123456",PromotionDocument.class);
-        assertTrue("Updated PM_Document did not match",fromDB.equals(pmDoc));
-    }
-    
-    /**
-     * Salary Increase Document
-     */
-    @Test
-    public void addSIDocument()
-    {
-        siDoc = TestData.defaultTestDoc(SalaryIncreaseDocument.class);
-        System.out.println("Test: addSIDocument");
-        assertTrue("Did not add",db.addDocument(siDoc));
-    }
-    @Test
-    public void getSIDocument()
-    {
-        siDoc = TestData.defaultTestDoc(SalaryIncreaseDocument.class);
-        System.out.println("Test: getSIDocument");
-        assertTrue("Did not add",db.addDocument(siDoc));
-        SalaryIncreaseDocument fromDB = db.getDocument("123456",SalaryIncreaseDocument.class);
-        assertTrue("Added SI_Document did not match",fromDB.equals(siDoc));
-    }
-    @Test
-    public void updateSIDocument()
-    {
-        siDoc = TestData.defaultTestDoc(SalaryIncreaseDocument.class);
-        System.out.println("Test: updateSIDocument");
-        assertTrue("Did not add",db.addDocument(siDoc));
-        siDoc.setValue("new_salary","£20.00ph");
-        db.updateDocument(siDoc);
-        SalaryIncreaseDocument fromDB = db.getDocument("123456",SalaryIncreaseDocument.class);
-        assertTrue("Updated SI_Document did not match",fromDB.equals(siDoc));
-    }
-    
-    /**
-     * Termination Document
-     */
-    @Test
-    public void addTMDocument()
-    {
-        tmDoc = TestData.defaultTestDoc(TerminationDoument.class);
-        System.out.println("Test: addTMDocument");
-        assertTrue("Did not add",db.addDocument(tmDoc));
-    }
-    @Test
-    public void getTMDocument()
-    {
-        tmDoc = TestData.defaultTestDoc(TerminationDoument.class);
-        System.out.println("Test: getTMDocument");
-        assertTrue("Did not add",db.addDocument(tmDoc));
-        TerminationDoument fromDB = db.getDocument("123457",TerminationDoument.class);
-        assertTrue("Added TM_Document did not match",fromDB.equals(tmDoc));
-    }
-    @Test
-    public void updateTMDocument()
-    {
-        tmDoc = TestData.defaultTestDoc(TerminationDoument.class);
-        System.out.println("Test: updateTMDocument");
-        assertTrue("Did not add",db.addDocument(tmDoc));
-        tmDoc.setValue("termination_date","01/02/2015");
-        db.updateDocument(tmDoc);
-        TerminationDoument fromDB = db.getDocument("123457",TerminationDoument.class);
-        assertTrue("Updated TM_Document did not match",fromDB.equals(tmDoc));
-    }
-    
-    
     
     /**
      * Tears down the test fixture.

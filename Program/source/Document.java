@@ -1,41 +1,28 @@
 import java.util.HashMap;
-import java.io.IOException;
-import java.io.File;
-import java.io.FileOutputStream;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
 /**
- * Document class. 
- * Written as an abstract class.
+ * Enumeration class DocumentE - Used for all documents.
+ * Refactor of classes from Chris and Virgil
  * 
- * @author Chris Wing 
- * @version 0.2
+ * @author Andrew Johnson
+ * @version 0.1
  */
-public abstract class Document 
-{  
+public class Document
+{
     private HashMap<String, String> documentData = new HashMap<String, String>();
-
+    private DocType type;
     /**
-    * public method setValue()
-    * 
-    * Method gets the value to a documents attribute.
-    * 
-    * @param attributeName: The name of the attribute you wish to change thea value of.
-    * 
-    * Returns a String as a return type.
-    */
-    @SuppressWarnings("unchecked")
-    protected boolean setValue(String[] attributeList, String attributeName, String newValue){
-        int i = getIndex(attributeList, attributeName);
-
-        if(i<0){
-            return false;
-        }
-        documentData.put(attributeName,newValue);
-        return true;
+     * Constructor for objects of class Document
+     */
+    public Document(DocType type)
+    {
+        this.type = type;
     }
-
+    
+    public DocType type()
+    {
+        return type;
+    }
+    
     /**
      * public method getValue()
      * 
@@ -43,39 +30,41 @@ public abstract class Document
      * 
      * Returns data in as a String.
      */
-    protected String getValue(String[] attributeList, String attributeName){
-        int i = getIndex(attributeList, attributeName);
+    public String getValue(String attributeName){
+        int i = type.getIndex(attributeName);
 
         if(i<0){
             return "ERROR: no valid attribute named: " + attributeName + ".";
         }
         return documentData.get(attributeName);
     }
-
+    
     /**
-     * Sets the value of an attribute for a document
-     */
-    abstract public void setValue(String attributeName,String newValue);
-
-    /**
-     * Gets the value of an attribute for a document
-     */
-    abstract public String getValue(String attributeName);
-
-    private int getIndex(String[] attributeList, String attributeName)
-    {
-        for(int i = 0; i < attributeList.length; i++){
-
-            if(attributeName == attributeList[i]){
-                return i;
-            }
+      * public method setValue()
+      * 
+      * Method gets the value to a documents attribute.
+      * 
+      * @param attributeName: The name of the attribute you wish to change thea value of.
+      * 
+      * Returns a String as a return type.
+    */
+    public boolean setValue(String attributeName, String newValue){
+        int i = type.getIndex(attributeName);
+        if(i<0){
+            return false;
         }
-        return -1;
+        documentData.put(attributeName,newValue);
+        return true;
     }
-
-    public boolean equals(Document doc)
+    
+    /**
+     * public method equals()
+     * 
+     * Checks equality between two Document (any type) objects.
+     */
+    @Override public boolean equals(Object doc)
     {
-        HashMap compData = doc.getData();
+        HashMap compData = ((Document)doc).getData();
         boolean equal = true;
         for(String attr : documentData.keySet())
         {
@@ -87,19 +76,16 @@ public abstract class Document
         }
         return equal;
     }
-
-    protected HashMap getData(){
+    
+    public HashMap getData(){
         return documentData;
     }
-
+    
     /**
-     * Method that takes the class HashMap content and creates a .docx file from it
+     * Method that creates a Microsoft .docx from the document data at 
      */
-    abstract public void saveToFile(String filePath);
-
-    public void createDoc(String filePath, XWPFDocument doc)throws IOException{
-        FileOutputStream fos = new FileOutputStream(new File(filePath).getAbsolutePath());
-        doc.write(fos);
-        fos.close();
+    public void saveToFile(String filePath)
+    {
+        type.saveToFile(filePath,this);
     }
 }
