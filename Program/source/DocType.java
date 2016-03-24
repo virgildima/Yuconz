@@ -108,7 +108,7 @@ public enum DocType
                 table.setRowBandSize(1);
                 table.setWidth(1);
                 table.setColBandSize(1); 
-                table.setCellMargins(200, 200, 2500, 1700);
+                table.setCellMargins(200, 200, 2500, 600);
                 tableRowOne.getCell(0).setText("No:");
                 tableRowOne.addNewTableCell().setText("Objectives");
                 tableRowOne.addNewTableCell().setText("Achievement: "+ docC.getValue("personal_goals_achieved"));
@@ -121,7 +121,7 @@ public enum DocType
                 table2.setRowBandSize(1);
                 table2.setWidth(1);
                 table2.setColBandSize(1); 
-                table2.setCellMargins(200, 200, 3500, 1700);
+                table2.setCellMargins(200, 200, 3500, 600);
                 tableRowOne2.getCell(0).setText("Performance summary: "+ docC.getValue("performance_summary"));
                 // Add a break between the tables
                 doc.createParagraph().createRun().addBreak();
@@ -138,7 +138,7 @@ public enum DocType
                 table10.setRowBandSize(1);
                 table10.setWidth(1);
                 table10.setColBandSize(1); 
-                table10.setCellMargins(200, 200, 2500, 1700);
+                table10.setCellMargins(200, 200, 2500, 600);
                 tableRowOne10.getCell(0).setText("No.");
                 tableRowOne10.addNewTableCell().setText(docC.getValue("future_goals_set"));
                 // Add a break between the tables
@@ -150,7 +150,7 @@ public enum DocType
                 table4.setRowBandSize(1);
                 table4.setWidth(1);
                 table4.setColBandSize(1); 
-                table4.setCellMargins(200, 200, 3500, 1700);
+                table4.setCellMargins(200, 200, 3500, 600);
                 tableRowOne4.getCell(0).setText("Reviewer comments: " + docC.getValue("reviewer_comments"));
                 // Add a break between the tables
                 doc.createParagraph().createRun().addBreak();
@@ -164,7 +164,7 @@ public enum DocType
                 table5.setRowBandSize(1);
                 table5.setWidth(1);
                 table5.setColBandSize(1);
-                table5.setCellMargins(100, 100, 800, 1200);
+                table5.setCellMargins(100, 100, 800, 300);
                 tableRowOne5.getCell(0).setText("Reviewee signature  "+ docC.getValue("reviewee_signature"));
                 tableRowOne5.addNewTableCell().setText("                 ");
                 tableRowOne5.addNewTableCell().setText("Date  "+ docC.getValue("date_of_review"));
@@ -173,7 +173,7 @@ public enum DocType
                 table5.setRowBandSize(1);
                 table5.setWidth(1);
                 table5.setColBandSize(1);
-                table5.setCellMargins(100, 100, 800, 1200);
+                table5.setCellMargins(100, 100, 800, 300);
                 tableRowOne6.getCell(0).setText("Manager/Director signature     "+ docC.getValue("manager_signature"));
                 tableRowOne6.getCell(1).setText("                 ");
                 tableRowOne6.getCell(2).setText("Date  "+ docC.getValue("date_of_review"));
@@ -183,7 +183,7 @@ public enum DocType
                 table5.setRowBandSize(1);
                 table5.setWidth(1);
                 table5.setColBandSize(1);
-                table5.setCellMargins(100, 100, 800, 1200);
+                table5.setCellMargins(100, 100, 800, 300);
                 tableRowOne7.getCell(0).setText("Second reviewer signature     "+ docC.getValue("second_manager_signatue"));
                 tableRowOne7.getCell(1).setText("                 ");
                 tableRowOne7.getCell(2).setText("Date  "+ docC.getValue("date_of_review"));
@@ -195,7 +195,27 @@ public enum DocType
             return true;
         } else if(this == DocType.InitialEmployment)
         {
-            return false;
+            try {
+                XWPFRun tempRun = null;
+                XWPFDocument doc = new XWPFDocument();
+                
+                writeParagraph(doc,ParagraphAlignment.CENTER, true,   18,"Initial Employment.",true);
+                writeParagraph(doc,ParagraphAlignment.CENTER, true,   18,"Staff No: "+  docC.getValue("staffID"),true);
+                
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"The CV is located at: "+  docC.getValue("cv_filePath"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Interview Notes: "+ docC.getValue("interview_Notes"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Interviewers: "+ docC.getValue("interviewers"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Section: "+ docC.getValue("section"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Role: "+ docC.getValue("role"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Initial Job Title: "+ docC.getValue("initial_job_title"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Initial Salary: "+ docC.getValue("initial_salary"),false);
+                 writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Starting Date: "+ docC.getValue("start_date"),false);
+                
+                createDoc(filePath,doc);
+            } catch (Exception e) {
+                return false;
+            }
+            return true;
         } else if(this == DocType.PersonalDetails)
         {
             try {
@@ -246,7 +266,26 @@ public enum DocType
             return true;
         } else if(this == DocType.Promotion)
         {
-            return false;
+            try {
+                XWPFRun tempRun = null;
+                XWPFDocument doc = new XWPFDocument();
+                
+                writeParagraph(doc,ParagraphAlignment.CENTER, true,   18,"Promotion Document.",true);
+                writeParagraph(doc,ParagraphAlignment.CENTER, true,   18,"Staff No: "+  docC.getValue("staffID"),true);
+                
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Surname: "+  docC.getValue("surname"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"First Name: "+ docC.getValue("firstname"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Current Job Title: "+ docC.getValue("current_job_title"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Current Section: "+ docC.getValue("current_section"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"New Job Title: "+ docC.getValue("new_job_title"),true);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"New Job Section: "+ docC.getValue("new_job_section"),false);
+                writeParagraph(doc,ParagraphAlignment.LEFT,   false,  14,"Starting Date: "+ docC.getValue("starting_date"),false);
+                
+                createDoc(filePath,doc);
+            } catch (Exception e) {
+                return false;
+            }
+            return true;
         } else if(this == DocType.SalaryIncrease)
         {
             try {
