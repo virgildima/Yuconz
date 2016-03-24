@@ -1,5 +1,8 @@
 #BlueJ class context
 comment0.params=type
-comment0.target=Document\ defaultTestDoc(java.lang.Class)
+comment0.target=DocumentC\ defaultTestDoc(DocType)
 comment0.text=\r\n\ Create\ a\ default\ test\ document\r\n\ \r\n\ @param\ \ type\ \ \ The\ type\ of\ the\ document\ to\ create.\r\n\ @return\ \ \ \ \ \ \ \ The\ document\ created.\r\n
-numComments=1
+comment1.params=type
+comment1.target=Document\ defaultTestDoc(java.lang.Class)
+comment1.text=\r\n\ Create\ a\ default\ test\ document\r\n\ \r\n\ @param\ \ type\ \ \ The\ type\ of\ the\ document\ to\ create.\r\n\ @return\ \ \ \ \ \ \ \ The\ document\ created.\r\n
+numComments=2
