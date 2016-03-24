@@ -18,6 +18,11 @@ public class DocumentC
         this.type = type;
     }
     
+    public DocType type()
+    {
+        return type;
+    }
+    
     /**
      * public method getValue()
      * 

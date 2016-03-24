@@ -295,6 +295,10 @@ public enum DB_TableHandlers
     {
         return forDocType(doc.getClass());
     }
+    public static DB_TableHandlers forDocType(DocumentC doc)
+    {
+        return forDocType(doc.type());
+    }
     public static DB_TableHandlers forDocType(Class type)
     {
         if(type == AnnualReviewDocument.class)
@@ -316,6 +320,32 @@ public enum DB_TableHandlers
         {
             return DB_TableHandlers.salary;
         }else if(type == TerminationDoument.class)
+        {
+            return DB_TableHandlers.termination;
+        }
+        return null;
+    }
+    public static DB_TableHandlers forDocType(DocType type)
+    {
+        if(type == DocType.AnnualReview)
+        {
+            return DB_TableHandlers.annual;
+        }else if(type == DocType.InitialEmployment)
+        {
+            return DB_TableHandlers.initial;
+        }else if(type == DocType.PersonalDetails)
+        {
+            return DB_TableHandlers.personal;
+        }else if(type == DocType.Probation)
+        {
+            return DB_TableHandlers.probation;
+        }else if(type == DocType.Promotion)
+        {
+            return DB_TableHandlers.promotion;
+        }else if(type == DocType.SalaryIncrease)
+        {
+            return DB_TableHandlers.salary;
+        }else if(type == DocType.Termination)
         {
             return DB_TableHandlers.termination;
         }
